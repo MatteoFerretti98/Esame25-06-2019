@@ -31,6 +31,8 @@ public Lista() {
 	public Dati getDati(int i) {
 		return this.lista.get(i);
 	}
-	
+	public boolean contains(int e,int i) {
+		if (e==this.getDati(i).getFid()) return true;
+		else return false;
+	}
 }
-

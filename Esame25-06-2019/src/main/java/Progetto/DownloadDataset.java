@@ -18,10 +18,10 @@ import org.json.simple.parser.ParseException;
 
 public class DownloadDataset {
 	
-	public void RichiamaClasse() {
-		
+	//public void RichiamaClasse() {
 		String url = "https://www.dati.gov.it/api/3/action/package_show?id=bbfed5c9-13f0-44ed-845f-094834963827";
 		File nomeFile = new File ("APL-AgenziaPerIlLavoro.csv");
+		public DownloadDataset() {
 		try {
 			
 			URLConnection openConnection = new URL(url).openConnection();
