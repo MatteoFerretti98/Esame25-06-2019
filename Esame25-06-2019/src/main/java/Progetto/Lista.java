@@ -24,5 +24,13 @@ public Lista() {
 	            }
  
     }
+	public List<Dati> getList(){
+		return lista;
+	}
+	//ottiene l'oggetto dato all'indice selezionato
+	public Dati getDati(int i) {
+		return this.lista.get(i);
+	}
+	
 }
 
