@@ -19,7 +19,7 @@ import org.json.simple.parser.ParseException;
 public class DownloadDataset {
 	
 	public static void main(String[] args) {
-
+		
 		String url = "https://www.dati.gov.it/api/3/action/package_show?id=bbfed5c9-13f0-44ed-845f-094834963827";
 		File nomeFile = new File ("APL-AgenziaPerIlLavoro.csv");
 		try {
@@ -36,7 +36,7 @@ public class DownloadDataset {
 			  
 			   while ( ( line = Buf.readLine() ) != null ) {
 				   data+= line;
-				   System.out.println( "Contenuto del JSON: " +line );
+				   //System.out.println( "Contenuto del JSON: " +line );
 			   }
 			 } finally {
 			   InP.close();
@@ -50,7 +50,6 @@ public class DownloadDataset {
 			        JSONObject Ob2 = (JSONObject)Ob1; 
 			        String format = (String)Ob2.get("format");
 			        URL url1 = new URL ((String)Ob2.get("url"));
-			        System.out.println(format + " | " + url1);
 			        if(format.equals("csv")) {
 			        	FileUtils.copyURLToFile(url1, nomeFile);
 			        }
