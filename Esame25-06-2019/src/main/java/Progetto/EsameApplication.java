@@ -10,5 +10,6 @@ public class EsameApplication {
 		SpringApplication.run(EsameApplication.class, args);
 		DownloadDataset classe = new DownloadDataset();
 		classe.RichiamaClasse();
+		
 	}
 }
