@@ -4,12 +4,15 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class EsameApplication {
+@SuppressWarnings("unused")
 
-	public static void main(String[] args) {
+public class EsameApplication {
+	
+	public static void main(String[] args) {	
+		
 		SpringApplication.run(EsameApplication.class, args);
-		DownloadDataset classe = new DownloadDataset();
-	//	classe.RichiamaClasse();
+		
+		DownloadDataset classe = new DownloadDataset();		//Serve per scaricare il Dataset all'avvio
 		
 	}
 }

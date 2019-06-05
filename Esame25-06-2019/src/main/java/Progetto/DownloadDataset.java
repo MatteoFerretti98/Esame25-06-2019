@@ -17,48 +17,48 @@ import org.json.simple.JSONValue;
 import org.json.simple.parser.ParseException;
 
 public class DownloadDataset {
-	
-	//public void RichiamaClasse() {
-		String url = "https://www.dati.gov.it/api/3/action/package_show?id=bbfed5c9-13f0-44ed-845f-094834963827";
-		File nomeFile = new File ("APL-AgenziaPerIlLavoro.csv");
-		public DownloadDataset() {
-		try {
+		
+		String url = "https://www.dati.gov.it/api/3/action/package_show?id=bbfed5c9-13f0-44ed-845f-094834963827"; //url del JSON
+		File nomeFile = new File ("APL-AgenziaPerIlLavoro.csv");	//Nome del file da scaricare
+		
+		public DownloadDataset() { try {
 			
-			URLConnection openConnection = new URL(url).openConnection();
-			openConnection.addRequestProperty("User-Agent", "Google Chrome");
-			InputStream InP = openConnection.getInputStream();
+			URLConnection openConnection = new URL(url).openConnection();		//Si connette all'url
+			openConnection.addRequestProperty("User-Agent", "Google Chrome");	//Con l'utente "User-Agent" e "Google Chrome"
+			InputStream InP = openConnection.getInputStream();					//Raccoglie il flusso dei dati
 			
 			 String data = "";
 			 String line = "";
 			 
 			 try {
-			   InputStreamReader ISP = new InputStreamReader( InP );
-			   BufferedReader Buf = new BufferedReader( ISP );
-			  
-			   while ( ( line = Buf.readLine() ) != null ) {
+			   InputStreamReader ISP = new InputStreamReader( InP ); 
+			   BufferedReader Buf = new BufferedReader( ISP );		//Grazie a buffer read legge il flusso dei dati
+			   														//e li mette dentro a line che va ad incrementare
+			   while ( ( line = Buf.readLine() ) != null ) {		//data in questo ciclo while
 				   data+= line;
-				   //System.out.println( "Contenuto del JSON: " +line );
+				   //System.out.println( "Contenuto del JSON: " +line );	//Nel caso vorresti vedere tutto il JSON in riga
 			   }
 			 } finally {
-			   InP.close();
+			   InP.close();		//dopo aver raccolto tutti i dati chiude il flusso
 			 }
-			JSONObject obj1 = (JSONObject) JSONValue.parseWithException(data); 
-			JSONObject obj2 = (JSONObject) (obj1.get("result"));
-			JSONArray obj3 = (JSONArray) (obj2.get("resources"));
+			JSONObject obj1 = (JSONObject) JSONValue.parseWithException(data);	//Inizia il parsing dei dati come JSON Object
+			JSONObject obj2 = (JSONObject) (obj1.get("result"));				//Cerca nel JSON il "result" e lo apre
+			JSONArray obj3 = (JSONArray) (obj2.get("resources"));				//Poi cerca tutti i resources tra le parentesi {} del result
 			
-			for(Object Ob1: obj3){
-			    if ( Ob1 instanceof JSONObject ) {
-			        JSONObject Ob2 = (JSONObject)Ob1; 
-			        String format = (String)Ob2.get("format");
-			        URL url1 = new URL ((String)Ob2.get("url"));
-			        if(format.equals("csv")) {
-			        	FileUtils.copyURLToFile(url1, nomeFile);
+			for(Object Ob1: obj3){									//Con questo ciclo for controlla ogni resources
+			    if ( Ob1 instanceof JSONObject ) {					 
+			        JSONObject Ob2 = (JSONObject)Ob1; 				
+			        String format = (String)Ob2.get("format");		//e "scorrendo" controlla i formati e li mette dentro format
+			        URL url1 = new URL ((String)Ob2.get("url"));	//idem per url, appena ne vede uno lo mette in url
+			        //System.out.println(format + " | " + url1);			//Questo print serve se si vuole vedere ogni url contenuto nel JSON
+			        if(format.equals("csv")) {						//Se il formato di uno di quei url è cvs (ovvero il file che cerchiamo noi)
+			        	FileUtils.copyURLToFile(url1, nomeFile);	//lo scarica nella cartella del progetto
 			        }
 			    }
 			}
 			System.out.println( "Il file è stato scaricato" );
-		} catch (IOException | ParseException e) {
-			e.printStackTrace();
+		} catch (IOException | ParseException e) {		//Eccezioni in caso di parse sbagliato
+			e.printStackTrace();						//o di url non adatto
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
