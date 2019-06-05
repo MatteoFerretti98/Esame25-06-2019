@@ -8,6 +8,7 @@ public class EsameApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(EsameApplication.class, args);
+		DownloadDataset classe = new DownloadDataset();
+		classe.RichiamaClasse();
 	}
-
 }
