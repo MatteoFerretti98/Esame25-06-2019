@@ -1,5 +1,6 @@
 package Progetto;
 
+//mette insieme la latitudine e la longitudine nel dataset
 public class Punto {
 	
 	private float Latitudine;

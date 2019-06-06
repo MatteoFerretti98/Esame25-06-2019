@@ -6,7 +6,7 @@ import java.util.List;
 public class Container {
 	protected List<Dati> lista = new ArrayList<>();
 	
-	//queste funzioni effettuano un controllo sulla presenza di un campo nella lista 
+	//queste funzioni effettuano un controllo sulla presenza di un campo nella lista  
 	public boolean containsFid(int e,int i) {
 		if (e==lista.get(i).getFid()) return true; 
 		else return false;
