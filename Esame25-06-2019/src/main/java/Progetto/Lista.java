@@ -12,9 +12,9 @@ public class Lista extends Container {
 //costruttore che inizializza la lista
 public Lista() {
 	String line = "";
-    String cvsSplitBy = ",";
+    String cvsSplitBy = ";";
     try (BufferedReader br = new BufferedReader(new FileReader("APL-AgenziaPerIlLavoro.csv"))) {
-       line = br.readLine();
+       line = br.readLine(); //serve per saltare la prima riga del dataset che contiene i nomi dei campi
     	while ((line = br.readLine()) != null) {
             String[] spazio = line.split(cvsSplitBy);
             lista.add(new Dati (Integer.parseInt(spazio[0]),spazio[1],spazio[2],spazio[3],spazio[4],Long.parseLong(spazio[5]),Long.parseLong(spazio[6]),spazio[7],Float.parseFloat(spazio[8]),Float.parseFloat(spazio[9])));
