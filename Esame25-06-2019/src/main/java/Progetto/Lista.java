@@ -26,7 +26,7 @@ public Lista() {
             if (spazio[5].contains(" ")) //corregge eventuali spazi nel numero 
             {
             	String[] telefono= spazio[5].split(FaxSplit);
-            	spazio[6]=telefono[0].concat(telefono[1]);
+            	spazio[5]=telefono[0].concat(telefono[1]);
             }
             if (spazio[6].contains(" ")) //corregge eventuali spazi nel numero 
             {
