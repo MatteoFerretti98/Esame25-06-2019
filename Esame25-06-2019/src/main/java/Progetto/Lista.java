@@ -6,8 +6,8 @@ import java.io.IOException;
 import java.util.*;
 
 
-public class Lista {
-private List<Dati> lista = new ArrayList<>();
+public class Lista extends Container {
+//private List<Dati> lista = new ArrayList<>();
 
 //costruttore che inizializza la lista
 public Lista() {
@@ -27,12 +27,9 @@ public Lista() {
 	public List<Dati> getList(){
 		return lista;
 	}
-	//ottiene l'oggetto dato all'indice selezionato
+	//ottiene l'oggetto "dato" all'indice "i" selezionato
 	public Dati getDati(int i) {
 		return this.lista.get(i);
 	}
-	public boolean contains(int e,int i) {
-		if (e==this.getDati(i).getFid()) return true;
-		else return false;
-	}
+	
 }
