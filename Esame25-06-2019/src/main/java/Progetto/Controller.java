@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 @RestController
 public class Controller {
-	@GetMapping("/data")
+	@GetMapping("/data") //stampa il JSON del dataset
 	public Lista getDati() {
 		return new Lista();
 	}
