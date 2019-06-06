@@ -10,6 +10,8 @@ private long  Telefono;
 private long Fax;
 private String Tipo;
 private Punto Punto;
+private float lat;
+private float lon;
 
 
 //costruttore della classe
@@ -24,8 +26,10 @@ public Dati(int fid, String preNorm, String comune, String provincia, String ind
 	Telefono = telefono;
 	Fax = fax;
 	Tipo = tipo;
-    Punto.setLatitudine(latitudine);
-	Punto.setLongitudine(longitudine);
+   // Punto.setLatitudine(latitudine);
+   // Punto.setLongitudine(longitudine);
+	lat=latitudine;
+	lon=longitudine;
 }
 //getters e setters
 public int getFid() {
@@ -82,4 +86,5 @@ public Punto getPunto() {
 public void setPunto(Punto punto) {
 	Punto = punto;
 }
+
 }
