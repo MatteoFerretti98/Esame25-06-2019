@@ -5,9 +5,6 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.*;
 
-import javax.validation.constraints.Size;
-
-
 public class Lista extends Container {
 //private List<Dati> lista = new ArrayList<>();
 
