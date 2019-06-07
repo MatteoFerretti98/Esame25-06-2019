@@ -14,6 +14,12 @@ public class Controller {
 	public Lista getDati() {
 		return new Lista();
 	}
-
+	
+	/*@RequestMapping("/metadata")
+	public ResponseEntity<MetaData> getMeDa() {
+		MetaData MeDa = new MetaData();
+		//return new MetaData();
+		return new ResponseEntity <MetaData> (MeDa,HttpStatus.NOT_FOUND);
+	}*/
 
 }

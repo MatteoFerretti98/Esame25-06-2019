@@ -5,6 +5,8 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.*;
 
+import javax.validation.constraints.Size;
+
 
 public class Lista extends Container {
 //private List<Dati> lista = new ArrayList<>();
@@ -18,6 +20,7 @@ public Lista() {
     try (BufferedReader br = new BufferedReader(new FileReader("APL-AgenziaPerIlLavoro.csv"))) {
        line = br.readLine(); //serve per saltare la prima riga del dataset che contiene i nomi dei campi
     	while ((line = br.readLine()) != null) {
+    		System.out.println(line);
             String[] spazio = line.split(cvsSplitBy);
             String[] LatLong = spazio[8].split(LatLongSplit);//mette in un vettore la parte intera e la mantissa della latidudine
             float latitudine = (float) (Float.parseFloat(LatLong[0])+(Float.parseFloat(LatLong[1])/Math.pow(10, LatLong[1].length())));//converte il vettore che contiene la latitudine in un float
@@ -26,7 +29,13 @@ public Lista() {
             if (spazio[5].contains(" ")) //corregge eventuali spazi nel numero 
             {
             	String[] telefono= spazio[5].split(FaxSplit);
-            	spazio[5]=telefono[0].concat(telefono[1]);
+            	if (telefono.length==1) {		//Serve per controllare se telefono 
+            		spazio[5]=telefono[0];		//è stato splittato in 2 campi pieni o se
+            	}								//uno dei 2 è vuoto
+            	else
+            	{
+            		spazio[5]=telefono[0].concat(telefono[1]);
+            	}
             }
             if (spazio[6].contains(" ")) //corregge eventuali spazi nel numero 
             {
