@@ -22,7 +22,7 @@ public Lista() {
     		//System.out.println(line);
     		
             String[] spazio = line.split(cvsSplitBy);
-            if(spazio.length==10) {//se il vettore è più lungo del numero dei campi non inizializza
+            if(spazio.length>=10) {//se il vettore è più lungo del numero dei campi non inizializza
             String[] LatLong;
            	if(spazio[8].contains(",")) {
             LatLong = spazio[8].split(LatLongSplit);//mette in un vettore la parte intera e la mantissa della latidudine
@@ -36,14 +36,17 @@ public Lista() {
            	}else
            	{ longitudine=(float) (Float.parseFloat(spazio[9])/Math.pow(10, spazio[9].length() -2));}
            	
-          
-
+           	
+           	
             if (spazio[5].isEmpty())	{ spazio[5]="0";}
-            if (spazio[5].contains(" ")||spazio[5].contains("/")||spazio[6].contains(".")) //corregge eventuali spazi nel numero 
+            if ((spazio[5].contains(" "))||(spazio[5].contains("/"))||(spazio[5].contains("."))) //corregge eventuali spazi nel numero 
             {
-            	if(spazio[6].contains(".")) {FaxSplit=".";}
+            	if(spazio[5].contains(".")) {FaxSplit=".";}
             	if(spazio[5].contains("/")) {FaxSplit="/";}
-            	String[] telefono= spazio[5].split(FaxSplit); 
+            	if(spazio[5].contains(" ")) {FaxSplit=" ";}
+            	//System.out.println(spazio[5]);
+            	String[] telefono= spazio[5].split(FaxSplit);
+            	
             	if (telefono.length==1) {		
             	 spazio[5]=telefono[0];		    //Serve per controllare se telefono 
             									//è stato splittato in 2 campi pieni o se
@@ -53,8 +56,8 @@ public Lista() {
             		spazio[5]=telefono[0].concat(telefono[1]);
             	}
             	else {
-            		spazio[5]=telefono[0].concat(telefono[1]).concat(telefono[2]);
-            	}
+            		spazio[5]= charRemoveAt(spazio[5], 3);
+            }
             }
             if (spazio[6].isEmpty())	{ spazio[6]="0";}
             if (spazio[6].contains(" ")||spazio[6].contains("/")||spazio[6].contains(".")) //corregge eventuali spazi nel numero 
@@ -73,17 +76,16 @@ public Lista() {
             		spazio[6]=fax[0].concat(fax[1]);
             	}	
             	else {spazio[6]=fax[0].concat(fax[1]).concat(fax[2]);
-            							
-            
-
             }
+            } 
+            
             System.out.println(line);
             lista.add(new Dati (Integer.parseInt(spazio[0]),spazio[1],spazio[2],spazio[3],spazio[4],Long.parseLong(spazio[5]),Long.parseLong(spazio[6]),spazio[7],latitudine,longitudine));
             //inizializza la lista
-            } 
+            
+            
             }
-            }
-    	}catch (IOException e) {
+    	}}catch (IOException e) {
 	            e.printStackTrace();
 	            }
  
@@ -95,5 +97,8 @@ public Lista() {
 	public Dati getDati(int i) {
 		return this.lista.get(i);
 	}
+	public static String charRemoveAt(String str, int p) {  
+		   return str.substring(0, p) + str.substring(p + 1);  
+		 }
 	
 }
