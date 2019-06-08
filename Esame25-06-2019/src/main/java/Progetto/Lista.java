@@ -39,23 +39,28 @@ public Lista() {
           
 
             if (spazio[5].isEmpty())	{ spazio[5]="0";}
-            if (spazio[5].contains(" ")||spazio[5].contains("/")) //corregge eventuali spazi nel numero 
+            if (spazio[5].contains(" ")||spazio[5].contains("/")||spazio[6].contains(".")) //corregge eventuali spazi nel numero 
             {
+            	if(spazio[6].contains(".")) {FaxSplit=".";}
             	if(spazio[5].contains("/")) {FaxSplit="/";}
             	String[] telefono= spazio[5].split(FaxSplit); 
             	if (telefono.length==1) {		
             	 spazio[5]=telefono[0];		    //Serve per controllare se telefono 
             									//è stato splittato in 2 campi pieni o se
             	}								//uno dei 2 è vuoto
-            	else
+            	else if( telefono.length==2)
             	{
             		spazio[5]=telefono[0].concat(telefono[1]);
             	}
+            	else {
+            		spazio[5]=telefono[0].concat(telefono[1]).concat(telefono[2]);
+            	}
             }
             if (spazio[6].isEmpty())	{ spazio[6]="0";}
-            if (spazio[6].contains(" ")||spazio[6].contains("/")) //corregge eventuali spazi nel numero 
+            if (spazio[6].contains(" ")||spazio[6].contains("/")||spazio[6].contains(".")) //corregge eventuali spazi nel numero 
             {
-            	if(spazio[6].contains("//")) {FaxSplit="/";}
+            	if(spazio[6].contains(".")) {FaxSplit=".";}
+            	if(spazio[6].contains("/")) {FaxSplit="/";}
             	String[] fax= spazio[6].split(FaxSplit);
             	
             	if (fax.length==1) {		
@@ -63,9 +68,10 @@ public Lista() {
             		spazio[6]=fax[0];		//Serve per controllare se telefono 
             									//è stato splittato in 2 campi pieni o se uno dei 2 è vuoto
             	}			
-            	else{
+            	else if (fax.length==2){
             		spazio[6]=fax[0].concat(fax[1]);
-            	}					
+            	}	
+            	else {spazio[6]=fax[0].concat(fax[1]).concat(fax[2]);
             							
             
 
@@ -73,7 +79,10 @@ public Lista() {
             System.out.println(spazio[1]);
             lista.add(new Dati (Integer.parseInt(spazio[0]),spazio[1],spazio[2],spazio[3],spazio[4],Long.parseLong(spazio[5]),Long.parseLong(spazio[6]),spazio[7],latitudine,longitudine));
             //inizializza la lista
-            } }} catch (IOException e) {
+            } 
+            }
+            }
+    	}catch (IOException e) {
 	            e.printStackTrace();
 	            }
  
