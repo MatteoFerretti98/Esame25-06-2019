@@ -1,4 +1,5 @@
 package Progetto;
+
 @SuppressWarnings("unused")
 public class Dati {
 private int Fid;
@@ -9,9 +10,9 @@ private String Indirizzo;
 private long  Telefono;
 private long Fax;
 private String Tipo;
-private Punto Punto;
 private float lat;
 private float lon;
+private Punto Punto;
 
 
 //costruttore della classe
