@@ -17,7 +17,7 @@ public Lista() {
     try (BufferedReader br = new BufferedReader(new FileReader("APL-AgenziaPerIlLavoro.csv"))) {
        line = br.readLine(); //serve per saltare la prima riga del dataset che contiene i nomi dei campi
     	while ((line = br.readLine()) != null) {
-    		//System.out.println(line);
+    		System.out.println(line);
             String[] spazio = line.split(cvsSplitBy);
             String[] LatLong = spazio[8].split(LatLongSplit);//mette in un vettore la parte intera e la mantissa della latidudine
             float latitudine = (float) (Float.parseFloat(LatLong[0])+(Float.parseFloat(LatLong[1])/Math.pow(10, LatLong[1].length())));//converte il vettore che contiene la latitudine in un float
