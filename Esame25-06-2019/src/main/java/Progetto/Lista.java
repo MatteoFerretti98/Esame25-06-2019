@@ -5,27 +5,57 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.*;
 
+import org.springframework.util.StringUtils;
+
 public class Lista extends Container {
 //private List<Dati> lista = new ArrayList<>();
-
 //costruttore che inizializza la lista
 public Lista() {
 	String line = "";
     String cvsSplitBy = ";";
+	String line1 = "";
     String LatLongSplit =","; //la virgola è il separatore di latitudine e lognitudine
     String FaxSplit= " ";
     try (BufferedReader br = new BufferedReader(new FileReader("APL-AgenziaPerIlLavoro.csv"))) {
        line = br.readLine(); //serve per saltare la prima riga del dataset che contiene i nomi dei campi
     	while ((line = br.readLine()) != null) {
-    		//System.out.println(line);
+    		float latitudine=0;
+    		float longitudine=0;
+    		System.out.println(line);
             String[] spazio = line.split(cvsSplitBy);
+            System.out.println(spazio[0]);
+            System.out.println(spazio[1]);
+            System.out.println(spazio[2]);
+            System.out.println(spazio[3]);
+            System.out.println(spazio[4]);
+            System.out.println(spazio[5]);
+            System.out.println(spazio[6]);
+            System.out.println(spazio[7]);
+            System.out.println(spazio[8]);
+            System.out.println(spazio[9]);
+            System.out.println("Tra poco entra");
+            if(spazio[8]=="0") {
+            	System.out.println("ok è entrato nell'if");
+            	line1 = br.readLine();
+            	
+            }
+            else
+            {
+            	System.out.println("ok è entrato nell'else");
             String[] LatLong = spazio[8].split(LatLongSplit);//mette in un vettore la parte intera e la mantissa della latidudine
-            float latitudine = (float) (Float.parseFloat(LatLong[0])+(Float.parseFloat(LatLong[1])/Math.pow(10, LatLong[1].length())));//converte il vettore che contiene la latitudine in un float
+            /*float*/ latitudine = (float) (Float.parseFloat(LatLong[0])+(Float.parseFloat(LatLong[1])/Math.pow(10, LatLong[1].length())));//converte il vettore che contiene la latitudine in un float
             LatLong = spazio[9].split(LatLongSplit);
-            float longitudine = (float) (Float.parseFloat(LatLong[0])+(Float.parseFloat(LatLong[1])/Math.pow(10, LatLong[1].length())));
-           
-            if (spazio[5].isEmpty())	{ spazio[5]="0" ;}
+            /*float*/ longitudine = (float) (Float.parseFloat(LatLong[0])+(Float.parseFloat(LatLong[1])/Math.pow(10, LatLong[1].length())));
+            }
+            System.out.println("ok non è proprio entrato/è uscito");
+           /* if (spazio[4].contains(";")){
+            	String[] ind = spazio[4].split(cvsSplitBy);
+            	spazio[4]=ind[0].concat(ind[1]);
+            	System.out.println(spazio[4]);
+            }*/
+            if (spazio[5]==";")  spazio[5]="0" ;
             if (spazio[5].contains(" ")) //corregge eventuali spazi nel numero 
+            
             {
             	String[] telefono= spazio[5].split(FaxSplit); 
             	if (telefono.length==1) {		

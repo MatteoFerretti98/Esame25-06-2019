@@ -1,97 +1,46 @@
 package Progetto;
 
 
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
+import java.lang.reflect.Constructor;
+import java.lang.reflect.Field;
+	@SuppressWarnings({ "rawtypes", "unchecked", "resource"  })
+	public class MetaData {
 
-import com.example.demo.Student1;
-@SuppressWarnings({ "unused" })
-public class MetaData {
-	
-	private String Fid;
-	private String PreNorm;
-	private String Comune;
-	private String Provincia;
-	private String Indirizzo;
-	private String Telefono;
-	private String Fax;
-	private String Tipo;
-	private String Lat;
-	private String Lon;
-	
-public MetaData(String fid, String preNorm, String comune, String provincia, String indirizzo, String telefono, String fax,
-		String tipo,String lat, String lon){
-	super();
-	Fid = fid;
-	PreNorm = preNorm;
-	Comune = comune;
-	Provincia = provincia;
-	Indirizzo = indirizzo;
-	Telefono = telefono;
-	Fax = fax;
-	Tipo = tipo;
-	Lat= lat;
-	Lon= lon;
-}	
-
-	enum nomiDati{
-		Fid,
-		PreProcessoNormalizzazione,
-		Comune,
-		Provincia,
-		Indirizzo,
-		Telefono,
-		Fax,
-		TipoEnte,
-		Latitudine,
-		Longitudine
-	}
-	
-	private List<MetaData> data = new ArrayList<>();
-	public HashMap<String,String> metadatalist(){
-		HashMap<String, String> Mappa = new HashMap<String, String>();
-		
-		String line = "";
 		String cvsSplitBy = ";";
-		try (BufferedReader br = new BufferedReader(new FileReader("APL-AgenziaPerIlLavoro.csv"))) {
-			line = br.readLine();
-			String[] spazio = line.split(cvsSplitBy);
-			data.add(new MetaData (spazio[0],spazio[1],spazio[2],spazio[3],spazio[4],spazio[5],spazio[6],spazio[7],spazio[8],spazio[9]));
-			for(int i=0; i<=data.size(); i++) {
-				Mappa.put("Alias",spazio[i]);
-				Mappa.put("SourceField",nomiDati.values(i));
-			//data.add(new MetaData (spazio[0],spazio[1],spazio[2],spazio[3],spazio[4],spazio[5],spazio[6],spazio[7],spazio[8],spazio[9]));
-			
+		JSONArray metadata=new JSONArray();
+		public MetaData() throws ClassNotFoundException, IOException {
+			BufferedReader br = new BufferedReader(new FileReader("APL-AgenziaPerIlLavoro.csv")); //file da leggere
+			Class alias = Class.forName("Progetto.Dati"); //Prendo la classe dove c'è il costruttore
+			Constructor listaDati[] = alias.getConstructors();  //Ottiene la lista del costruttore
+			Field listaAlias[] = alias.getDeclaredFields();			//Prendo la lista degli alias
+			Class  types[] = listaDati[0].getParameterTypes();  //Prendo i types di tutti gli alias
+			String line;
+			line = br.readLine(); 							//Prende la prima riga del dataset per i SourceField
+			String[] spazio = line.split(cvsSplitBy,10); 
+			//inserisco i dati raccolti in un array json
+			for (int i=0; i < (listaAlias.length)-1; i++)	//listaAlias.length-1 perchè abbiamo dichiarato anche
+			{   											//la classe punto nel costruttore quindi ne serve una in meno
+				JSONObject obj = new JSONObject();
+				Field campoCorr = listaAlias[i];
+				//crea un oggetto con i parametri alias type e nome a cui andiamo ad aggiungere i valori presi
+				obj.put("alias", campoCorr.getName());
+				obj.put("sourceField", spazio[i] );
+				obj.put("type", types[i].getName());
+				String types2=(String) obj.get("type");  		//ottiene il tipo dell'oggetto e serve per il controllo delle String
+				if(types2.equals("java.lang.String")) obj.put("type","String");   //Controllo per le stringhe: se l'oggetto è java.lang.String 
+				metadata.add(obj);   						//lo metto come String e aggiungo di volta in volta l'oggetto all'Array json
 			}
-    	 
+		}   
+		public JSONArray getMetadata() {
+			return metadata;
+		}
+		public void setMetadata(JSONArray metadata) {
+			this.metadata = metadata;
+		}
 
-			Mappa.put("Alias","Fid");
-			Mappa.put("Alias","Fid");
-			Mappa.put("Alias","Fid");
-			
-     } catch (IOException e) {
-        e.printStackTrace();
-        }
-	return Mappa;
 	}
-}
-
-
-
-
-/*import java.util.HashMap;
-
-public class MyClass {
-  public static void main(String[] args) {
-    HashMap<String, String> capitalCities = new HashMap<String, String>();
-    capitalCities.put("England", "London");
-    capitalCities.put("Germany", "Berlin");
-    capitalCities.put("Norway", "Oslo");
-    capitalCities.put("USA", "Washington DC");
-    System.out.println(capitalCities); 
-  }
-}*/
