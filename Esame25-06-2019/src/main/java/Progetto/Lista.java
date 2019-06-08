@@ -19,7 +19,7 @@ public Lista() {
     try (BufferedReader br = new BufferedReader(new FileReader("APL-AgenziaPerIlLavoro.csv"))) {
        line = br.readLine(); //serve per saltare la prima riga del dataset che contiene i nomi dei campi
     	while ((line = br.readLine()) != null) {
-    		System.out.println(line);
+    		//System.out.println(line);
     		
             String[] spazio = line.split(cvsSplitBy);
             if(spazio.length==10) {//se il vettore è più lungo del numero dei campi non inizializza
@@ -61,6 +61,7 @@ public Lista() {
             {
             	if(spazio[6].contains(".")) {FaxSplit=".";}
             	if(spazio[6].contains("/")) {FaxSplit="/";}
+            	if(spazio[6].contains(" ")) {FaxSplit=" ";}
             	String[] fax= spazio[6].split(FaxSplit);
             	
             	if (fax.length==1) {		
@@ -76,7 +77,7 @@ public Lista() {
             
 
             }
-            System.out.println(spazio[1]);
+            System.out.println(line);
             lista.add(new Dati (Integer.parseInt(spazio[0]),spazio[1],spazio[2],spazio[3],spazio[4],Long.parseLong(spazio[5]),Long.parseLong(spazio[6]),spazio[7],latitudine,longitudine));
             //inizializza la lista
             } 
