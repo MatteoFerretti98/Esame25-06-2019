@@ -57,12 +57,16 @@ public Lista() {
             	String[] fax= spazio[6].split(FaxSplit);
             	
             	if (fax.length==1) {		
-            		spazio[5]=fax[0];		//Serve per controllare se telefono 
+
+            		spazio[6]=fax[0];		//Serve per controllare se telefono 
             									//è stato splittato in 2 campi pieni o se uno dei 2 è vuoto
             	}			
             	else{
             		spazio[6]=fax[0].concat(fax[1]);
-            	}
+            	}					
+            							
+            
+
             }
             System.out.println(spazio[1]);
             lista.add(new Dati (Integer.parseInt(spazio[0]),spazio[1],spazio[2],spazio[3],spazio[4],Long.parseLong(spazio[5]),Long.parseLong(spazio[6]),spazio[7],latitudine,longitudine));
