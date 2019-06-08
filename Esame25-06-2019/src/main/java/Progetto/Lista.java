@@ -39,8 +39,9 @@ public Lista() {
           
 
             if (spazio[5].isEmpty())	{ spazio[5]="0";}
-            if (spazio[5].contains(" ")) //corregge eventuali spazi nel numero 
+            if (spazio[5].contains(" ")||spazio[5].contains("/")) //corregge eventuali spazi nel numero 
             {
+            	if(spazio[5].contains("/")) {FaxSplit="/";}
             	String[] telefono= spazio[5].split(FaxSplit); 
             	if (telefono.length==1) {		
             	 spazio[5]=telefono[0];		    //Serve per controllare se telefono 
@@ -52,8 +53,9 @@ public Lista() {
             	}
             }
             if (spazio[6].isEmpty())	{ spazio[6]="0";}
-            if (spazio[6].contains(" ")) //corregge eventuali spazi nel numero 
+            if (spazio[6].contains(" ")||spazio[6].contains("/")) //corregge eventuali spazi nel numero 
             {
+            	if(spazio[6].contains("//")) {FaxSplit="/";}
             	String[] fax= spazio[6].split(FaxSplit);
             	
             	if (fax.length==1) {		
