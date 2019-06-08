@@ -34,7 +34,7 @@ public Lista() {
            	LatLong = spazio[9].split(LatLongSplit);
             longitudine = (float) (Float.parseFloat(LatLong[0])+(Float.parseFloat(LatLong[1])/Math.pow(10, LatLong[1].length())));
            	}else
-           	{ latitudine=(float) (Float.parseFloat(spazio[8])/Math.pow(10, spazio[9].length() -2));}
+           	{ longitudine=(float) (Float.parseFloat(spazio[9])/Math.pow(10, spazio[9].length() -2));}
            	
           
 
