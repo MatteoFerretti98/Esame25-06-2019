@@ -13,6 +13,7 @@ public class Lista extends Container {
 public Lista() throws FileNotFoundException, IOException{
 	String line = "";
     String cvsSplitBy = ";";
+    int surplus = 0;
     String LatLongSplit =","; //la virgola è il separatore di latitudine e lognitudine
     float latitudine=0;
     float longitudine =0 ;
@@ -40,11 +41,10 @@ public Lista() throws FileNotFoundException, IOException{
            	
             if (spazio[5].isEmpty())	{ spazio[5]="0";}
             if ((spazio[5].contains(" "))||(spazio[5].contains("/"))||(spazio[5].contains("."))) {
-            	int index = 0;
-            	if(spazio[5].contains(".")) index = spazio[5].indexOf(".");
-            	if(spazio[5].contains("/")) index = spazio[5].indexOf("/");
-            	if(spazio[5].contains(" ")) index = spazio[5].indexOf(" ");
-    		    spazio[5] = (spazio[5].substring(0, index) + spazio[5].substring(index + 1));
+            	if(spazio[5].contains(".")) surplus = spazio[5].indexOf(".");
+            	if(spazio[5].contains("/")) surplus = spazio[5].indexOf("/");
+            	if(spazio[5].contains(" ")) surplus = spazio[5].indexOf(" ");
+    		    spazio[5] = (spazio[5].substring(0, surplus) + spazio[5].substring(surplus + 1));
             }
             /*if ((spazio[5].contains(" "))||(spazio[5].contains("/"))||(spazio[5].contains("."))) //corregge eventuali spazi nel numero 
             {
@@ -68,11 +68,10 @@ public Lista() throws FileNotFoundException, IOException{
             }*/
             if (spazio[6].isEmpty())	{ spazio[6]="0";}
             if ((spazio[6].contains(" "))||(spazio[6].contains("/"))||(spazio[6].contains("."))) {
-            	int index = 0;
-            	if(spazio[6].contains(".")) index = spazio[6].indexOf(".");
-            	if(spazio[6].contains("/")) index = spazio[6].indexOf("/");
-            	if(spazio[6].contains(" ")) index = spazio[6].indexOf(" ");
-    		    spazio[6] = (spazio[6].substring(0, index) + spazio[6].substring(index + 1));
+            	if(spazio[6].contains(".")) surplus = spazio[6].indexOf(".");
+            	if(spazio[6].contains("/")) surplus = spazio[6].indexOf("/");
+            	if(spazio[6].contains(" ")) surplus = spazio[6].indexOf(" ");
+    		    spazio[6] = (spazio[6].substring(0, surplus) + spazio[6].substring(surplus + 1));
             }
             /*if (spazio[6].contains(" ")||spazio[6].contains("/")||spazio[6].contains(".")) //corregge eventuali spazi nel numero 
             {
