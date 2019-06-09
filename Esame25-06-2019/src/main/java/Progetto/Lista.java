@@ -35,20 +35,18 @@ public Lista() {
             longitudine = (float) (Float.parseFloat(LatLong[0])+(Float.parseFloat(LatLong[1])/Math.pow(10, LatLong[1].length())));
            	}else
            	{ longitudine=(float) (Float.parseFloat(spazio[9])/Math.pow(10, spazio[9].length() -2));}
-           	
-          
-
+        
             if (spazio[5].isEmpty())	{ spazio[5]="0";}
             if (spazio[5].contains(" ")||spazio[5].contains("/")||spazio[6].contains(".")) //corregge eventuali spazi nel numero 
             {
-            	if(spazio[6].contains(".")) {FaxSplit=".";}
+            	if(spazio[5].contains(".")) {FaxSplit=".";}
             	if(spazio[5].contains("/")) {FaxSplit="/";}
             	String[] telefono= spazio[5].split(FaxSplit); 
             	if (telefono.length==1) {		
             	 spazio[5]=telefono[0];		    //Serve per controllare se telefono 
             									//è stato splittato in 2 campi pieni o se
             	}								//uno dei 2 è vuoto
-            	else if( telefono.length==2)
+            	else if(telefono.length==2)
             	{
             		spazio[5]=telefono[0].concat(telefono[1]);
             	}
@@ -73,21 +71,19 @@ public Lista() {
             		spazio[6]=fax[0].concat(fax[1]);
             	}	
             	else {spazio[6]=fax[0].concat(fax[1]).concat(fax[2]);
-            							
-            
 
-            }
+           
             System.out.println(line);
             lista.add(new Dati (Integer.parseInt(spazio[0]),spazio[1],spazio[2],spazio[3],spazio[4],Long.parseLong(spazio[5]),Long.parseLong(spazio[6]),spazio[7],latitudine,longitudine));
             //inizializza la lista
-            } 
-            }
-            }
-    	}catch (IOException e) {
+           
+    	}
+            }}}}catch (IOException e) {
 	            e.printStackTrace();
 	            }
- 
     }
+ 
+    
 	public List<Dati> getList(){
 		return lista;
 	}
