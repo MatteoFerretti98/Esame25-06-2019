@@ -7,10 +7,10 @@ import java.io.IOException;
 import java.util.*;
 @SuppressWarnings({ "resource"  })
 public class Lista extends Container {
-//private List<Dati> lista = new ArrayList<>();
+private List<Dati> lista = new ArrayList<>();
+private int size;
 
-//costruttore che inizializza la lista
-public Lista() throws FileNotFoundException, IOException{
+public Lista() {
 	String line = "";
     String cvsSplitBy = ";";
     int surplus = 0;
@@ -62,7 +62,7 @@ public Lista() throws FileNotFoundException, IOException{
             }
             System.out.println(line);
             lista.add(new Dati (Integer.parseInt(spazio[0]),spazio[1],spazio[2],spazio[3],spazio[4],Long.parseLong(spazio[5]),Long.parseLong(spazio[6]),spazio[7],latitudine,longitudine));
-
+            size=lista.size();
             //inizializza la lista
            
     	}
@@ -72,12 +72,11 @@ public Lista() throws FileNotFoundException, IOException{
 	            }
 }
  
-    
-
-            //inizializza la lista
             
           
-
+	public int getSize() {
+		return size;
+	}
 
 	public List<Dati> getList(){
 		return lista;
@@ -86,5 +85,8 @@ public Lista() throws FileNotFoundException, IOException{
 	public Dati getDati(int i) {
 		return this.lista.get(i);
 	}
-	
+	public boolean isEmpty() {
+		if(lista.isEmpty()) return true;
+		else return false;
+	}
 }

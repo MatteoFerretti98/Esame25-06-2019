@@ -19,6 +19,10 @@ public class Container {
 		if (e.contains(lista.get(i).getComune())) return true; 
 		else return false;
 		}
+	public boolean containsProvincia(String e,int i) {
+		if (e.contains(lista.get(i).getProvincia())) return true; 
+		else return false;
+		}
 	public boolean containsIndirizzo(String e,int i) {
 		if (e.contains(lista.get(i).getIndirizzo())) return true; 
 		else return false;
@@ -39,29 +43,7 @@ public class Container {
 		if ((e.getLatitudine()==lista.get(i).getPunto().getLatitudine())&&(e.getLongitudine()==lista.get(i).getPunto().getLongitudine())) return true; 
 		else return false;
 		}
-	public void correggiErrori(String correzione) {
-		String Split=""; 
-		if (correzione.isEmpty())	{ correzione="0";}
-        if (correzione.contains(" ")||correzione.contains("/")||correzione.contains(".")) //corregge eventuali spazi nel numero 
-        {
-        	if(correzione.contains(".")) {Split=".";}
-        	if(correzione.contains("/")) {Split="/";}
-        	if(correzione.contains(" ")) {Split=" ";}
-        	String[] fax= correzione.split(Split);
-        	
-        	if (fax.length==1) {		
-
-        		correzione=fax[0];		//Serve per controllare se telefono 
-        									//è stato splittato in 2 campi pieni o se uno dei 2 è vuoto
-        	}			
-        	else if (fax.length==2){
-        		correzione=fax[0].concat(fax[1]);
-        	}	
-        	else {correzione=fax[0].concat(fax[1]).concat(fax[2]);
-
-        }
-        }
-	}
+	
 	}
 	
 
