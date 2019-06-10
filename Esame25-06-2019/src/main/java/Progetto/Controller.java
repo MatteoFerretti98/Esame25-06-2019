@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class Controller {
 	
 	@GetMapping("/data") //stampa il JSON del dataset
-	public Lista getDati() throws FileNotFoundException, IOException{
+	public Lista getDati() {
 		return new Lista();
 	}
 	
