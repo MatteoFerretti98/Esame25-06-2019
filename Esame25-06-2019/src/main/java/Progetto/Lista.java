@@ -7,7 +7,6 @@ import java.util.*;
 @SuppressWarnings({ "resource"  })
 public class Lista extends Container {
 //private List<Dati> lista = new ArrayList<>();
-
 	
 //costruttore che inizializza la lista
 public Lista() {
