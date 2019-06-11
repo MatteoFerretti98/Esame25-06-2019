@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Container {
+	
 	protected List<Dati> lista = new ArrayList<>();
-		
 	//queste funzioni effettuano un controllo sulla presenza di un campo nella lista  
 	public boolean containsFid(int e,int i) {
 		if (e==lista.get(i).getFid()) return true; 
@@ -43,7 +43,5 @@ public class Container {
 		if ((e.getLatitudine()==lista.get(i).getPunto().getLatitudine())&&(e.getLongitudine()==lista.get(i).getPunto().getLongitudine())) return true; 
 		else return false;
 		}
-	
-	}
-	
+	}	
 

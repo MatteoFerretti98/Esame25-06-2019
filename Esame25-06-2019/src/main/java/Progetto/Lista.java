@@ -7,7 +7,7 @@ import java.util.*;
 @SuppressWarnings({ "resource"  })
 public class Lista extends Container {
 
-private List<Dati> lista = new ArrayList<>();
+public List<Dati> lista = new ArrayList<>();
 private int size;
 
 
@@ -61,13 +61,11 @@ public Lista() {
     }catch (IOException e) { e.printStackTrace(); }
 }
  
-            
-          
+     
 	public int getSize() {
 		return size;
 	}
-
-
+	
 	//inizializza la lista
 	public List<Dati> getList(){
 		return lista;
@@ -80,4 +78,5 @@ public Lista() {
 		if(lista.isEmpty()) return true;
 		else return false;
 	}
+	
 }
