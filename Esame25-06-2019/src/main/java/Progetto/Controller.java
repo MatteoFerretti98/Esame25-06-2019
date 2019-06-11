@@ -31,20 +31,12 @@ public class Controller {
     public ResponseEntity getbohh (@RequestParam String prov) throws JSONException{
 		
 		filtrata.getList().clear();
-    	int i=0;
-    	int a=0;
     	int size=Prima.getSize();
-    	do {	
-    	if(Prima.containsProvincia(prov, a)) {
-    		filtrata.getList().add(Prima.getDati(a));
+    	for(int a=0; a<=size; a++)
+    	{
+    		if(Prima.containsProvincia(prov, a))	filtrata.getList().add(Prima.getDati(a));
     	}
-    	a++;
-    	if((!(filtrata.isEmpty()))&&(a==(size-1))) {
-    		i=1;
-    	}
-    	System.out.println(a);
-    	}while((i!=1)||(a==(size-1)));
-		if (filtrata.isEmpty()) return new ResponseEntity <String>("finito",HttpStatus.NOT_FOUND);
+		if (filtrata.isEmpty()) return new ResponseEntity <String>("Non esiste",HttpStatus.NOT_FOUND);
 		else return new ResponseEntity <Lista> (filtrata,HttpStatus.NOT_FOUND); 
 	}
 }
