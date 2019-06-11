@@ -27,10 +27,10 @@ public Dati(int fid, String preNorm, String comune, String provincia, String ind
 	Telefono = telefono;
 	Fax = fax;
 	Tipo = tipo;
-   // Punto.setLatitudine(latitudine);
-   // Punto.setLongitudine(longitudine);
-	lat=latitudine;
-	lon=longitudine;
+  	Punto.setLatitudine(latitudine);
+    Punto.setLongitudine(longitudine);
+	//lat=latitudine;
+	//lon=longitudine;
 }
 //getters e setters
 public int getFid() {

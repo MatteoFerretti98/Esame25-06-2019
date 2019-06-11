@@ -4,10 +4,10 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.*;
-@SuppressWarnings({ "resource"  })
-public class Lista extends Container {
+@SuppressWarnings({ "resource" , "unused" })
+public class Lista {
 
-private List<Dati> lista = new ArrayList<>();
+public List<Dati> lista = new ArrayList<>();
 private int size;
 
 
@@ -23,7 +23,7 @@ public Lista() {
     	line = br.readLine(); //serve per saltare la prima riga del dataset che contiene i nomi dei campi
     	while ((line = br.readLine()) != null) {
 
-    		//System.out.println(line);
+    	;
     		String[] spazio = line.split(cvsSplitBy);
     		if(spazio.length>=10) {//se il vettore è più lungo del numero dei campi non inizializza
     			String[] LatLong;
@@ -46,7 +46,7 @@ public Lista() {
     				if(spazio[5].contains(" ")) surplus = spazio[5].indexOf(" ");	//se la stringa contiene il " " il valore in eccesso è quello
     				spazio[5] = (spazio[5].substring(0, surplus) + spazio[5].substring(surplus + 1));
     			}
-           
+       
     			if (spazio[6].isEmpty())	{ spazio[6]="0";} //se il numero del fax è vuoto ci carica dentro 0 altrimenti da errore
     			if ((spazio[6].contains(" "))||(spazio[6].contains("/"))||(spazio[6].contains("."))) { //serve per non eseguire sempre i 3 if seguenti
     				if(spazio[6].contains(".")) surplus = spazio[6].indexOf(".");	//se la stringa contiene il "." il valore in eccesso è quello
@@ -54,20 +54,21 @@ public Lista() {
     				if(spazio[6].contains(" ")) surplus = spazio[6].indexOf(" ");	//se la stringa contiene il " " il valore in eccesso è quello
     				spazio[6] = (spazio[6].substring(0, surplus) + spazio[6].substring(surplus + 1));
     			}
-    			System.out.println(line);
+    		
     			lista.add(new Dati (Integer.parseInt(spazio[0]),spazio[1],spazio[2],spazio[3],spazio[4],Long.parseLong(spazio[5]),Long.parseLong(spazio[6]),spazio[7],latitudine,longitudine));
+    			int i=0;
+    			
+    			System.out.println(lista.get(i).getPunto().getLatitudine());
+    			i++;
     		}
     	}
     }catch (IOException e) { e.printStackTrace(); }
 }
  
-            
-          
+     
 	public int getSize() {
-		return size;
+		return size= lista.size();
 	}
-
-
 	//inizializza la lista
 	public List<Dati> getList(){
 		return lista;
@@ -80,6 +81,7 @@ public Lista() {
 		if(lista.isEmpty()) return true;
 		else return false;
 	}
+
 	public String getProvincia(int i) {
 		return lista.get(i).getProvincia();
 	}
@@ -87,4 +89,10 @@ public Lista() {
 		if (e.equals(this.getProvincia(i))) return true; 
 		else return false;
 		}
+	public float getLat(int i) {
+		return lista.get(i).getPunto().getLatitudine();
+	}
+	public float getLon(int i) {
+		return lista.get(i).getPunto().getLongitudine();
+	}
 }

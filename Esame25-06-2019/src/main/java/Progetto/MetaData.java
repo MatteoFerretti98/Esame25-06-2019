@@ -13,7 +13,8 @@ import java.lang.reflect.Field;
 
 		String cvsSplitBy = ";";
 		JSONArray metadata=new JSONArray();
-		public MetaData() throws ClassNotFoundException, IOException {
+		public MetaData() {
+			try {
 			BufferedReader br = new BufferedReader(new FileReader("APL-AgenziaPerIlLavoro.csv")); //file da leggere
 			Class alias = Class.forName("Progetto.Dati"); //Prendo la classe dove c'è il costruttore
 			Constructor listaDati[] = alias.getConstructors();  //Ottiene la lista del costruttore
@@ -35,7 +36,10 @@ import java.lang.reflect.Field;
 				if(types2.equals("java.lang.String")) obj.put("type","String");   //Controllo per le stringhe: se l'oggetto è java.lang.String 
 				metadata.add(obj);   						//lo metto come String e aggiungo di volta in volta l'oggetto all'Array json
 			}
-		}   
+			}catch (IOException e) {e.printStackTrace();
+			}catch (ClassNotFoundException d) {d.printStackTrace();
+			}
+		}
 		public JSONArray getMetadata() {
 			return metadata;
 		}
