@@ -1,6 +1,6 @@
 package Progetto;
 
-@SuppressWarnings("unused")
+//@SuppressWarnings("unused")
 public class Dati {
 private int Fid;
 private String PreNorm;
@@ -10,14 +10,14 @@ private String Indirizzo;
 private long  Telefono;
 private long Fax;
 private String Tipo;
-private float lat;
-private float lon;
+//private float lat;
+//private float lon;
 private Punto Punto;
 
 
 //costruttore della classe
 public Dati(int fid, String preNorm, String comune, String provincia, String indirizzo, long telefono, long fax,
-		String tipo,float latitudine, float longitudine) {
+		String tipo,float latitudin, float longitudin) {
 	super();
 	Fid = fid;
 	PreNorm = preNorm;
@@ -27,9 +27,8 @@ public Dati(int fid, String preNorm, String comune, String provincia, String ind
 	Telefono = telefono;
 	Fax = fax;
 	Tipo = tipo;
-	System.out.println("inizializzo punto");
-  	Punto.setLatitudine(latitudine);//gli errori sono su questa riga
-    Punto.setLongitudine(longitudine);
+  	Punto.setLatitudine(latitudin);//gli errori sono su questa riga
+    Punto.setLongitudine(longitudin);
 	//lat=latitudine;
 	//lon=longitudine;
 }

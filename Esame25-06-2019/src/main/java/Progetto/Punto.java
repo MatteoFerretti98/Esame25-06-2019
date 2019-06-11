@@ -1,11 +1,10 @@
 package Progetto;
 
 //mette insieme la latitudine e la longitudine nel dataset
-public class Punto {
-	
-	private float Latitudine;
-	private float Longitudine;
-	
+public class Punto{
+
+private float Latitudine;
+private float Longitudine;
 	//getters e setters
 	public float getLatitudine() {
 		return Latitudine;
