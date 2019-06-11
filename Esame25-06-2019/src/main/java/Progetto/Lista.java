@@ -80,4 +80,11 @@ public Lista() {
 		if(lista.isEmpty()) return true;
 		else return false;
 	}
+	public String getProvincia(int i) {
+		return lista.get(i).getProvincia();
+	}
+	public boolean containsProvincia(String e,int i) {
+		if (e.equals(this.getProvincia(i))) return true; 
+		else return false;
+		}
 }

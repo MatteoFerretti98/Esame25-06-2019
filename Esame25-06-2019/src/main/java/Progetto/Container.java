@@ -19,10 +19,7 @@ public class Container {
 		if (e.contains(lista.get(i).getComune())) return true; 
 		else return false;
 		}
-	public boolean containsProvincia(String e,int i) {
-		if (e.contains(lista.get(i).getProvincia())) return true; 
-		else return false;
-		}
+	
 	public boolean containsIndirizzo(String e,int i) {
 		if (e.contains(lista.get(i).getIndirizzo())) return true; 
 		else return false;

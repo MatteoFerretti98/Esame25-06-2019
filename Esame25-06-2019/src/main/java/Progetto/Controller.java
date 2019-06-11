@@ -31,11 +31,10 @@ public class Controller {
 	
 	@GetMapping("/filter")
     public ResponseEntity getbohh (@RequestParam String prov) throws JSONException{
-		filtrata.getList().clear();
     	int i=0;
     	int a=0;
     	do {	
-    	if(Prima.containsProvincia(prov, a)) {
+    	if(Prima.containsComune(prov, a)) {
     		filtrata.getList().add(Prima.getDati(a));
     	}
     	a++;
