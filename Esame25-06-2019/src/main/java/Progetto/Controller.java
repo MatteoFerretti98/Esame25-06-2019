@@ -3,6 +3,7 @@ package Progetto;
 import org.springframework.web.bind.annotation.RestController;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.List;
 
 import org.json.JSONException;
 import org.springframework.http.HttpStatus;
@@ -12,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 @SuppressWarnings({ "rawtypes" })
 @RestController
 public class Controller {
-	Lista Prima = new Lista();
+	Container Prima = new Container();
 	Lista filtrata = new Lista();
 	
 	@GetMapping("/data") //stampa il JSON del dataset
@@ -32,17 +33,17 @@ public class Controller {
 		filtrata.getList().clear();
     	int i=0;
     	int a=0;
+    	int size=Prima.getSize();
     	do {	
     	if(Prima.containsProvincia(prov, a)) {
-    		
     		filtrata.getList().add(Prima.getDati(a));
     	}
     	a++;
-    	if((!(filtrata.isEmpty()))&&(a==(Prima.getSize()-1))) {
+    	if((!(filtrata.isEmpty()))&&(a==(size-1))) {
     		i=1;
     	}
-    
-    	}while((i!=1)||(a==(Prima.getSize()-1)));
+    	System.out.println(a);
+    	}while((i!=1)||(a==(size-1)));
 		if (filtrata.isEmpty()) return new ResponseEntity <String>("finito",HttpStatus.NOT_FOUND);
 		else return new ResponseEntity <Lista> (filtrata,HttpStatus.NOT_FOUND); 
 	}

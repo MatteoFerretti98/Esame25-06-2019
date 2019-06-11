@@ -3,9 +3,9 @@ package Progetto;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Container {
+public class Container extends Lista {
 	
-	protected List<Dati> lista = new ArrayList<>();
+	//protected List<Dati> lista = new ArrayList<>();
 	//queste funzioni effettuano un controllo sulla presenza di un campo nella lista  
 	public boolean containsFid(int e,int i) {
 		if (e==lista.get(i).getFid()) return true; 

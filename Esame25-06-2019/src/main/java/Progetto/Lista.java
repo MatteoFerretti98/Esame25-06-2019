@@ -5,7 +5,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.*;
 @SuppressWarnings({ "resource"  })
-public class Lista extends Container {
+public class Lista {
 
 public List<Dati> lista = new ArrayList<>();
 private int size;
@@ -63,9 +63,8 @@ public Lista() {
  
      
 	public int getSize() {
-		return size;
+		return size= lista.size();
 	}
-	
 	//inizializza la lista
 	public List<Dati> getList(){
 		return lista;
@@ -78,5 +77,6 @@ public Lista() {
 		if(lista.isEmpty()) return true;
 		else return false;
 	}
+
 	
 }
