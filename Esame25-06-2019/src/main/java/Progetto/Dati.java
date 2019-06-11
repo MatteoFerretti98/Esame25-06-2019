@@ -27,7 +27,8 @@ public Dati(int fid, String preNorm, String comune, String provincia, String ind
 	Telefono = telefono;
 	Fax = fax;
 	Tipo = tipo;
-  	Punto.setLatitudine(latitudine);
+	System.out.println("inizializzo punto");
+  	Punto.setLatitudine(latitudine);//gli errori sono su questa riga
     Punto.setLongitudine(longitudine);
 	//lat=latitudine;
 	//lon=longitudine;

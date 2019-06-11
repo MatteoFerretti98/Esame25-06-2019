@@ -11,13 +11,13 @@ public class Punto {
 		return Latitudine;
 	}
 	public void setLatitudine(float latitudine) {
-		Latitudine = latitudine;
+		this.Latitudine= latitudine;
 	}
 	public float getLongitudine() {
 		return Longitudine;
 	}
 	public void setLongitudine(float longitudine) {
-		Longitudine = longitudine;
+		this.Longitudine = longitudine;
 	}
 	
 }
