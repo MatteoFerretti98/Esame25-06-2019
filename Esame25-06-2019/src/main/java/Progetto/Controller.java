@@ -3,8 +3,6 @@ package Progetto;
 import org.springframework.web.bind.annotation.RestController;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.util.List;
-
 import org.json.JSONException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class Controller {
 	Container Prima = new Container();
 	Lista filtrata = new Lista();
+	MetaData ListMeta = new MetaData();
 	
 	@GetMapping("/data") //stampa il JSON del dataset
 	public Lista getDati() throws FileNotFoundException, IOException {
@@ -22,9 +21,10 @@ public class Controller {
 	}
 	
 	@GetMapping("/metadata")
-	public MetaData GetMetadata() throws FileNotFoundException, IOException, ClassNotFoundException
-	{
-		return new MetaData();
+	public ResponseEntity GetMetadata() throws FileNotFoundException, IOException, ClassNotFoundException
+	{	
+		return new ResponseEntity <MetaData> (ListMeta,HttpStatus.NOT_FOUND); 
+		//return new MetaData();
 	}
 	
 	@GetMapping("/filter")

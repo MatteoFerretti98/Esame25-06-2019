@@ -4,7 +4,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.*;
-@SuppressWarnings({ "resource"  })
+@SuppressWarnings({ "resource" , "unused" })
 public class Lista {
 
 public List<Dati> lista = new ArrayList<>();
@@ -46,7 +46,7 @@ public Lista() {
     				if(spazio[5].contains(" ")) surplus = spazio[5].indexOf(" ");	//se la stringa contiene il " " il valore in eccesso è quello
     				spazio[5] = (spazio[5].substring(0, surplus) + spazio[5].substring(surplus + 1));
     			}
-           
+       
     			if (spazio[6].isEmpty())	{ spazio[6]="0";} //se il numero del fax è vuoto ci carica dentro 0 altrimenti da errore
     			if ((spazio[6].contains(" "))||(spazio[6].contains("/"))||(spazio[6].contains("."))) { //serve per non eseguire sempre i 3 if seguenti
     				if(spazio[6].contains(".")) surplus = spazio[6].indexOf(".");	//se la stringa contiene il "." il valore in eccesso è quello

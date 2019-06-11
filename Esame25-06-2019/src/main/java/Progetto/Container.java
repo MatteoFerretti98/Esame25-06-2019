@@ -1,8 +1,5 @@
 package Progetto;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class Container extends Lista {
 	
 	//protected List<Dati> lista = new ArrayList<>();
