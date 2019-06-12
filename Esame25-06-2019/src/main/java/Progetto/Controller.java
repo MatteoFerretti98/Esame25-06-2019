@@ -40,12 +40,10 @@ public class Controller {
 	}
 	@GetMapping("/filtro")
 	public ResponseEntity Filtro(@RequestParam String tipo,String campo, String min, String max) {
+		int size=Prima.getSize()-1;
 		if (tipo.equals("$bt")) {
-			//System.out.println("sono entrato");
 			if(campo.equals("latitudine")) {
-				//System.out.println("sono entrato lat");
 				filtrata.getList().clear();
-		    	int size=Prima.getSize();
 		    	for(int a=0; a<=size-1; a++)
 		    	{
 		    		if(Prima.getLat(a)>= Float.parseFloat(min)&&Prima.getLat(a)<= Float.parseFloat(max))	filtrata.getList().add(Prima.getDati(a));
@@ -55,10 +53,9 @@ public class Controller {
 			}
 			if(campo.equals("longitudine")) {
 				filtrata.getList().clear();
-		    	int size=Prima.getSize();
-		    	for(int a=0; a<=size-1; a++)
+		    	for(int a=0; a<=size; a++)
 		    	{
-		    		if(Prima.getLon(a)>= Float.parseFloat(min)&&Prima.getLat(a)<= Float.parseFloat(max))	filtrata.getList().add(Prima.getDati(a));
+		    		if(Prima.getLon(a)>= Float.parseFloat(min)&&Prima.getLon(a)<= Float.parseFloat(max))	filtrata.getList().add(Prima.getDati(a));
 		    	}
 		    	if (filtrata.isEmpty()) return new ResponseEntity <String>("Non esiste",HttpStatus.NOT_FOUND);
 				else return new ResponseEntity <Lista> (filtrata,HttpStatus.NOT_FOUND); 
