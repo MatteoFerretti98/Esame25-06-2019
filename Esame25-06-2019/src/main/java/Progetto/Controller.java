@@ -44,7 +44,7 @@ public class Controller {
 		if (tipo.equals("$bt")) {
 			if(campo.equals("latitudine")) {
 				filtrata.getList().clear();
-		    	for(int a=0; a<=size-1; a++)
+		    	for(int a=0; a<=size; a++)
 		    	{
 		    		if(Prima.getLat(a)>= Float.parseFloat(min)&&Prima.getLat(a)<= Float.parseFloat(max))	filtrata.getList().add(Prima.getDati(a));
 		    	}
