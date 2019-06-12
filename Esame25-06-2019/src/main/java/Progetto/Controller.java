@@ -14,6 +14,7 @@ public class Controller {
 	Container Prima = new Container();
 	Lista filtrata = new Lista();
 	MetaData ListMeta = new MetaData();
+	Filtri filtro = new Filtri();
 	
 	@GetMapping("/data") //stampa il JSON del dataset
 	public Lista getDati() throws FileNotFoundException, IOException {
@@ -38,7 +39,7 @@ public class Controller {
 		if (filtrata.isEmpty()) return new ResponseEntity <String>("Non esiste",HttpStatus.NOT_FOUND);
 		else return new ResponseEntity <Lista> (filtrata,HttpStatus.NOT_FOUND); 
 	}
-	@GetMapping("/filtro")
+	/*@GetMapping("/filtro")
 	public ResponseEntity Filtro(@RequestParam String tipo,String campo, String min, String max) {
 		int size=Prima.getSize()-1;
 		if (tipo.equals("$bt")) {//controlla il tipo di filtro richiesto
@@ -63,6 +64,10 @@ public class Controller {
 			else return new ResponseEntity <String>("trova un nuovo campo",HttpStatus.NOT_FOUND);
 		}
 		else return new ResponseEntity <String>("Fallito",HttpStatus.NOT_FOUND);
+	}*/
+	@GetMapping("/filtr")
+	public ResponseEntity filtro(@RequestParam String tipo,String campo, String min, String max) {
+		return filtro.filterBT(tipo, campo, min, max, Prima, filtrata);
 	}
 }
 
