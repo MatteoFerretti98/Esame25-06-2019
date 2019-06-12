@@ -41,7 +41,7 @@ public class Controller {
 	@GetMapping("/filtro")
 	public ResponseEntity Filtro(@RequestParam String tipo,String campo, String min, String max) {
 		int size=Prima.getSize()-1;
-		if (tipo.equals("$bt")) {
+		if (tipo.equals("$bt")) {//controlla il tipo di filtro richiesto
 			if(campo.equals("latitudine")) {
 				filtrata.getList().clear();
 		    	for(int a=0; a<=size; a++)
