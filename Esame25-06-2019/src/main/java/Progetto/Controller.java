@@ -39,32 +39,11 @@ public class Controller {
 		if (filtrata.isEmpty()) return new ResponseEntity <String>("Non esiste",HttpStatus.NOT_FOUND);
 		else return new ResponseEntity <Lista> (filtrata,HttpStatus.NOT_FOUND); 
 	}
-	/*@GetMapping("/filtro")
-	public ResponseEntity Filtro(@RequestParam String tipo,String campo, String min, String max) {
-		int size=Prima.getSize()-1;
-		if (tipo.equals("$bt")) {//controlla il tipo di filtro richiesto
-			if(campo.equals("latitudine")) {
-				filtrata.getList().clear();
-		    	for(int a=0; a<=size; a++)
-		    	{
-		    		if(Prima.getLat(a)>= Float.parseFloat(min)&&Prima.getLat(a)<= Float.parseFloat(max))	filtrata.getList().add(Prima.getDati(a));
-		    	}
-		    	if (filtrata.isEmpty()) return new ResponseEntity <String>("Non esiste",HttpStatus.NOT_FOUND);
-				else return new ResponseEntity <Lista> (filtrata,HttpStatus.NOT_FOUND); 
-			}
-			if(campo.equals("longitudine")) {
-				filtrata.getList().clear();
-		    	for(int a=0; a<=size; a++)
-		    	{
-		    		if(Prima.getLon(a)>= Float.parseFloat(min)&&Prima.getLon(a)<= Float.parseFloat(max))	filtrata.getList().add(Prima.getDati(a));
-		    	}
-		    	if (filtrata.isEmpty()) return new ResponseEntity <String>("Non esiste",HttpStatus.NOT_FOUND);
-				else return new ResponseEntity <Lista> (filtrata,HttpStatus.NOT_FOUND); 
-			}
-			else return new ResponseEntity <String>("trova un nuovo campo",HttpStatus.NOT_FOUND);
-		}
-		else return new ResponseEntity <String>("Fallito",HttpStatus.NOT_FOUND);
-	}*/
+
+	@GetMapping("/filtro")
+    public ResponseEntity getbhh (@RequestParam String prov) throws JSONException{
+		return filtro.filterEq(prov, Prima, filtrata);
+	}
 	@GetMapping("/filtr")
 	public ResponseEntity filtro(@RequestParam String tipo,String campo, String min, String max) {
 		return filtro.filterBT(tipo, campo, min, max, Prima, filtrata);
