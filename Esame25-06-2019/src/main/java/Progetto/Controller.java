@@ -46,7 +46,7 @@ public class Controller {
 				//System.out.println("sono entrato lat");
 				filtrata.getList().clear();
 		    	int size=Prima.getSize();
-		    	for(int a=0; a<=size; a++)
+		    	for(int a=0; a<=size-1; a++)
 		    	{
 		    		if(Prima.getLat(a)>= Float.parseFloat(min)&&Prima.getLat(a)<= Float.parseFloat(max))	filtrata.getList().add(Prima.getDati(a));
 		    	}
@@ -56,7 +56,7 @@ public class Controller {
 			if(campo.equals("longitudine")) {
 				filtrata.getList().clear();
 		    	int size=Prima.getSize();
-		    	for(int a=0; a<=size; a++)
+		    	for(int a=0; a<=size-1; a++)
 		    	{
 		    		if(Prima.getLon(a)>= Float.parseFloat(min)&&Prima.getLat(a)<= Float.parseFloat(max))	filtrata.getList().add(Prima.getDati(a));
 		    	}
