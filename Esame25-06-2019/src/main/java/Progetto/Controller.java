@@ -31,7 +31,7 @@ public class Controller {
     public ResponseEntity getbohh (@RequestParam String prov) throws JSONException{
 		filtrata.getList().clear();
     	int size=Prima.getSize();
-    	for(int a=0; a<=size; a++)
+    	for(int a=0; a<=size-1; a++)
     	{
     		if(Prima.containsProvincia(prov, a))	filtrata.getList().add(Prima.getDati(a));
     	}
