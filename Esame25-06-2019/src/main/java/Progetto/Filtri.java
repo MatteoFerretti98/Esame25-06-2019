@@ -2,7 +2,7 @@ package Progetto;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-
+@SuppressWarnings({"rawtypes","unused"})
 public class Filtri {
 	private String tipo;
 	private String campo; 
@@ -17,7 +17,7 @@ public class Filtri {
 		value=null;
 	}
 	
-	@SuppressWarnings("rawtypes")
+	
 	public ResponseEntity filterBT(String tipo,String campo,String min,String max, Container originale,Lista filtrata) {
 		int size=originale.getSize()-1;
 		if (tipo.equals("$bt")) {//controlla il tipo di filtro richiesto

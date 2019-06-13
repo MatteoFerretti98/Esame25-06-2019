@@ -28,7 +28,7 @@ public class Controller {
 		//return new MetaData();
 	}
 	
-	@GetMapping("/filter")
+	/*@GetMapping("/filter")
     public ResponseEntity getbohh (@RequestParam String prov) throws JSONException{
 		filtrata.getList().clear();
     	int size=Prima.getSize();
@@ -38,7 +38,7 @@ public class Controller {
     	}
 		if (filtrata.isEmpty()) return new ResponseEntity <String>("Non esiste",HttpStatus.NOT_FOUND);
 		else return new ResponseEntity <Lista> (filtrata,HttpStatus.NOT_FOUND); 
-	}
+	}*/
 
 	@GetMapping("/filtro")
     public ResponseEntity getbhh (@RequestParam String prov) throws JSONException{
