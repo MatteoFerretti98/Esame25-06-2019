@@ -15,6 +15,7 @@ public class Controller {
 	Lista filtrata = new Lista();
 	MetaData ListMeta = new MetaData();
 	Filtri filtro = new Filtri();
+	Statistiche stats= new Statistiche();
 	
 	@GetMapping("/data") //stampa il JSON del dataset
 	public Lista getDati() throws FileNotFoundException, IOException {
@@ -49,6 +50,10 @@ public class Controller {
 	public ResponseEntity filtro2 (@RequestParam String tipo,String campo, String min, String max) throws JSONException
 	{
 		return filtro.filterBT(tipo, campo, min, max, Prima, filtrata);
+	}
+	@GetMapping("/Stats")
+	public float Media() {
+		return stats.Media(Prima);
 	}
 }
 
