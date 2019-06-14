@@ -3,6 +3,8 @@ package Progetto;
 import org.springframework.web.bind.annotation.RestController;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
+
 import org.json.JSONException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -41,6 +43,11 @@ public class Controller {
 	@GetMapping("/Stats")
 	public float Media() {
 		return stats.Media(Prima);
+	}
+	
+	@GetMapping("/Stat")
+	public float Count(@RequestParam String campo) throws IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException {
+		return stats.Count(Prima, campo);
 	}
 }
 
