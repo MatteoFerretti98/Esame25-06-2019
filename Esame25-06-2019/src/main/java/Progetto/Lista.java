@@ -88,4 +88,7 @@ public Lista() {
 	public float getLon(int i) {
 		return lista.get(i).getPunto().getLongitudine();
 	}
+	public String getTipo(int i) {
+		return lista.get(i).getTipo();
+	}
 }
