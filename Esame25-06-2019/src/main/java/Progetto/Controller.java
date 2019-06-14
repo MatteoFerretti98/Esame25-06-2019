@@ -40,12 +40,14 @@ public class Controller {
 		else return new ResponseEntity <Lista> (filtrata,HttpStatus.NOT_FOUND); 
 	}*/
 
-	@GetMapping("/filtro")
-    public ResponseEntity getbhh (@RequestParam String prov) throws JSONException{
+	@GetMapping("/filtr")
+    public ResponseEntity filtro1 (@RequestParam String prov) throws JSONException
+	{
 		return filtro.filterEq(prov, Prima, filtrata);
 	}
-	@GetMapping("/filtr")
-	public ResponseEntity filtro(@RequestParam String tipo,String campo, String min, String max) {
+	@GetMapping("/filtro")
+	public ResponseEntity filtro2 (@RequestParam String tipo,String campo, String min, String max) throws JSONException
+	{
 		return filtro.filterBT(tipo, campo, min, max, Prima, filtrata);
 	}
 }

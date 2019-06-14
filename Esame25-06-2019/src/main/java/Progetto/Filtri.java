@@ -17,7 +17,6 @@ public class Filtri {
 		value=null;
 	}
 	
-	
 	public ResponseEntity filterBT(String tipo,String campo,String min,String max, Container originale,Lista filtrata) {
 		int size=originale.getSize()-1;
 		if (tipo.equals("$bt")) {//controlla il tipo di filtro richiesto
