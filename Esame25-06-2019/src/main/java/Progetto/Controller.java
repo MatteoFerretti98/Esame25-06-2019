@@ -36,7 +36,7 @@ public class Controller {
 		return filtro.filterEq(prov, Prima, filtrata);
 	}
 	@GetMapping("/filtro")
-	public ResponseEntity filtro2 (@RequestParam String tipo,String campo, String min, String max) throws JSONException
+	public ResponseEntity filtro2 (@RequestParam String tipo,String campo, String min, String max) throws JSONException, NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException
 	{
 		return filtro.filterBT(tipo, campo, min, max, Prima, filtrata);
 	}

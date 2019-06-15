@@ -5,8 +5,11 @@ import java.lang.reflect.Method;
 import java.util.ArrayList;
 
 public class Statistiche {
+	
 private ArrayList<String> NumeroCampi=new ArrayList<>() ;
+
 private Lista lista = new Lista();
+
 	public int ContoCampi(Container originale, String campo) {
 		int counter=0;
 		for(int i =0; i<originale.getSize();i++)
