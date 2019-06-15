@@ -4,22 +4,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-@SuppressWarnings({"rawtypes","unused"})
+@SuppressWarnings("all")
 public class Filtri {
-	private String tipo;
-	private String campo; 
-	private String min;
-	private String max;
-	private String value;
 	private Lista lista = new Lista();
-	public Filtri() {
-		tipo=null;
-		campo=null;
-		min=null;
-		max=null;
-		value=null;
-	}
-	
+
 	public ResponseEntity filterBT(String tipo,String campo,String min,String max, Container originale,Lista filtrata) throws NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
 		int size=originale.getSize()-1;
 		if (tipo.equals("$bt")) {//controlla il tipo di filtro richiesto

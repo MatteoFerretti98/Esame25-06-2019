@@ -10,7 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-@SuppressWarnings({ "rawtypes" })
+@SuppressWarnings("all")
 @RestController
 public class Controller {
 	Container Prima = new Container();

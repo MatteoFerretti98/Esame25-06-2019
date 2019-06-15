@@ -8,7 +8,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
-	@SuppressWarnings({ "rawtypes", "unchecked", "resource"  })
+@SuppressWarnings("all")
 	public class MetaData {
 
 		String cvsSplitBy = ";";

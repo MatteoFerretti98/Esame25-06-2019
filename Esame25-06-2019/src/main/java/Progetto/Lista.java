@@ -4,7 +4,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.*;
-@SuppressWarnings({ "resource" , "unused" })
+@SuppressWarnings("all")
 public class Lista {
 
 public List<Dati> lista = new ArrayList<>();

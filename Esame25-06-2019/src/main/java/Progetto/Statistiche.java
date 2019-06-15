@@ -3,7 +3,7 @@ package Progetto;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
-
+@SuppressWarnings("all")
 public class Statistiche {
 	
 private ArrayList<String> NumeroCampi=new ArrayList<>() ;

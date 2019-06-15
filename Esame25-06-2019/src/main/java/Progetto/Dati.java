@@ -1,6 +1,5 @@
 package Progetto;
 
-//@SuppressWarnings("unused")
 public class Dati {
 private int Fid;
 private String PreNorm;
