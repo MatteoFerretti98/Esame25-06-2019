@@ -41,13 +41,13 @@ public class Controller {
 		return filtro.filterBT(tipo, campo, min, max, Prima, filtrata);
 	}
 	@GetMapping("/media")
-	public float Media() {
+	public float Media() throws IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException {
 		return stats.Media(Prima);
 	}
 	
 	@GetMapping("/count")
 	public float Count(@RequestParam String campo, String nome) throws IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException {
-		return stats.Count(Prima,filtrata, campo, nome);
+		return stats.Count(Prima,campo, nome);
 	}
 }
 

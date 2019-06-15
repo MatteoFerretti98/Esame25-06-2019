@@ -10,16 +10,7 @@ private ArrayList<String> NumeroCampi=new ArrayList<>() ;
 
 private Lista lista = new Lista();
 
-	public int ContoCampi(Container originale, String campo) {
-		int counter=0;
-		for(int i =0; i<originale.getSize();i++)
-		if(campo.equals(originale.getTipo(i))) {
-			counter++;
-		}
-		return counter;
-	}
-
-	public float Media (Container originale) {
+	public float Media (Container originale) throws IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException {
 		float somma=0;
 		 for(int i=0; i< originale.getSize();i++) {
 			for(int j=0; j< originale.getSize();j++)
@@ -31,13 +22,13 @@ private Lista lista = new Lista();
 			 }
 		 }
 		 for(int i=0; i<NumeroCampi.size();i++) {
-			 somma += this.ContoCampi(originale, NumeroCampi.get(i));
+			 somma += this.Count(originale, "Tipo", NumeroCampi.get(i));//ContoCampi(originale, NumeroCampi.get(i));
 		 }
 		 
 		 return (somma/(float)NumeroCampi.size());
 	}
 	
-	public int Count (Container originale, Lista filtrata, String campo, String nome) throws IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException {
+	public int Count (Container originale,  String campo, String nome) throws IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException {
 		int count=0;
 		int size=originale.getSize()-1;
 		for(int a=0; a<=size; a++)
