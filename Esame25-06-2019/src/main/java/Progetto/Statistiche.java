@@ -34,11 +34,21 @@ private Lista lista = new Lista();
 		 return (somma/(float)NumeroCampi.size());
 	}
 	
-	public int Count (Container originale, String campo) throws IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException {
+	public int Count (Container originale, Lista filtrata, String campo, String nome) throws IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException {
 		int count=0;
 		int size=originale.getSize()-1;
 		for(int a=0; a<=size; a++)
     	{
+		Method s= lista.getDati(a).getClass().getMethod("get"+campo.substring(0, 1).toUpperCase()+campo.substring(1), null);
+		Object t = s.invoke(originale.getDati(a), null);
+		if(t.equals(nome)) count++;
+    	}
+		return count;
+	}
+	
+}
+
+		/*
 		//Per tutte gli altri get
 		Method s= lista.getDati(a).getClass().getMethod("get"+campo.substring(0, 1).toUpperCase()+campo.substring(1), null);
 		System.out.println(s);
@@ -50,8 +60,4 @@ private Lista lista = new Lista();
 		System.out.println(u);
 		Object v = u.invoke(originale.getDati(a).getPunto(), null);
 		System.out.println(v);
-    	}
-		return count;
-	}
-	
-}
+		*/
