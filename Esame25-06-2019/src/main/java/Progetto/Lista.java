@@ -36,7 +36,7 @@ public Lista() {
     				longitudine = (float) (Float.parseFloat(LatLong[0])+(Float.parseFloat(LatLong[1])/Math.pow(10, LatLong[1].length())));
     			}
     			else{ longitudine=(float) (Float.parseFloat(spazio[9])/Math.pow(10, spazio[9].length() -2));}
-
+    			
     			if (spazio[5].isEmpty())	{ spazio[5]="0";}	//se il numero di telefono è vuoto ci carica dentro 0 altrimenti da errore
     			if ((spazio[5].contains(" "))||(spazio[5].contains("/"))||(spazio[5].contains("."))) { //serve per non eseguire sempre i 3 if seguenti
     				if(spazio[5].contains(".")) surplus = spazio[5].indexOf(".");	//se la stringa contiene il "." il valore in eccesso è quello
@@ -52,6 +52,13 @@ public Lista() {
     				if(spazio[6].contains(" ")) surplus = spazio[6].indexOf(" ");	//se la stringa contiene il " " il valore in eccesso è quello
     				spazio[6] = (spazio[6].substring(0, surplus) + spazio[6].substring(surplus + 1));
     			}
+    			if (spazio[9].isEmpty())	{ spazio[9]="0";}	//se la Latitudine è vuota ci carica dentro 0
+    			if (spazio[8].isEmpty())	{ spazio[8]="0";}	//se la Longitudine è vuota ci carica dentro 0
+    			if (spazio[7].isEmpty())	{ spazio[7]=" ";}	//se il tipoEnte è vuoto ci carica dentro 0
+    			if (spazio[4].isEmpty())	{ spazio[4]=" ";}	//se l'Indirizzo è vuoto ci carica dentro 0
+    			if (spazio[3].isEmpty())	{ spazio[3]=" ";}	//se la Provincia è vuota ci carica dentro 0
+    			if (spazio[2].isEmpty())	{ spazio[2]=" ";}	//se il Comune è vuoto ci carica dentro 0
+    			if (spazio[1].isEmpty())	{ spazio[1]=" ";}	//se il PreNom è vuoto ci carica dentro 0
     			lista.add(new Dati (Integer.parseInt(spazio[0]),spazio[1],spazio[2],spazio[3],spazio[4],Long.parseLong(spazio[5]),Long.parseLong(spazio[6]),spazio[7],latitudine,longitudine));
     		}
     	}

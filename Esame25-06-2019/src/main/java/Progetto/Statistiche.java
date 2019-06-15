@@ -18,14 +18,14 @@ private Lista lista = new Lista();
 			 if(NumeroCampi.isEmpty()) {
 				 NumeroCampi.add((String) t);
 			 }
-			 else if(!(NumeroCampi.contains(t))&&(t!=null)) {
+			 else if(!(NumeroCampi.contains(t))&&(t!=" ")) {
 				 NumeroCampi.add((String)t);
 			 }
 		 }
 	   
    return NumeroCampi;}
 
-	public float Media (Container originale, String campo) throws IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException {
+	public float Media (Container originale, String campo) throws IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException{
 		float somma=0;
 		/* for(int i=0; i< originale.getSize();i++) {
 			for(int j=0; j< originale.getSize();j++)
