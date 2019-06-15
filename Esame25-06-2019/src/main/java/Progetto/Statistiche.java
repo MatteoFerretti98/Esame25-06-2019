@@ -5,14 +5,13 @@ import java.lang.reflect.Method;
 import java.util.ArrayList;
 @SuppressWarnings("all")
 public class Statistiche {
-	
-private ArrayList<String> NumeroCampi=new ArrayList<>() ;
 
 private Lista lista = new Lista();
 
    public ArrayList<String> NumeroCampi(Container originale, String campo) throws NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
 	   ArrayList<String> NumeroCampi=new ArrayList<>() ;
-			for(int j=0; j< originale.getSize();j++) {
+	
+	   for(int j=0; j< originale.getSize();j++) {
 				Method s= lista.getDati(j).getClass().getMethod("get"+campo.substring(0, 1).toUpperCase()+campo.substring(1), null);
 				Object t = s.invoke(originale.getDati(j), null);
 
@@ -23,8 +22,8 @@ private Lista lista = new Lista();
 				 NumeroCampi.add((String)t);
 			 }
 		 }
-	   return NumeroCampi;
-   }
+	   
+   return NumeroCampi;}
 
 	public float Media (Container originale, String campo) throws IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException {
 		float somma=0;
@@ -86,8 +85,9 @@ private Lista lista = new Lista();
 		float media = this.Media(originale, campo);
 		float somma=0;
 		float var=0;
+		ArrayList<String> NumeroCampi= this.NumeroCampi(originale, campo);
 		for (int i=0;i<originale.getSize();i++) {
-			somma+=Math.pow(this.Count(originale, campo, this.NumeroCampi.get(i))-media, 2);
+			somma+=Math.pow(this.Count(originale, campo, NumeroCampi.get(i))-media, 2);
 		}
 		var=somma/(this.NumeroCampi(originale, campo).size());
 		return (float) Math.sqrt(var);
