@@ -10,9 +10,25 @@ private ArrayList<String> NumeroCampi=new ArrayList<>() ;
 
 private Lista lista = new Lista();
 
-	public float Media (Container originale) throws IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException {
+   public ArrayList<String> NumeroCampi(Container originale, String campo) throws NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
+	   ArrayList<String> NumeroCampi=new ArrayList<>() ;
+			for(int j=0; j< originale.getSize();j++) {
+				Method s= lista.getDati(j).getClass().getMethod("get"+campo.substring(0, 1).toUpperCase()+campo.substring(1), null);
+				Object t = s.invoke(originale.getDati(j), null);
+
+			 if(NumeroCampi.isEmpty()) {
+				 NumeroCampi.add((String) t);
+			 }
+			 else if(!(NumeroCampi.contains(originale.getTipo(j)))) {
+				 NumeroCampi.add((String)t);
+			 }
+		 }
+	   return NumeroCampi;
+   }
+
+	public float Media (Container originale, String campo) throws IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException {
 		float somma=0;
-		 for(int i=0; i< originale.getSize();i++) {
+		/* for(int i=0; i< originale.getSize();i++) {
 			for(int j=0; j< originale.getSize();j++)
 			 if(NumeroCampi.isEmpty()) {
 				 NumeroCampi.add(originale.getTipo(j));
@@ -20,15 +36,17 @@ private Lista lista = new Lista();
 			 else if(!(NumeroCampi.contains(originale.getTipo(j)))) {
 				 NumeroCampi.add(originale.getTipo(j));
 			 }
-		 }
+		 }*/
+		ArrayList<String> NumeroCampi= this.NumeroCampi(originale, campo);
 		 for(int i=0; i<NumeroCampi.size();i++) {
 			 somma += this.Count(originale, "Tipo", NumeroCampi.get(i));//ContoCampi(originale, NumeroCampi.get(i));
 		 }
-		 
-		 return (somma/(float)NumeroCampi.size());
+		 float media =somma/(float)NumeroCampi.size();
+		 return media;
 	}
-	
+
 	public int Count (Container originale,  String campo, String nome) throws IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException {
+
 		int count=0;
 		int size=originale.getSize()-1;
 		for(int a=0; a<=size; a++)
@@ -40,6 +58,35 @@ private Lista lista = new Lista();
 		return count;
 	}
 	
+	public int maxmin (Container originale, String zona, String tipo) {
+		int size=originale.getSize()-1;
+		int max = 0;
+		int min = 0;
+		int count[];
+		int p=0; //provissoria
+		for(int a=0; a<=size; a++)
+	    {
+				
+	    }
+		
+		if(zona.equals("regione")) {
+			
+		}
+		
+		if(tipo.equals("max")) return max;
+		else if(tipo.equals("min")) return min;
+		else return p;
+	}
+	public float devStand(Container originale,String campo) throws IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException {
+		float media = this.Media(originale, campo);
+		float somma=0;
+		float var=0;
+		for (int i=0;i<originale.getSize();i++) {
+			somma+=Math.pow(this.Count(originale, campo, this.NumeroCampi.get(i))-media, 2);
+		}
+		var=somma/(this.NumeroCampi(originale, campo).size());
+		return (float) Math.sqrt(var);
+	}
 }
 
 		/*

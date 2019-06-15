@@ -41,13 +41,18 @@ public class Controller {
 		return filtro.filterBT(tipo, campo, min, max, Prima, filtrata);
 	}
 	@GetMapping("/media")
-	public float Media() throws IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException {
-		return stats.Media(Prima);
+	public String Media(@RequestParam String campo) throws IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException {
+		float media =stats.Media(Prima, campo);
+		float devStand= stats.devStand(Prima, campo);
+		return "del campo"+ campo + ": /n la media e': "+ media +"/n la deviazione standard è: "+devStand;
+		
+		
 	}
 	
 	@GetMapping("/count")
 	public float Count(@RequestParam String campo, String nome) throws IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException {
 		return stats.Count(Prima,campo, nome);
+
 	}
 }
 
