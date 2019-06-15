@@ -86,7 +86,7 @@ private Lista lista = new Lista();
 		float somma=0;
 		float var=0;
 		ArrayList<String> NumeroCampi= this.NumeroCampi(originale, campo);
-		for (int i=0;i<originale.getSize();i++) {
+		for (int i=0;i<NumeroCampi.size();i++) {
 			somma+=Math.pow(this.Count(originale, campo, NumeroCampi.get(i))-media, 2);
 		}
 		var=somma/(this.NumeroCampi(originale, campo).size());
