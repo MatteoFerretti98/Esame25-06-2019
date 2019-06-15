@@ -35,24 +35,23 @@ public class Controller {
 	{
 		return filtro.filterEq(prov, Prima, filtrata);
 	}
+	
 	@GetMapping("/filtro")
 	public ResponseEntity filtro2 (@RequestParam String tipo,String campo, String min, String max) throws JSONException, NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException
 	{
 		return filtro.filterBT(tipo, campo, min, max, Prima, filtrata);
 	}
+	
 	@GetMapping("/media")
 	public String Media(@RequestParam String campo) throws IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException {
 		float media =stats.Media(Prima, campo);
 		float devStand= stats.devStand(Prima, campo);
-		return "del campo"+ campo + ": /n la media e': "+ media +"/n la deviazione standard è: "+devStand;
-		
-		
+		return "del campo"+ campo + ": /n la media e': "+ media +"/n la deviazione standard è: "+devStand;	
 	}
 	
 	@GetMapping("/count")
 	public float Count(@RequestParam String campo, String nome) throws IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException {
 		return stats.Count(Prima,campo, nome);
-
 	}
 }
 

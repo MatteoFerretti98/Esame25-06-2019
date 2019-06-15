@@ -19,7 +19,7 @@ private Lista lista = new Lista();
 			 if(NumeroCampi.isEmpty()) {
 				 NumeroCampi.add((String) t);
 			 }
-			 else if(!(NumeroCampi.contains(originale.getTipo(j)))) {
+			 else if(!(NumeroCampi.contains(t))) {
 				 NumeroCampi.add((String)t);
 			 }
 		 }
@@ -39,9 +39,9 @@ private Lista lista = new Lista();
 		 }*/
 		ArrayList<String> NumeroCampi= this.NumeroCampi(originale, campo);
 		 for(int i=0; i<NumeroCampi.size();i++) {
-			 somma += this.Count(originale, "Tipo", NumeroCampi.get(i));//ContoCampi(originale, NumeroCampi.get(i));
+			 somma += this.Count(originale, campo, NumeroCampi.get(i));//ContoCampi(originale, NumeroCampi.get(i));
 		 }
-		 float media =somma/(float)NumeroCampi.size();
+		 float media = somma/(float)NumeroCampi.size();
 		 return media;
 	}
 
@@ -64,14 +64,19 @@ private Lista lista = new Lista();
 		int min = 0;
 		int count[];
 		int p=0; //provissoria
-		for(int a=0; a<=size; a++)
-	    {
-				
-	    }
 		
-		if(zona.equals("regione")) {
-			
-		}
+			for(int a=0; a<=size; a++)
+		    {
+				
+				
+		    }
+		
+		if(zona.equals("NA")) {}
+		if(zona.equals("AV")) {}
+		if(zona.equals("BN")) {}
+		if(zona.equals("CE")) {}
+		if(zona.equals("SA")) {}
+		if(zona.equals("regione")) {}
 		
 		if(tipo.equals("max")) return max;
 		else if(tipo.equals("min")) return min;
