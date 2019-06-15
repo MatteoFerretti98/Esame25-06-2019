@@ -18,7 +18,7 @@ private Lista lista = new Lista();
 			 if(NumeroCampi.isEmpty()) {
 				 NumeroCampi.add((String) t);
 			 }
-			 else if(!(NumeroCampi.contains(t))) {
+			 else if(!(NumeroCampi.contains(t))&&(t!=null)) {
 				 NumeroCampi.add((String)t);
 			 }
 		 }
@@ -38,7 +38,7 @@ private Lista lista = new Lista();
 		 }*/
 		ArrayList<String> NumeroCampi= this.NumeroCampi(originale, campo);
 		 for(int i=0; i<NumeroCampi.size();i++) {
-			 somma += this.Count(originale, campo, NumeroCampi.get(i));//ContoCampi(originale, NumeroCampi.get(i));
+			 somma += this.Count(originale, campo, NumeroCampi.get(i));
 		 }
 		 float media =somma/(float)NumeroCampi.size();
 		 return media;
@@ -48,7 +48,7 @@ private Lista lista = new Lista();
 
 		int count=0;
 		int size=originale.getSize()-1;
-		for(int a=0; a<=size; a++)
+		for(int a=0; a<size; a++)
     	{
 		Method s= lista.getDati(a).getClass().getMethod("get"+campo.substring(0, 1).toUpperCase()+campo.substring(1), null);
 		Object t = s.invoke(originale.getDati(a), null);
@@ -81,10 +81,10 @@ private Lista lista = new Lista();
 		float somma=0;
 		float var=0;
 		ArrayList<String> NumeroCampi= this.NumeroCampi(originale, campo);
-		for (int i=0;i<originale.getSize();i++) {
+		for (int i=0;i<NumeroCampi.size();i++) {
 			somma+=Math.pow(this.Count(originale, campo, NumeroCampi.get(i))-media, 2);
 		}
-		var=somma/(this.NumeroCampi(originale, campo).size());
+		var=somma/(NumeroCampi.size());
 		return (float) Math.sqrt(var);
 	}
 }
