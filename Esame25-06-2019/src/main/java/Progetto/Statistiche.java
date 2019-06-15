@@ -33,11 +33,11 @@ private Lista lista = new Lista();
 		 for(int i=0; i<NumeroCampi.size();i++) {
 			 somma += this.ContoCampi(originale, NumeroCampi.get(i));
 		 }
-		 
-		 return (somma/(float)NumeroCampi.size());
+		 float media =somma/(float)NumeroCampi.size();
+		 return media;
 	}
 	
-	public int Count (Container originale, Lista filtrata, String campo, String nome) throws IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException {
+	public int Count (Container originale, String campo, String nome) throws IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException {
 		int count=0;
 		int size=originale.getSize()-1;
 		for(int a=0; a<=size; a++)
@@ -49,6 +49,25 @@ private Lista lista = new Lista();
 		return count;
 	}
 	
+	public int maxmin (Container originale, String zona, String tipo) {
+		int size=originale.getSize()-1;
+		int max = 0;
+		int min = 0;
+		int count[];
+		int p=0; //provissoria
+		for(int a=0; a<=size; a++)
+	    {
+				
+	    }
+		
+		if(zona.equals("regione")) {
+			
+		}
+		
+		if(tipo.equals("max")) return max;
+		else if(tipo.equals("min")) return min;
+		else return p;
+	}
 }
 
 		/*

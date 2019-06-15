@@ -47,7 +47,7 @@ public class Controller {
 	
 	@GetMapping("/count")
 	public float Count(@RequestParam String campo, String nome) throws IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException {
-		return stats.Count(Prima,filtrata, campo, nome);
+		return stats.Count(Prima, campo, nome);
 	}
 }
 
