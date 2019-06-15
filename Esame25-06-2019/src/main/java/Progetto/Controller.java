@@ -33,20 +33,20 @@ public class Controller {
 	@GetMapping("/filtr")
     public ResponseEntity filtro1 (@RequestParam String prov) throws JSONException
 	{
-		return filtro.filterEq(prov, Prima, filtrata);
+		return new ResponseEntity (filtro.filterEq(prov, Prima, filtrata),HttpStatus.NOT_FOUND);
 	}
 	
 	@GetMapping("/filtro")
 	public ResponseEntity filtro2 (@RequestParam String tipo,String campo, String min, String max) throws JSONException, NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException
 	{
-		return filtro.filterBT(tipo, campo, min, max, Prima, filtrata);
+		return new ResponseEntity (filtro.filterBT(tipo, campo, min, max, Prima, filtrata),HttpStatus.NOT_FOUND);
 	}
 	
 	@GetMapping("/media")
 	public String Media(@RequestParam String campo) throws IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException {
 		float media = stats.Media(Prima, campo);
 		float devStand= stats.devStand(Prima, campo);
-		return "  del campo "+ campo +  " la media e': "+ media +" "+ "la deviazione standard è: +devStand";
+		return "  del campo "+ campo +  " la media e': "+ media +" "+ "la deviazione standard è:" +devStand;
 		
 	}
 	
