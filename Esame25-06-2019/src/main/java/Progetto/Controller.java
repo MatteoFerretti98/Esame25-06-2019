@@ -46,7 +46,8 @@ public class Controller {
 	public String Media(@RequestParam String campo) throws IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException {
 		float media = stats.Media(Prima, campo);
 		float devStand= stats.devStand(Prima, campo);
-		return "del campo"+ campo + ": /n la media e': "+ media +"/n la deviazione standard è: "+devStand;	
+		return "  del campo "+ campo +  " la media e': "+ media +" "+ "la deviazione standard è: +devStand";
+		
 	}
 	
 	@GetMapping("/count")
