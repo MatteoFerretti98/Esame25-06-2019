@@ -40,7 +40,7 @@ public class Controller {
 	public ResponseEntity filtro1 (@RequestParam String tipo, String campo, String min, String max) throws JSONException, NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException
 	{
 		if(tipo.equals("$bt"))	return new ResponseEntity (filtro.filterBT(tipo, campo, min, max, Prima, filtrata),HttpStatus.NOT_FOUND);
-		else if(tipo.contentEquals("$prov")) return new ResponseEntity (filtro.filterEq(campo, Prima, filtrata),HttpStatus.NOT_FOUND);
+		else if(tipo.contentEquals("$prov")) return new ResponseEntity (filtro.filterProv(tipo, campo, Prima, filtrata),HttpStatus.NOT_FOUND);
 		else return new ResponseEntity ("Immetti dei valori consoni",HttpStatus.NOT_FOUND);
 	}
 	

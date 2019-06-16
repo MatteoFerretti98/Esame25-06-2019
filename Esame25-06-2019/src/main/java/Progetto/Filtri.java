@@ -10,10 +10,11 @@ public class Filtri {
 
 	public ResponseEntity filterBT(String tipo,String campo,String min,String max, Container originale,Lista filtrata) throws NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
 		int size=originale.getSize()-1;
+		filtrata.getList().clear();
 		if (tipo.equals("$bt")) {//controlla il tipo di filtro richiesto
 				float MIN = Float.parseFloat(min);
 				float MAX = Float.parseFloat(max);
-				filtrata.getList().clear();
+				
 		    	for(int a=0; a<=size; a++)
 		    	{
 		    		//Con questa funzione in base al nome tra longitudine e latitudine richiama il get consono
@@ -30,7 +31,8 @@ public class Filtri {
 		else return new ResponseEntity <String>("Fallito",HttpStatus.NOT_FOUND);
 	}
 	
-	public ResponseEntity filterEq(String prov, Container originale,Lista filtrata) {
+	public ResponseEntity filterProv(String tipo, String prov, Container originale,Lista filtrata) {
+		if (tipo.equals("$prov")) {//controlla il tipo di filtro richiesto
 		filtrata.getList().clear();
     	int size=originale.getSize();
     	for(int a=0; a<=size-1; a++)
@@ -39,5 +41,7 @@ public class Filtri {
     	}
 		if (filtrata.isEmpty()) return new ResponseEntity <String>("Non esiste",HttpStatus.NOT_FOUND);
 		else return new ResponseEntity <Lista> (filtrata,HttpStatus.NOT_FOUND); 
+	}
+		else return new ResponseEntity <String>("Fallito",HttpStatus.NOT_FOUND);
 	}
 }
