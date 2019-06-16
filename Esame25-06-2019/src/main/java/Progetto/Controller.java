@@ -37,10 +37,10 @@ public class Controller {
 	}*/
 	
 	@GetMapping("/filtro")
-	public ResponseEntity filtro1 (@RequestParam String campo,String tipo, String min, String max) throws JSONException, NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException
+	public ResponseEntity filtro1 (@RequestParam String tipo, String campo, String min, String max) throws JSONException, NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException
 	{
-		if((tipo!=null)&&(campo!=null)&&(min!=null)&&(max!=null))	return new ResponseEntity (filtro.filterBT(tipo, campo, min, max, Prima, filtrata),HttpStatus.NOT_FOUND);
-		else if((campo!=null)&&(tipo==null)&&(min==null)&&(max==null)) return new ResponseEntity (filtro.filterEq(campo, Prima, filtrata),HttpStatus.NOT_FOUND);
+		if(tipo.equals("$bt"))	return new ResponseEntity (filtro.filterBT(tipo, campo, min, max, Prima, filtrata),HttpStatus.NOT_FOUND);
+		else if(tipo.contentEquals("$prov")) return new ResponseEntity (filtro.filterEq(campo, Prima, filtrata),HttpStatus.NOT_FOUND);
 		else return new ResponseEntity ("Immetti dei valori consoni",HttpStatus.NOT_FOUND);
 	}
 	
