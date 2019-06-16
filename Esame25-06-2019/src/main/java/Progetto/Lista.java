@@ -10,7 +10,6 @@ import org.springframework.http.ResponseEntity;
 public class Lista {
 
 public List<Dati> lista = new ArrayList<>();
-private int size;
 
 
 public Lista() {
@@ -66,20 +65,21 @@ public Lista() {
     	}
     }catch (IOException e) { e.printStackTrace(); }
 }
- 
-     
-	public int getSize() {
+	
+	public int size;
+		public int getSize() {
 		return size= lista.size();
-	}
+		}
+	
 	//inizializza la lista
-	public List<Dati> getList(){
+	protected List<Dati> getList(){
 		return lista;
 	}
 	//ottiene l'oggetto "dato" all'indice "i" selezionato
-	public Dati getDati(int i) {
+	protected Dati getDati(int i) {
 		return this.lista.get(i);
 	}
-	public boolean isEmpty() {
+	protected boolean isEmpty() {
 		if(lista.isEmpty()) return true;
 		else return false;
 	}

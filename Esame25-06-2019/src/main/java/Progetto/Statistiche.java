@@ -3,13 +3,29 @@ package Progetto;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
+import java.util.List;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 @SuppressWarnings("all")
 public class Statistiche {
-
 private Lista lista = new Lista();
-
+/*
+private int Count;
+private float Media;
+private float DevStand;
+private float Max;
+private float Min;
+private Statistiche(int count, float media, float devStand, float max, float min) {
+	super();
+	Count=count;
+	Media=media;
+	DevStand=devStand;
+	Max=max;
+	Min=min;
+}
+public List<Statistiche> st = new ArrayList<>();
+*/
    public ArrayList<String> NumeroCampi(Container originale, String campo) throws NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
 	   ArrayList<String> NumeroCampi=new ArrayList<>() ;
 	
@@ -48,15 +64,17 @@ private Lista lista = new Lista();
 	}
 
 	public int Count (Container originale,  String campo, String nome) throws IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException {
+	//public ResponseEntity Count(Container originale,  String campo, String nome) throws NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
 
 		int count=0;
-		int size=originale.getSize()-1;
+		int size=originale.getSize();
 		for(int a=0; a<size; a++)
     	{
 		Method s= lista.getDati(a).getClass().getMethod("get"+campo.substring(0, 1).toUpperCase()+campo.substring(1), null);
 		Object t = s.invoke(originale.getDati(a), null);
 		if(t.equals(nome)) count++;
     	}
+		//return new ResponseEntity <Integer> (count,HttpStatus.NOT_FOUND);
 		return count;
 	}
 	
@@ -95,9 +113,16 @@ private Lista lista = new Lista();
 		var=somma/(NumeroCampi.size());
 		return (float) Math.sqrt(var);
 	}
-	/*public ResponseEntity stats() {
+	public ResponseEntity stats(Container originale,  String campo, String nome) throws NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
 				/////Creare una classe in base al campo (PreNom, comune, provincia, ecc.) dia in output o solo count o count e media o count media e dev. standard ecc.
-	}*/
+		float a = this.devStand(originale, campo); 
+		int i = this.Count(originale, campo, nome);
+		//st.add(new Statistiche (i,a,a,a,a));
+
+		String resp = "Count: " + i + " DevStand: " + a;
+		 //return new ResponseEntity <List> (st,HttpStatus.NOT_FOUND);
+		return new ResponseEntity <String> (resp,HttpStatus.NOT_FOUND);
+	}
 }
 
 
