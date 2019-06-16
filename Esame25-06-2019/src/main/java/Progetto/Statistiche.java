@@ -3,6 +3,8 @@ package Progetto;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
+
+import org.springframework.http.ResponseEntity;
 @SuppressWarnings("all")
 public class Statistiche {
 
@@ -23,7 +25,8 @@ private Lista lista = new Lista();
 			 }
 		 }
 	   
-   return NumeroCampi;}
+   return NumeroCampi;
+   }
 
 	public float Media (Container originale, String campo) throws IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException{
 		float somma=0;
@@ -57,7 +60,7 @@ private Lista lista = new Lista();
 		return count;
 	}
 	
-	public int maxmin (Container originale, String zona, String tipo) {
+	/*public int maxmin (Container originale, String zona, String tipo) {
 		int size=originale.getSize()-1;
 		int max = 0;
 		int min = 0;
@@ -80,7 +83,7 @@ private Lista lista = new Lista();
 		if(tipo.equals("max")) return max;
 		else if(tipo.equals("min")) return min;
 		else return p;
-	}
+	}*/
 	public float devStand(Container originale,String campo) throws IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException {
 		float media = this.Media(originale, campo);
 		float somma=0;
@@ -92,7 +95,11 @@ private Lista lista = new Lista();
 		var=somma/(NumeroCampi.size());
 		return (float) Math.sqrt(var);
 	}
+	/*public ResponseEntity stats() {
+				/////Creare una classe in base al campo (PreNom, comune, provincia, ecc.) dia in output o solo count o count e media o count media e dev. standard ecc.
+	}*/
 }
+
 
 		/*
 		//Per tutte gli altri get

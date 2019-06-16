@@ -4,6 +4,8 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.*;
+
+import org.springframework.http.ResponseEntity;
 @SuppressWarnings("all")
 public class Lista {
 
@@ -81,15 +83,15 @@ public Lista() {
 		if(lista.isEmpty()) return true;
 		else return false;
 	}
-
-	public String getProvincia(int i) {
+	
+	/*public String getProvincia(int i) {
 		return lista.get(i).getProvincia();
 	}
 	public boolean containsProvincia(String e,int i) {
 		if (e.equals(this.getProvincia(i))) return true; 
 		else return false;
-		}
-	public float getLat(int i) {
+		}*/
+	/*public float getLat(int i) {
 		return lista.get(i).getPunto().getLatitudine();
 	}
 	public float getLon(int i) {
@@ -97,5 +99,5 @@ public Lista() {
 	}
 	public String getTipo(int i) {
 		return lista.get(i).getTipo();
-	}
+	}*/
 }

@@ -8,6 +8,7 @@ import java.lang.reflect.InvocationTargetException;
 import org.json.JSONException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 @SuppressWarnings("all")
@@ -36,14 +37,6 @@ public class Controller {
 		return new ResponseEntity (filtro.filterEq(prov, Prima, filtrata),HttpStatus.NOT_FOUND);
 	}*/
 	
-	@GetMapping("/filtro")
-	public ResponseEntity filtro1 (@RequestParam String tipo, String campo, String min, String max) throws JSONException, NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException
-	{
-		if(tipo.equals("$bt"))	return new ResponseEntity (filtro.filterBT(tipo, campo, min, max, Prima, filtrata),HttpStatus.NOT_FOUND);
-		else if(tipo.contentEquals("$prov")) return new ResponseEntity (filtro.filterProv(tipo, campo, Prima, filtrata),HttpStatus.NOT_FOUND);
-		else return new ResponseEntity ("Immetti dei valori consoni",HttpStatus.NOT_FOUND);
-	}
-	
 	/*@GetMapping("/media")
 	public String Media(@RequestParam String campo) throws IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException {
 		float media = stats.Media(Prima, campo);
@@ -52,7 +45,21 @@ public class Controller {
 		
 	}*/
 	
-	@GetMapping("/stats")
+	@GetMapping("/filtro")
+	public ResponseEntity filtro1 (@RequestParam String tipo, String campo, String min, String max) throws JSONException, NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException
+	{
+		if(tipo.equals("$bt"))	return new ResponseEntity (filtro.filterBT(tipo, campo, min, max, Prima, filtrata),HttpStatus.NOT_FOUND);
+		else if(tipo.contentEquals("$prov")) return new ResponseEntity (filtro.filterProv(tipo, campo, Prima, filtrata),HttpStatus.NOT_FOUND);
+		else return new ResponseEntity ("Immetti dei valori consoni",HttpStatus.NOT_FOUND);
+	}
+	
+	//////Da passare tutti gli stats sul responseEntity qui sotto
+	/*@GetMapping("/stat")
+	public ResponseEntity stats(@RequestParam String campo, String nome) throws IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException {
+		if(campo.equals("provincia"))	return new ResponseEntity (stats.(tipo, campo, Prima, filtrata),HttpStatus.NOT_FOUND);
+		return new ResponseEntity ("Immetti dei valori consoni",HttpStatus.NOT_FOUND);
+	}*/
+		@GetMapping("/stats")
 	public String Count(@RequestParam String campo, String nome) throws IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException {
 		float media = stats.Media(Prima, campo);
 		float devStand= stats.devStand(Prima, campo);
