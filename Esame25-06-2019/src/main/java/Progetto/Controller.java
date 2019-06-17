@@ -86,14 +86,14 @@ public class Controller {
 	@GetMapping("/stat")
 	public ResponseEntity Stats (@RequestParam String tipo, String campo) throws NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
 		if((stats.StringStats(tipo, campo, Prima, filtrata).isEmpty())&&(stats.NumStats(tipo, campo, Prima, filtrata).isEmpty())) return new ResponseEntity ("Non esiste",HttpStatus.NOT_FOUND);
-		else if(campo.equals("preNorm"))	return new ResponseEntity (stats.StringStats(tipo, campo, Prima, filtrata),HttpStatus.OK);
-		else if(campo.equals("comune"))	return new ResponseEntity (stats.StringStats(tipo, campo, Prima, filtrata),HttpStatus.OK);
-		else if(campo.equals("provincia"))	return new ResponseEntity (stats.StringStats(tipo, campo, Prima, filtrata),HttpStatus.OK);
-		else if(campo.equals("tipo"))	return new ResponseEntity (stats.StringStats(tipo, campo, Prima, filtrata),HttpStatus.OK);
-		else if(campo.equals("telefono"))	return new ResponseEntity (stats.NumStats(tipo, campo, Prima, filtrata),HttpStatus.OK);
-		else if(campo.equals("fax"))	return new ResponseEntity (stats.NumStats(tipo, campo, Prima, filtrata),HttpStatus.OK);
-		else if(campo.equals("latitudine"))	return new ResponseEntity (stats.NumStats(tipo, campo, Prima, filtrata),HttpStatus.OK);
-		else if(campo.equals("longitudine"))	return new ResponseEntity (stats.NumStats(tipo, campo, Prima, filtrata),HttpStatus.OK);
+		else if(!(stats.StringStats(tipo, campo, Prima, filtrata).isEmpty())&&(tipo.equals("preNorm")))	return new ResponseEntity (stats.StringStats(tipo, campo, Prima, filtrata),HttpStatus.OK);
+		else if(!(stats.StringStats(tipo, campo, Prima, filtrata).isEmpty())&&(tipo.equals("comune")))	return new ResponseEntity (stats.StringStats(tipo, campo, Prima, filtrata),HttpStatus.OK);
+		else if(!(stats.StringStats(tipo, campo, Prima, filtrata).isEmpty())&&(tipo.equals("provincia")))	return new ResponseEntity (stats.StringStats(tipo, campo, Prima, filtrata),HttpStatus.OK);
+		else if(!(stats.StringStats(tipo, campo, Prima, filtrata).isEmpty())&&(tipo.equals("tipo")))	return new ResponseEntity (stats.StringStats(tipo, campo, Prima, filtrata),HttpStatus.OK);
+		else if(!(stats.NumStats(tipo, campo, Prima, filtrata).isEmpty())&&(tipo.equals("telefono")))	return new ResponseEntity (stats.NumStats(tipo, campo, Prima, filtrata),HttpStatus.OK);
+		else if(!(stats.NumStats(tipo, campo, Prima, filtrata).isEmpty())&&(tipo.equals("fax")))	return new ResponseEntity (stats.NumStats(tipo, campo, Prima, filtrata),HttpStatus.OK);
+		else if(!(stats.NumStats(tipo, campo, Prima, filtrata).isEmpty())&&(tipo.equals("latitudine")))	return new ResponseEntity (stats.NumStats(tipo, campo, Prima, filtrata),HttpStatus.OK);
+		else if(!(stats.NumStats(tipo, campo, Prima, filtrata).isEmpty())&&(tipo.equals("longitudine")))	return new ResponseEntity (stats.NumStats(tipo, campo, Prima, filtrata),HttpStatus.OK);
 		else return new ResponseEntity ("Immetti dei valori consoni",HttpStatus.BAD_REQUEST);
 
 	}

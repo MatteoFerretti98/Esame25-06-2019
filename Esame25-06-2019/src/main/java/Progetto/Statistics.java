@@ -9,14 +9,16 @@ public class Statistics {
 	private float DevStand;
 	private float Max;
 	private float Min;
+	private String Field;
 	
-	public Statistics(int count, float media, float devStand, float max, float min) {
+	public Statistics(String field, int count, float media, float devStand, float max, float min) {
 		super();
 		this.Count=count;
 		this.Media=media;
 		this.DevStand=devStand;
 		this.Max=max;
 		this.Min=min;
+		this.Field=field;
 	}
 	
 	/*public Lista getLista() {
@@ -54,5 +56,11 @@ public class Statistics {
 	}
 	public void setMin(float min) {
 		Min = min;
+	}
+	public String getField() {
+		return Field;
+	}
+	public void setField(String field) {
+		Field = field;
 	}
 }
