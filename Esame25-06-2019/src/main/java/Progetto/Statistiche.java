@@ -16,7 +16,7 @@ public class Statistiche {
 		this.statistiche = statistiche;
 	}*/
 private Lista lista = new Lista();
-public List<Statistics> statistics = new ArrayList<>();
+private List<Statistics> statistics = new ArrayList<>();
 
 public ArrayList<String> NumeroCampi(Container originale, String campo) throws NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
 		ArrayList<String> NumeroCampi=new ArrayList<>() ;
