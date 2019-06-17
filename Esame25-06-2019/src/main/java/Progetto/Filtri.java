@@ -2,7 +2,7 @@ package Progetto;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-
+@SuppressWarnings("all")
 public class Filtri {
 	public Lista lista = new Lista();
 
