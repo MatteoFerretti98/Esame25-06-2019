@@ -62,8 +62,8 @@ public class Controller {
 		filtrata.getList().clear();
 		if((filtro.filterBT(tipo, campo, min, max, Prima, filtrata).isEmpty())&&(filtro.filterGLTE(tipo, campo, min, Prima, filtrata).isEmpty())&&(filtro.filterGLTE(tipo, campo, min, Prima, filtrata).isEmpty())) return new ResponseEntity ("Non esiste",HttpStatus.NOT_FOUND);
 		else if((!filtro.filterBT(tipo, campo, min, max, Prima, filtrata).isEmpty())&&(tipo.equals("$bt"))) return new ResponseEntity <Lista> (filtro.filterBT(tipo, campo, min, max, Prima, filtrata),HttpStatus.OK);
-		else if((!filtro.filterGLTE(tipo, campo, min, Prima, filtrata).isEmpty())&&(tipo.equals("$gte"))) return new ResponseEntity <Lista> (filtro.filterGLTE(tipo, campo, min, Prima, filtrata),HttpStatus.OK);
-		else if((!filtro.filterGLTE(tipo, campo, min, Prima, filtrata).isEmpty())&&(tipo.equals("$lte"))) return new ResponseEntity <Lista> (filtro.filterGLTE(tipo, campo, min, Prima, filtrata),HttpStatus.OK);
+		//else if((!filtro.filterGLTE(tipo, campo, min, Prima, filtrata).isEmpty())&&(tipo.equals("$gte"))) return new ResponseEntity <Lista> (filtro.filterGLTE(tipo, campo, min, Prima, filtrata),HttpStatus.OK);
+		else if((!filtro.filterGLTE(tipo, campo, min, Prima, filtrata).isEmpty())&&((tipo.equals("$lte"))||(tipo.equals("$gte")))) return new ResponseEntity <Lista> (filtro.filterGLTE(tipo, campo, min, Prima, filtrata),HttpStatus.OK);
 		else return new ResponseEntity ("Immetti dei valori consoni",HttpStatus.BAD_REQUEST);
 		/*if(tipo.equals("$bt"))	return new ResponseEntity (filtro.filterBT(tipo, campo, min, max, Prima, filtrata),HttpStatus.NOT_FOUND);
 		else if(tipo.contentEquals("$prov")) return new ResponseEntity <Lista> (filtro.filterProv(tipo, campo, Prima, filtrata),HttpStatus.OK);
