@@ -39,18 +39,13 @@ public class Controller {
 	@GetMapping("/filtro")
 	public ResponseEntity filtro1 (@RequestParam String campo,String tipo, String min, String max) throws JSONException, NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException
 	{
-		if((tipo!=null)&&(campo!=null)&&(min!=null)&&(max!=null))	return new ResponseEntity (filtro.filterBT(tipo, campo, min, max, Prima, filtrata),HttpStatus.NOT_FOUND);
+		return new ResponseEntity(filtro.filter(tipo, campo, min, max, Prima, filtrata),HttpStatus.NOT_FOUND);
+		/*if((tipo!=null)&&(campo!=null)&&(min!=null)&&(max!=null))	return new ResponseEntity (filtro.filterBT(tipo, campo, min, max, Prima, filtrata),HttpStatus.NOT_FOUND);
 		else if((campo!=null)&&(tipo==null)&&(min==null)&&(max==null)) return new ResponseEntity (filtro.filterEq(campo, Prima, filtrata),HttpStatus.NOT_FOUND);
-		else return new ResponseEntity ("Immetti dei valori consoni",HttpStatus.NOT_FOUND);
+		else return new ResponseEntity ("Immetti dei valori consoni",HttpStatus.NOT_FOUND);*/
 	}
 	
-	/*@GetMapping("/media")
-	public String Media(@RequestParam String campo) throws IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException {
-		float media = stats.Media(Prima, campo);
-		float devStand= stats.devStand(Prima, campo);
-		return "  del campo "+ campo +  " la media e': "+ media +" "+ "la deviazione standard è:" +devStand;
-		
-	}*/
+	
 	
 	@GetMapping("/stats")
 	public String Count(@RequestParam String campo, String nome) throws IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException {

@@ -8,9 +8,43 @@ import java.lang.reflect.Method;
 public class Filtri {
 	private Lista lista = new Lista();
 
+	public ResponseEntity filter(String tipo,String campo,String min,String max, Container originale,Lista filtrata) throws NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
+		if (tipo.equals("$bt")) return this.filterBT(tipo, campo, min, max, originale, filtrata);
+		else if (tipo.equals("$gte")) return this.filterGTE(campo, min, originale, filtrata);
+		else if(tipo.equals("$lte")) return this.filterLTE(campo, max, originale, filtrata);
+	//	else if (tipo.equals("$eq")) return this.
+		else return new ResponseEntity <String>("il campo inserito è errato",HttpStatus.NOT_FOUND);
+	}
+	
+	public ResponseEntity filterGTE(String campo,String min, Container originale,Lista filtrata) throws NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
+	float Min= Float.parseFloat(min);
+	filtrata.getList().clear();
+	for (int i=0;i<=originale.getSize();i++) {
+		Method u = lista.getDati(i).getPunto().getClass().getMethod("get"+campo.substring(0, 1).toUpperCase()+campo.substring(1), null);
+		Object v = u.invoke(originale.getDati(i).getPunto(), null); 
+		float V = ((Number)v).floatValue();
+		if(V >= Min)	filtrata.getList().add(originale.getDati(i));
+	}
+	if (filtrata.isEmpty()) return new ResponseEntity <String>("Non ci sono elementi corrispondenti ai dati inseriti",HttpStatus.NOT_FOUND);
+	else return new ResponseEntity <Lista> (filtrata,HttpStatus.NOT_FOUND); 
+	}
+	
+	public ResponseEntity filterLTE(String campo,String max, Container originale,Lista filtrata) throws NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
+		float Max= Float.parseFloat(max);
+		filtrata.getList().clear();
+		for (int i=0;i<=originale.getSize();i++) {
+			Method u = lista.getDati(i).getPunto().getClass().getMethod("get"+campo.substring(0, 1).toUpperCase()+campo.substring(1), null);
+			Object v = u.invoke(originale.getDati(i).getPunto(), null); 
+			float V = ((Number)v).floatValue();
+			if(V <= Max)	filtrata.getList().add(originale.getDati(i));
+		}
+		if (filtrata.isEmpty()) return new ResponseEntity <String>("Non ci sono elementi corrispondenti ai dati inseriti",HttpStatus.NOT_FOUND);
+		else return new ResponseEntity <Lista> (filtrata,HttpStatus.NOT_FOUND); 
+		}
+	
 	public ResponseEntity filterBT(String tipo,String campo,String min,String max, Container originale,Lista filtrata) throws NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
 		int size=originale.getSize()-1;
-		if (tipo.equals("$bt")) {//controlla il tipo di filtro richiesto
+	//	if (tipo.equals("$bt")) {//controlla il tipo di filtro richiesto
 				float MIN = Float.parseFloat(min);
 				float MAX = Float.parseFloat(max);
 				filtrata.getList().clear();
@@ -26,8 +60,8 @@ public class Filtri {
 		    	}
 		    	if (filtrata.isEmpty()) return new ResponseEntity <String>("Non esiste",HttpStatus.NOT_FOUND);
 				else return new ResponseEntity <Lista> (filtrata,HttpStatus.NOT_FOUND); 
-		}
-		else return new ResponseEntity <String>("Fallito",HttpStatus.NOT_FOUND);
+		//}
+		//		else return new ResponseEntity <String>("Fallito",HttpStatus.NOT_FOUND);
 	}
 	
 	public ResponseEntity filterEq(String prov, Container originale,Lista filtrata) {
