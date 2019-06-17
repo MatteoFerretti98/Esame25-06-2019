@@ -1,6 +1,13 @@
 package Progetto;
 
+/**
+ * 
+ * Esempio di classe
+ **/
+
+
 public class Dati {
+
 private int Fid;
 private String PreNorm;
 private String Comune;
