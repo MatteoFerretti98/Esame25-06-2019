@@ -19,7 +19,7 @@ public class Filtri {
 	public ResponseEntity filterGTE(String campo,String min, Container originale,Lista filtrata) throws NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
 	float Min= Float.parseFloat(min);
 	filtrata.getList().clear();
-	for (int i=0;i<=originale.getSize();i++) {
+	for (int i=0;i<originale.getSize();i++) {
 		Method u = lista.getDati(i).getPunto().getClass().getMethod("get"+campo.substring(0, 1).toUpperCase()+campo.substring(1), null);
 		Object v = u.invoke(originale.getDati(i).getPunto(), null); 
 		float V = ((Number)v).floatValue();
@@ -32,7 +32,7 @@ public class Filtri {
 	public ResponseEntity filterLTE(String campo,String max, Container originale,Lista filtrata) throws NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
 		float Max= Float.parseFloat(max);
 		filtrata.getList().clear();
-		for (int i=0;i<=originale.getSize();i++) {
+		for (int i=0;i<originale.getSize();i++) {
 			Method u = lista.getDati(i).getPunto().getClass().getMethod("get"+campo.substring(0, 1).toUpperCase()+campo.substring(1), null);
 			Object v = u.invoke(originale.getDati(i).getPunto(), null); 
 			float V = ((Number)v).floatValue();
