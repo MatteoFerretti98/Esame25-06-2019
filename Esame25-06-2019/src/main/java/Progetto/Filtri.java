@@ -57,21 +57,29 @@ public class Filtri {
 	}
 	public Lista filterAND(String tipo1,String campo1,String tipo2, String campo2, Container originale,Lista filtrata) throws NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
 		int size=originale.getSize();
+		Object v1=null;
+		Object v2=null;
 		for(int a=0; a<size; a++)
     	{
-    		//Con questa funzione in base al nome tra longitudine e latitudine richiama il get consono
-    		//Ho dovuto instaziare una nuova lista tipo lista per raggiungere il metodo altrimenti avrebbe dato errore perchè non è istanzata all'interno di questa classe
-    		Method u1 = lista.getDati(a).getClass().getMethod("get"+tipo1.substring(0, 1).toUpperCase()+tipo1.substring(1), null);
-    		//grazie invece all'invoke riprendo il valore appunto del metodo richiamato precendentemente
-    		Object v1 = u1.invoke(originale.getDati(a), null); 
+			if((tipo1.equals("latitudine"))||(tipo1.equals("longitudine"))) {
+				Method u1= lista.getDati(a).getPunto().getClass().getMethod("get"+tipo1.substring(0, 1).toUpperCase()+tipo1.substring(1), null);
+				v1 = u1.invoke(originale.getDati(a).getPunto(), null);
+			}
+			else {
+				Method u1 = lista.getDati(a).getClass().getMethod("get"+tipo1.substring(0, 1).toUpperCase()+tipo1.substring(1), null);
+	    		v1 = u1.invoke(originale.getDati(a), null); 
+			}
+    		
     		for(int i=0; i<size; i++)
         	{
-        		//Con questa funzione in base al nome tra longitudine e latitudine richiama il get consono
-        		//Ho dovuto instaziare una nuova lista tipo lista per raggiungere il metodo altrimenti avrebbe dato errore perchè non è istanzata all'interno di questa classe
-        		Method u2 = lista.getDati(i).getClass().getMethod("get"+tipo2.substring(0, 1).toUpperCase()+tipo2.substring(1), null);
-        		//grazie invece all'invoke riprendo il valore appunto del metodo richiamato precendentemente
-        		Object v2 = u2.invoke(originale.getDati(i), null); 
-        		//float V = ((Number)v).floatValue();	//Converto in float
+    			if((tipo2.equals("latitudine"))||(tipo2.equals("longitudine"))) {
+    				Method u2= lista.getDati(i).getPunto().getClass().getMethod("get"+tipo2.substring(0, 1).toUpperCase()+tipo2.substring(1), null);
+    				v1 = u2.invoke(originale.getDati(i).getPunto(), null);
+    			}
+    			else {
+    				Method u2 = lista.getDati(i).getClass().getMethod("get"+tipo2.substring(0, 1).toUpperCase()+tipo2.substring(1), null);
+    	    		v2 = u2.invoke(originale.getDati(i), null); 
+    			}
         		if((campo1.equals(v1))&&(campo2.equals(v2)))	filtrata.getList().add(originale.getDati(a));
         	}
     	}
