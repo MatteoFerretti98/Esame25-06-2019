@@ -31,10 +31,12 @@ public ArrayList<String> NumeroCampi(Container originale, String campo) throws N
 				t = s.invoke(originale.getDati(j), null);
 			}
 			 if(NumeroCampi.isEmpty()) {
-				 NumeroCampi.add((String) t);
+				 String T = t.toString();
+				 NumeroCampi.add(T);
 			 }
 			 else if(!(NumeroCampi.contains(t))&&(t!=" ")) {
-				 NumeroCampi.add((String)t);
+				 String T = t.toString();
+				 NumeroCampi.add(T);
 			 }
 		 }	   
    return NumeroCampi;
@@ -56,13 +58,13 @@ public ArrayList<String> NumeroCampi(Container originale, String campo) throws N
 			 somma += this.Count(originale, campo, NumeroCampi.get(i));
 			 //somma = this.Somma(originale, campo);
 		 }
-		 float media = somma/(float)NumeroCampi.size();
+		 float media = (float) (this.Somma(originale, campo)/(float)NumeroCampi.size());
 		 return media;
 	}
 	
-	public float Somma (Container originale, String campo) throws NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
-		float somma = 0;
-		float T=0;
+	public double Somma (Container originale, String campo) throws NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
+		double somma = 0;
+		double T=0;
 		Object t =null;
 		int size=originale.getSize();
 		for(int a=0; a<size; a++)
@@ -75,7 +77,7 @@ public ArrayList<String> NumeroCampi(Container originale, String campo) throws N
 			Method s= lista.getDati(a).getClass().getMethod("get"+campo.substring(0, 1).toUpperCase()+campo.substring(1), null);
 			t = s.invoke(originale.getDati(a), null);
 		}
-		T = ((Double)t).floatValue();
+		T = ((Number)t).doubleValue();
 		somma=somma+T;
     	}
 		return somma;
@@ -84,25 +86,39 @@ public ArrayList<String> NumeroCampi(Container originale, String campo) throws N
 	public int Count (Container originale,  String tipo, String nome) throws IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException {
 	//public ResponseEntity Count(Container originale,  String campo, String nome) throws NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
 		int count=0;
+		Object t =null;
 		int size=originale.getSize();
 		for(int a=0; a<size; a++)
     	{
-		Method s= lista.getDati(a).getClass().getMethod("get"+tipo.substring(0, 1).toUpperCase()+tipo.substring(1), null);
-		Object t = s.invoke(originale.getDati(a), null);
-		if(t.equals(nome)) count++;
-    	}
+			if((tipo.equals("latitudine"))||(tipo.equals("longitudine"))) {
+				Method u= lista.getDati(a).getPunto().getClass().getMethod("get"+tipo.substring(0, 1).toUpperCase()+tipo.substring(1), null);
+				t = u.invoke(originale.getDati(a).getPunto(), null);
+				count++;
+			}
+			else if((tipo.equals("fax"))||(tipo.equals("telefono"))) {
+				Method s= lista.getDati(a).getClass().getMethod("get"+tipo.substring(0, 1).toUpperCase()+tipo.substring(1), null);
+				t = s.invoke(originale.getDati(a), null);
+				count++;
+			}
+			else{
+				Method s= lista.getDati(a).getClass().getMethod("get"+tipo.substring(0, 1).toUpperCase()+tipo.substring(1), null);
+				t = s.invoke(originale.getDati(a), null);
+				if(t.equals(nome)) count++;
+	    	}
+		}
+		
 		//return new ResponseEntity <Integer> (count,HttpStatus.NOT_FOUND);
 		return count;
 	}
 	
-	public float maxmin (Container originale, String campo, String tipo) throws NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
+	public double maxmin (Container originale, String campo, String tipo) throws NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
 		int size=originale.getSize();
-		float max = 0;
-		float min = 0;
+		double max = 0;
+		double min = 999999999;
 		Object t =null;
-		float T=0;
+		double T=0;
 		//int count[];
-		float p=0; //provissoria
+		double p=0; //provissoria
 		
 			for(int a=0; a<size; a++)
 		    {
@@ -115,9 +131,9 @@ public ArrayList<String> NumeroCampi(Container originale, String campo) throws N
 			Method s= lista.getDati(a).getClass().getMethod("get"+campo.substring(0, 1).toUpperCase()+campo.substring(1), null);
 			t = s.invoke(originale.getDati(a), null);
 		}
-		T = ((Number)t).floatValue();
+		T = ((Number)t).doubleValue();
 		if(T>max) max=T;
-		if(T<min) min=T;
+		if((T<min)&&(T!=0)) min=T;
 		    }
 		
 		/*if(zona.equals("NA")) {}
@@ -134,13 +150,13 @@ public ArrayList<String> NumeroCampi(Container originale, String campo) throws N
 	
 	public float DevStand(Container originale,String campo) throws IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException {
 		float media = this.Media(originale, campo);
-		float somma=0;
+		double somma=0;
 		float var=0;
 		ArrayList<String> NumeroCampi= this.NumeroCampi(originale, campo);
 		for (int i=0;i<NumeroCampi.size();i++) {
 			somma+=Math.pow(this.Count(originale, campo, NumeroCampi.get(i))-media, 2);
 		}
-		var=somma/(NumeroCampi.size());
+		var=(float) (somma/(NumeroCampi.size()));
 		return (float) Math.sqrt(var);
 	}
 
@@ -158,49 +174,17 @@ public ArrayList<String> NumeroCampi(Container originale, String campo) throws N
 	
 	public List<Statistics> NumStats(String tipo,String campo, Container originale,Lista filtrata) throws NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
 		filtrata.getList().clear();
-		if(tipo.equals("telefono")) {
+		if((tipo.equals("telefono"))||(tipo.equals("fax"))||(tipo.equals("latitudine"))||(tipo.equals("longitudine"))) {
 			filtrata.getList().clear();
-			int count = this.Count(originale, campo, tipo);
+			int count = this.Count(originale, tipo, campo);
 			float media = this.Media(originale, tipo);
 			float devStand = this.DevStand(originale, tipo); 
-			float somma = this.Somma(originale, campo);
-			float max = this.maxmin(originale, campo, "max");
-			float min = this.maxmin(originale, campo, "min");
-			
-			statistics.add(new Statistics (tipo, count, media, devStand, media, media));
-		}
-		else if(tipo.equals("fax")) {
-			filtrata.getList().clear();
-			int count = this.Count(originale, campo, tipo);
-			float media = this.Media(originale, tipo);
-			float devStand = this.DevStand(originale, tipo); 
-			float somma = this.Somma(originale, campo);
-			float max = this.maxmin(originale, campo, "max");
-			float min = this.maxmin(originale, campo, "min");
-			
-			statistics.add(new Statistics (tipo, count, media, devStand, media, media));
-		}
-		else if(tipo.equals("latitudine")) {
-			filtrata.getList().clear();
-			int count = this.Count(originale, campo, tipo);
-			float media = this.Media(originale, tipo);
-			float devStand = this.DevStand(originale, tipo); 
-			float somma = this.Somma(originale, campo);
-			float max = this.maxmin(originale, campo, "max");
-			float min = this.maxmin(originale, campo, "min");
-			
-			statistics.add(new Statistics (tipo, count, media, devStand, media, media));
-		}
-		else if(tipo.equals("longitudine")) {
-			filtrata.getList().clear();
-			int count = this.Count(originale, campo, tipo);
-			float media = this.Media(originale, tipo);
-			float devStand = this.DevStand(originale, tipo);
-			float somma = this.Somma(originale, campo);
-			float max = this.maxmin(originale, campo, "max");
-			float min = this.maxmin(originale, campo, "min");
-			
-			statistics.add(new Statistics (tipo, count, media, devStand, media, media));
+			double somma = this.Somma(originale, tipo);
+			double max = this.maxmin(originale, tipo, "max");
+			double min = this.maxmin(originale, tipo, "min");
+			statistics.clear();
+			statistics.add(new Statistics (tipo, count, somma, media, devStand, max, min));
+			if(count==0) statistics.clear();//serve nel caso non ci sia nessun campo all'interno del tipo selezionato
 		}
 		return statistics;
 	}
@@ -212,23 +196,12 @@ public ArrayList<String> NumeroCampi(Container originale, String campo) throws N
 			int count = this.Count(originale, tipo, campo);
 			//float media = this.Media(originale, tipo);
 			//float devStand = this.DevStand(originale, tipo); 
-			
-			statistics.add(new Statistics (tipo+" "+campo, count, 0, 0, 0, 0));
+			statistics.clear();
+			statistics.add(new Statistics (tipo+" "+campo, count, 0, 0, 0, 0, 0));
+			if(count==0) statistics.clear();//serve nel caso non ci sia nessun campo all'interno del tipo selezionato
 		}
 		return statistics;
 	}
-	
-	/*public ArrayList<Statistiche> stats2(Container originale,  String campo, String nome) throws NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
-		/////Creare una classe in base al campo (PreNom, comune, provincia, ecc.) dia in output o solo count o count e media o count media e dev. standard ecc.
-	ArrayList<Statistiche> s = new ArrayList<>();
-	float a = this.devStand(originale, campo); 
-	int i = this.Count(originale, campo, nome);
-	statistics.add(new Statistics (i,a,a,a,a));
-
-	//String resp = "Count: " + i + " DevStand: " + a;
-	return statistics;
-	//return new ResponseEntity <String> (resp,HttpStatus.NOT_FOUND);
-}*/
 }
 
 

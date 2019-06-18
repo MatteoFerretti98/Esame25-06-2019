@@ -28,7 +28,8 @@ public class Controller {
 	Container Prima = new Container();
 	Lista filtrata = new Lista();
 	MetaData ListMeta = new MetaData();
-	Filtri filtro = new Filtri();
+	Filtri filtro1 = new Filtri();
+	Filtri filtro2 = new Filtri();
 	Statistiche stats= new Statistiche();
 	
 	@GetMapping("/data") //stampa il JSON del dataset
@@ -39,7 +40,7 @@ public class Controller {
 	@GetMapping("/metadata")
 	public ResponseEntity GetMetadata() throws FileNotFoundException, IOException, ClassNotFoundException
 	{	
-		return new ResponseEntity <MetaData> (ListMeta,HttpStatus.NOT_FOUND); 
+		return new ResponseEntity <MetaData> (ListMeta,HttpStatus.OK); 
 	}
 
 	/*@GetMapping("/filtr")
@@ -60,10 +61,10 @@ public class Controller {
 	public ResponseEntity CondFilter (@RequestParam String tipo, String campo, String min, String max) throws JSONException, NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException
 	{
 		filtrata.getList().clear();
-		if((filtro.filterBT(tipo, campo, min, max, Prima, filtrata).isEmpty())&&(filtro.filterGLTE(tipo, campo, min, Prima, filtrata).isEmpty())&&(filtro.filterGLTE(tipo, campo, min, Prima, filtrata).isEmpty())) return new ResponseEntity ("Non esiste",HttpStatus.NOT_FOUND);
-		else if((!filtro.filterBT(tipo, campo, min, max, Prima, filtrata).isEmpty())&&(tipo.equals("$bt"))) return new ResponseEntity <Lista> (filtro.filterBT(tipo, campo, min, max, Prima, filtrata),HttpStatus.OK);
+		if((filtro1.filterBT(tipo, campo, min, max, Prima, filtrata).isEmpty())&&(filtro1.filterGLTE(tipo, campo, min, Prima, filtrata).isEmpty())&&(filtro1.filterGLTE(tipo, campo, min, Prima, filtrata).isEmpty())) return new ResponseEntity ("Non esiste",HttpStatus.NOT_FOUND);
+		else if((!filtro1.filterBT(tipo, campo, min, max, Prima, filtrata).isEmpty())&&(tipo.equals("$bt"))) return new ResponseEntity <Lista> (filtro2.filterBT(tipo, campo, min, max, Prima, filtrata),HttpStatus.OK);
 		//else if((!filtro.filterGLTE(tipo, campo, min, Prima, filtrata).isEmpty())&&(tipo.equals("$gte"))) return new ResponseEntity <Lista> (filtro.filterGLTE(tipo, campo, min, Prima, filtrata),HttpStatus.OK);
-		else if((!filtro.filterGLTE(tipo, campo, min, Prima, filtrata).isEmpty())&&((tipo.equals("$lte"))||(tipo.equals("$gte")))) return new ResponseEntity <Lista> (filtro.filterGLTE(tipo, campo, min, Prima, filtrata),HttpStatus.OK);
+		else if((!filtro1.filterGLTE(tipo, campo, min, Prima, filtrata).isEmpty())&&((tipo.equals("$lte"))||(tipo.equals("$gte")))) return new ResponseEntity <Lista> (filtro2.filterGLTE(tipo, campo, min, Prima, filtrata),HttpStatus.OK);
 		else return new ResponseEntity ("Immetti dei valori consoni",HttpStatus.BAD_REQUEST);
 		/*if(tipo.equals("$bt"))	return new ResponseEntity (filtro.filterBT(tipo, campo, min, max, Prima, filtrata),HttpStatus.NOT_FOUND);
 		else if(tipo.contentEquals("$prov")) return new ResponseEntity <Lista> (filtro.filterProv(tipo, campo, Prima, filtrata),HttpStatus.OK);
@@ -75,10 +76,9 @@ public class Controller {
 	@GetMapping("/LogFilter")
 	public ResponseEntity LogFilter (@RequestParam String tipo, String tipo1, String campo1, String tipo2, String campo2) throws JSONException, NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException
 	{
-		filtrata.getList().clear();
-		if((filtro.filterAND(tipo1, campo1, tipo2, campo2, Prima, filtrata).isEmpty())&&(filtro.filterOR(tipo1, campo1, tipo2, campo2, Prima, filtrata).isEmpty())) return new ResponseEntity ("Non esiste",HttpStatus.NOT_FOUND);
-		else if((!filtro.filterAND(tipo1, campo1, tipo2, campo2, Prima, filtrata).isEmpty())&&(tipo.equals("$and"))) return new ResponseEntity <Lista> (filtro.filterAND(tipo1, campo1, tipo2, campo2, Prima, filtrata),HttpStatus.OK);
-		else if((!filtro.filterOR(tipo1, campo1, tipo2, campo2, Prima, filtrata).isEmpty())&&(tipo.equals("$or"))) return new ResponseEntity <Lista> (filtro.filterOR(tipo1, campo1, tipo2, campo2, Prima, filtrata),HttpStatus.OK);
+		if((filtro1.filterAND(tipo1, campo1, tipo2, campo2, Prima, filtrata).isEmpty())&&(filtro1.filterOR(tipo1, campo1, tipo2, campo2, Prima, filtrata).isEmpty())) return new ResponseEntity ("Non esiste",HttpStatus.NOT_FOUND);
+		else if((!filtro1.filterAND(tipo1, campo1, tipo2, campo2, Prima, filtrata).isEmpty())&&(tipo.equals("$and"))) return new ResponseEntity <Lista> (filtro2.filterAND(tipo1, campo1, tipo2, campo2, Prima, filtrata),HttpStatus.OK);
+		else if((!filtro1.filterOR(tipo1, campo1, tipo2, campo2, Prima, filtrata).isEmpty())&&(tipo.equals("$or"))) return new ResponseEntity <Lista> (filtro2.filterOR(tipo1, campo1, tipo2, campo2, Prima, filtrata),HttpStatus.OK);
 		else return new ResponseEntity ("Immetti dei valori consoni",HttpStatus.BAD_REQUEST);
 	}
 	
