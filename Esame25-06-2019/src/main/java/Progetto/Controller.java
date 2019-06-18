@@ -60,7 +60,6 @@ public class Controller {
 	@GetMapping("/CondFilter")
 	public ResponseEntity CondFilter (@RequestParam String tipo, String campo, String min, String max) throws JSONException, NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException
 	{
-		filtrata.getList().clear();
 		if((filtro1.filterBT(tipo, campo, min, max, Prima, filtrata).isEmpty())&&(filtro1.filterGLTE(tipo, campo, min, Prima, filtrata).isEmpty())&&(filtro1.filterGLTE(tipo, campo, min, Prima, filtrata).isEmpty())) return new ResponseEntity ("Non esiste",HttpStatus.NOT_FOUND);
 		else if((!filtro1.filterBT(tipo, campo, min, max, Prima, filtrata).isEmpty())&&(tipo.equals("$bt"))) return new ResponseEntity <Lista> (filtro2.filterBT(tipo, campo, min, max, Prima, filtrata),HttpStatus.OK);
 		//else if((!filtro.filterGLTE(tipo, campo, min, Prima, filtrata).isEmpty())&&(tipo.equals("$gte"))) return new ResponseEntity <Lista> (filtro.filterGLTE(tipo, campo, min, Prima, filtrata),HttpStatus.OK);
