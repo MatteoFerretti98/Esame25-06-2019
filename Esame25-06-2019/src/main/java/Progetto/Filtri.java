@@ -2,6 +2,10 @@ package Progetto;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.text.NumberFormat;
+
+import com.fasterxml.jackson.core.JsonParser.NumberType;
+import com.fasterxml.jackson.core.io.NumberInput;
 @SuppressWarnings("all")
 public class Filtri {
 	public Lista lista = new Lista();
@@ -10,9 +14,12 @@ public class Filtri {
 		int size=originale.getSize();
 		Object v=null;
 		if (tipo.equals("$bt")) {//controlla il tipo di filtro richiesto
-			Object MAx=max;	//Trasforma la variabile in oggetto per il controllo che segue
-			Object MIn=min;	//Trasforma la variabile in oggetto per il controllo che segue
-			if (MAx instanceof Number&&MIn instanceof Number) {	//Serve come il controllo nel caso si mettano valori non numerici
+			for(int i=0; i<max.length();i++) {
+				if(Character.isLetter(max.charAt(i))) return filtrata;	//Serve per vedere se si immettono dei valori non appropriati
+				}
+			for(int i=0; i<min.length();i++) {
+				if(Character.isLetter(min.charAt(i))) return filtrata;	//Serve per vedere se si immettono dei valori non appropriati
+				}
 				float MIN = Float.parseFloat(min);
 				float MAX = Float.parseFloat(max);
 		    	for(int a=0; a<size; a++)
@@ -34,7 +41,7 @@ public class Filtri {
 		    			if((V >= MIN) && (V <= MAX))	filtrata.getList().add(originale.getDati(a));
 		    		}
 		    	} 	
-		}
+	//}
 		return filtrata;
 	}
 	
@@ -42,10 +49,10 @@ public class Filtri {
 		filtrata.getList().clear();
 		int size=originale.getSize();
 		Object v=null;
-		Object VAl=val;	//Trasforma la variabile in oggetto per il controllo che segue
-		if (VAl instanceof Number) {	//Serve come il controllo nel caso si mettano valori non numerici
-		if (tipo.equals("$gte")) {//controlla il tipo di filtro richiesto
-				float VAL = Float.parseFloat(val);
+		for(int i=0; i<val.length();i++) {
+			if((Character.isLetter(val.charAt(i)))) return filtrata; //Serve per vedere se si immettono dei valori non appropriati
+			}		if (tipo.equals("$gte")) {//controlla il tipo di filtro richiesto	
+			float VAL = Float.parseFloat(val);
 		    	for(int a=0; a<size; a++)
 		    	{
 		    		if((campo.equals("latitudine"))||(campo.equals("longitudine"))) {
@@ -76,7 +83,6 @@ public class Filtri {
 	    		if(V <= VAL)	filtrata.getList().add(originale.getDati(a));
 	    	} 	
 		}
-	}
 	return filtrata;
 }
 	

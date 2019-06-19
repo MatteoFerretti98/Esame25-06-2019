@@ -62,14 +62,8 @@ public class Controller {
 	{
 		if((filtro1.filterBT(tipo, campo, min, max, Prima, filtrata).isEmpty())&&(filtro1.filterGLTE(tipo, campo, min, Prima, filtrata).isEmpty())&&(filtro1.filterGLTE(tipo, campo, min, Prima, filtrata).isEmpty())) return new ResponseEntity ("Non esiste",HttpStatus.NOT_FOUND);
 		else if((!filtro1.filterBT(tipo, campo, min, max, Prima, filtrata).isEmpty())&&(tipo.equals("$bt"))) return new ResponseEntity <Lista> (filtro2.filterBT(tipo, campo, min, max, Prima, filtrata),HttpStatus.OK);
-		//else if((!filtro.filterGLTE(tipo, campo, min, Prima, filtrata).isEmpty())&&(tipo.equals("$gte"))) return new ResponseEntity <Lista> (filtro.filterGLTE(tipo, campo, min, Prima, filtrata),HttpStatus.OK);
 		else if((!filtro1.filterGLTE(tipo, campo, min, Prima, filtrata).isEmpty())&&((tipo.equals("$lte"))||(tipo.equals("$gte")))) return new ResponseEntity <Lista> (filtro2.filterGLTE(tipo, campo, min, Prima, filtrata),HttpStatus.OK);
 		else return new ResponseEntity ("Immetti dei valori consoni",HttpStatus.BAD_REQUEST);
-		/*if(tipo.equals("$bt"))	return new ResponseEntity (filtro.filterBT(tipo, campo, min, max, Prima, filtrata),HttpStatus.NOT_FOUND);
-		else if(tipo.contentEquals("$prov")) return new ResponseEntity <Lista> (filtro.filterProv(tipo, campo, Prima, filtrata),HttpStatus.OK);
-		else if(filtrata.isEmpty()) return new ResponseEntity <String>("Non esiste",HttpStatus.NOT_FOUND);
-		if(filtro.filterProv(tipo, campo, Prima, filtrata).isEmpty()) return new ResponseEntity ("Immetti dei valori consoni",HttpStatus.BAD_REQUEST);
-		else return new ResponseEntity ("Immetti dei valori consoni",HttpStatus.BAD_REQUEST);*/
 	}
 	
 	@GetMapping("/LogFilter")
