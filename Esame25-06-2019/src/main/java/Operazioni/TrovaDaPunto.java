@@ -5,7 +5,7 @@ import java.lang.reflect.Method;
 
 import dataset.Container;
 import dataset.Lista;
-@SuppressWarnings("all")
+
 public class TrovaDaPunto {
 	public Lista lista = new Lista();
 

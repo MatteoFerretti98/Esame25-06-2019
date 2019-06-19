@@ -30,8 +30,8 @@ private Punto Punto;
  * @param telefono Numero telefonico dell'agenzia
  * @param fax Numero del fax dell'agenzia
  * @param tipo Tipologia dell'agenzia
- * @param latitudine Latitudine della locazione dell'agenzia
- * @param longitudine Longitudine della locazione dell'agenzia
+ * @param latitudin Latitudine della locazione dell'agenzia
+ * @param longitudin Longitudine della locazione dell'agenzia
  * @param punto Questo è il costruttore per la latitudine e la longitudine in {@link Punto} 
  */
 //costruttore della classe

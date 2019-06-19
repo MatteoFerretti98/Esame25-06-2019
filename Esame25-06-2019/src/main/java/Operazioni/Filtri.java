@@ -2,14 +2,9 @@ package Operazioni;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.text.NumberFormat;
-
-import com.fasterxml.jackson.core.JsonParser.NumberType;
-import com.fasterxml.jackson.core.io.NumberInput;
-
 import dataset.Container;
 import dataset.Lista;
-@SuppressWarnings("all")
+
 public class Filtri {
 	private String tipo;
 	private String campo;

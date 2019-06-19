@@ -5,8 +5,6 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.*;
 
-import org.springframework.http.ResponseEntity;
-@SuppressWarnings("all")
 public class Lista {
 
 private List<Dati> lista = new ArrayList<>();
@@ -17,7 +15,6 @@ public Lista() {
     String cvsSplitBy = ";";
     int surplus = 0;
     String LatLongSplit =","; //la virgola è il separatore di latitudine e lognitudine
-    String LatLongSplit2 ="."; //Alcuni potrebbero però avere il "."
     float latitudine=0;
     float longitudine =0 ;
     try {
