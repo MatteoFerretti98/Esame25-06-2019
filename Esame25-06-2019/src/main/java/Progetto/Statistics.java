@@ -9,7 +9,7 @@ public class Statistics {
 	private double Max;
 	private double Min;
 	private String Field;
-	
+	//costruttore delle statistiche
 	public Statistics(String field, int count,double somma, float media, float devStand, double max, double min) {
 		super();
 		this.Count=count;
@@ -20,7 +20,7 @@ public class Statistics {
 		this.Min=min;
 		this.Field=field;
 	}
-	
+	//getters e setters
 	public int getCount() {
 		return Count;
 	}

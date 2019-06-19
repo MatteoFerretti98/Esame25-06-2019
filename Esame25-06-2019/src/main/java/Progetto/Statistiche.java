@@ -13,7 +13,9 @@ private Lista lista = new Lista();
 public List<Statistics> statistics = new ArrayList<>();
 
 public ArrayList<String> NumeroCampi(Container originale, String campo) throws NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
-		ArrayList<String> NumeroCampi=new ArrayList<>() ;
+	ArrayList<String> NumeroCampi=new ArrayList<>() ;
+	try {	
+	
 		Object t =null;
 	    for(int j=0; j< originale.getSize();j++) {
 	    	if((campo.equals("latitudine"))||(campo.equals("longitudine"))) {
@@ -32,22 +34,37 @@ public ArrayList<String> NumeroCampi(Container originale, String campo) throws N
 				 String T = t.toString();
 				 NumeroCampi.add(T);
 			 }
-		 }	   
+		 }
+	}catch(NoSuchMethodError a) {a.printStackTrace();
+	}catch (SecurityException b) {b.printStackTrace();
+	}catch(IllegalAccessException c) {c.printStackTrace();
+	}catch(IllegalArgumentException d) {d.printStackTrace();
+	}catch(InvocationTargetException e) {e.printStackTrace();
+	}
    return NumeroCampi;
    }
  
 	public float Media (Container originale, String campo) throws IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException{
+		float media=0;
+		try {
 		float somma=0;
 		ArrayList<String> NumeroCampi= this.NumeroCampi(originale, campo);
 		 for(int i=0; i<NumeroCampi.size();i++) {
 			 somma += this.Count(originale, campo, NumeroCampi.get(i));
 		 }
-		 float media = (float) (this.Somma(originale, campo)/(float)NumeroCampi.size());
+		 media = (float) (this.Somma(originale, campo)/(float)NumeroCampi.size());
+		}catch(NoSuchMethodError a) {a.printStackTrace();
+		}catch (SecurityException b) {b.printStackTrace();
+		}catch(IllegalAccessException c) {c.printStackTrace();
+		}catch(IllegalArgumentException d) {d.printStackTrace();
+		}catch(InvocationTargetException e) {e.printStackTrace();
+		}
 		 return media;
 	}
 	
 	public double Somma (Container originale, String campo) throws NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
 		double somma = 0;
+		try {
 		double T=0;
 		Object t =null;
 		int size=originale.getSize();
@@ -64,11 +81,18 @@ public ArrayList<String> NumeroCampi(Container originale, String campo) throws N
 		T = ((Number)t).doubleValue();
 		somma=somma+T;
     	}
+		}catch(NoSuchMethodError a) {a.printStackTrace();
+		}catch (SecurityException b) {b.printStackTrace();
+		}catch(IllegalAccessException c) {c.printStackTrace();
+		}catch(IllegalArgumentException d) {d.printStackTrace();
+		}catch(InvocationTargetException e) {e.printStackTrace();
+		}
 		return somma;
 	}
 	
 	public int Count (Container originale,  String tipo, String nome) throws IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException {
 		int count=0;
+		try {
 		Object t =null;
 		int size=originale.getSize();
 		for(int a=0; a<size; a++)
@@ -89,6 +113,12 @@ public ArrayList<String> NumeroCampi(Container originale, String campo) throws N
 				if(t.equals(nome)) count++;
 	    	}
 		}
+		}catch(NoSuchMethodError a) {a.printStackTrace();
+		}catch (SecurityException b) {b.printStackTrace();
+		}catch(IllegalAccessException c) {c.printStackTrace();
+		}catch(IllegalArgumentException d) {d.printStackTrace();
+		}catch(InvocationTargetException e) {e.printStackTrace();
+		}
 		return count;
 	}
 	
@@ -96,9 +126,10 @@ public ArrayList<String> NumeroCampi(Container originale, String campo) throws N
 		int size=originale.getSize();
 		double max = 0;
 		double min = 999999999;
+		double vuoto=0;
+		try {
 		Object t =null;
 		double T=0;
-		double vuoto=0;
 		
 			for(int a=0; a<size; a++)
 		    {
@@ -115,13 +146,20 @@ public ArrayList<String> NumeroCampi(Container originale, String campo) throws N
 		if(T>max) max=T;
 		if((T<min)&&(T!=0)) min=T;
 		    }
-		
+		}catch(NoSuchMethodError a) {a.printStackTrace();
+		}catch (SecurityException b) {b.printStackTrace();
+		}catch(IllegalAccessException c) {c.printStackTrace();
+		}catch(IllegalArgumentException d) {d.printStackTrace();
+		}catch(InvocationTargetException e) {e.printStackTrace();
+		}
 		if(tipo.equals("max")) return max;
 		else if(tipo.equals("min")) return min;
 		else return vuoto;
 	}
 	
 	public float DevStand(Container originale,String campo) throws IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException {
+		float devStand=0;
+		try {
 		float media = this.Media(originale, campo);
 		double somma=0;
 		float var=0;
@@ -130,10 +168,18 @@ public ArrayList<String> NumeroCampi(Container originale, String campo) throws N
 			somma+=Math.pow(this.Count(originale, campo, NumeroCampi.get(i))-media, 2);
 		}
 		var=(float) (somma/(NumeroCampi.size()));
-		return (float) Math.sqrt(var);
+		devStand=(float) Math.sqrt(var);
+		}catch(NoSuchMethodError a) {a.printStackTrace();
+		}catch (SecurityException b) {b.printStackTrace();
+		}catch(IllegalAccessException c) {c.printStackTrace();
+		}catch(IllegalArgumentException d) {d.printStackTrace();
+		}catch(InvocationTargetException e) {e.printStackTrace();
+		}
+		return devStand;
 	}
 	
 	public List<Statistics> NumStats(String tipo,String campo, Container originale,Lista filtrata) throws NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
+		try {
 		filtrata.getList().clear();
 		if((tipo.equals("telefono"))||(tipo.equals("fax"))||(tipo.equals("latitudine"))||(tipo.equals("longitudine"))) {
 			filtrata.getList().clear();
@@ -147,10 +193,17 @@ public ArrayList<String> NumeroCampi(Container originale, String campo) throws N
 			statistics.add(new Statistics (tipo, count, somma, media, devStand, max, min));
 			if(count==0) statistics.clear();//serve nel caso non ci sia nessun campo all'interno del tipo selezionato
 		}
+		}catch(NoSuchMethodError a) {a.printStackTrace();
+		}catch (SecurityException b) {b.printStackTrace();
+		}catch(IllegalAccessException c) {c.printStackTrace();
+		}catch(IllegalArgumentException d) {d.printStackTrace();
+		}catch(InvocationTargetException e) {e.printStackTrace();
+		}
 		return statistics;
 	}
 	
 	public List<Statistics> StringStats(String tipo,String campo, Container originale,Lista filtrata) throws NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
+		try{
 		filtrata.getList().clear();
 		if((tipo.equals("preNorm"))||(tipo.equals("comune"))||(tipo.equals("provincia"))||(tipo.equals("indirizzo"))||(tipo.equals("tipo"))) {
 			
@@ -158,6 +211,12 @@ public ArrayList<String> NumeroCampi(Container originale, String campo) throws N
 			statistics.clear();
 			statistics.add(new Statistics (tipo+" "+campo, count, 0, 0, 0, 0, 0));
 			if(count==0) statistics.clear();//serve nel caso non ci sia nessun campo all'interno del tipo selezionato
+		}
+		}catch(NoSuchMethodError a) {a.printStackTrace();
+		}catch (SecurityException b) {b.printStackTrace();
+		}catch(IllegalAccessException c) {c.printStackTrace();
+		}catch(IllegalArgumentException d) {d.printStackTrace();
+		}catch(InvocationTargetException e) {e.printStackTrace();
 		}
 		return statistics;
 	}

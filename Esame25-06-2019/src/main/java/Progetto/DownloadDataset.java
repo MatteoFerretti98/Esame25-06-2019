@@ -54,11 +54,9 @@ public class DownloadDataset {
 			        }
 			    }
 			}
-			System.out.println( "Il file è stato scaricato" );
-		} catch (IOException | ParseException e) {		//Eccezioni in caso di parse sbagliato
-			e.printStackTrace();						//o di url non adatto
-		} catch (Exception e) {
-			e.printStackTrace();
+			//Eccezioni in caso di parse sbagliato
+		} catch (IOException | ParseException e) {e.printStackTrace();	//o di url non adatto
+		} catch (Exception e) {e.printStackTrace();
 		}
 	}
 }
