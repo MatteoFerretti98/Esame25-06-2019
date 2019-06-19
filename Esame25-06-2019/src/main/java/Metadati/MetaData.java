@@ -1,4 +1,4 @@
-package Progetto;
+package Metadati;
 
 
 import org.json.simple.JSONArray;
