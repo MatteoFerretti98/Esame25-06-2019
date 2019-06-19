@@ -1,7 +1,10 @@
 package dataset;
 
-public class Container extends Lista {
+import java.util.ArrayList;
+import java.util.List;
 
+public class Container extends Lista {
+	private List<Dati> lista = new ArrayList<>();
 	//queste funzioni effettuano un controllo sulla presenza di un campo nella lista  
 	public boolean containsFid(int e,int i) {
 		if (e==lista.get(i).getFid()) return true; 
