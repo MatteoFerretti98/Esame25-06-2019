@@ -1,9 +1,11 @@
 package Progetto;
 
 /**
- * 
- * Esempio di classe
- **/
+ * {@link Dati} : Questa è la classe del costruttore principale e collegata ad essa abbiamo 
+ * {@link Punto} che è la classe costruttore di latitudine e longitudine
+ * @author Matteo Ferretti (s1083630@studenti.univpm.it), Angelo D'Agostino Bonomi (s1082444@studenti.univpm.it)
+ * @version 1.0
+ */
 
 
 public class Dati {
@@ -18,7 +20,20 @@ private long Fax;
 private String Tipo;
 private Punto Punto;
 
-
+/**
+ * Il tipo Dati compone {@link Lista}
+ * @param fid Numero della riga della lista
+ * @param preNorm PreProcessoNormalizzazione: Nome dell'agenzia
+ * @param comune Comune della sede dello stabilimento dell'agenzia
+ * @param provincia Provincia del comune della sede dell'agenzia
+ * @param indirizzo Indirizzo della sede dell'agenzia
+ * @param telefono Numero telefonico dell'agenzia
+ * @param fax Numero del fax dell'agenzia
+ * @param tipo Tipologia dell'agenzia
+ * @param latitudine Latitudine della locazione dell'agenzia
+ * @param longitudine Longitudine della locazione dell'agenzia
+ * @param punto Questo è il costruttore per la latitudine e la longitudine in {@link Punto} 
+ */
 //costruttore della classe
 public Dati(int fid, String preNorm, String comune, String provincia, String indirizzo, long telefono, long fax,
 		String tipo,float latitudin, float longitudin) {

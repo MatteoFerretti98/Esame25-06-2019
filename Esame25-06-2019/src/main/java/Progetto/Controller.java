@@ -16,11 +16,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 @RestController
 
 /**
- * in questa classe si fanno tante cose...
- * @author Pippo
+ * {@link Controller} Un semplice menù di scelta che ha lo scopo di testare le varie funzionalità implementate 
+ * dalle classi del package ... secondo le specifiche del progetto.
+ * @author Matteo Ferretti (s1083630@studenti.univpm.it), Angelo D'Agostino Bonomi (s1082444@studenti.univpm.it)
  * @version 1.0
  */
-
 
 public class Controller {
 	
