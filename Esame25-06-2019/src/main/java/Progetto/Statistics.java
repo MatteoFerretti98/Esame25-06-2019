@@ -1,7 +1,5 @@
 package Progetto;
 
-//import java.util.List;
-
 public class Statistics {
 	
 	private int Count;
@@ -23,12 +21,6 @@ public class Statistics {
 		this.Field=field;
 	}
 	
-	/*public Lista getLista() {
-		return lista;
-	}
-	public void setLista(Lista lista) {
-		this.lista = lista;
-	}*/
 	public int getCount() {
 		return Count;
 	}

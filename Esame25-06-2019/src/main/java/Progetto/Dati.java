@@ -16,8 +16,6 @@ private String Indirizzo;
 private long  Telefono;
 private long Fax;
 private String Tipo;
-//private float lat;
-//private float lon;
 private Punto Punto;
 
 
@@ -34,10 +32,6 @@ public Dati(int fid, String preNorm, String comune, String provincia, String ind
 	Fax = fax;
 	Tipo = tipo;
 	Punto=new Punto(latitudin,longitudin);
-  	//Punto.setLatitudine(latitudin);
-    //Punto.setLongitudine(longitudin);
-	//lat=latitudine;
-	//lon=longitudine;
 }
 //getters e setters
 public int getFid() {

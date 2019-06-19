@@ -42,20 +42,6 @@ public class Controller {
 	{	
 		return new ResponseEntity <MetaData> (ListMeta,HttpStatus.OK); 
 	}
-
-	/*@GetMapping("/filtr")
-    public ResponseEntity filtro1 (@RequestParam String prov) throws JSONException
-	{
-		return new ResponseEntity (filtro.filterEq(prov, Prima, filtrata),HttpStatus.NOT_FOUND);
-	}*/
-	
-	/*@GetMapping("/media")
-	public String Media(@RequestParam String campo) throws IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException {
-		float media = stats.Media(Prima, campo);
-		float devStand= stats.devStand(Prima, campo);
-		return "  del campo "+ campo +  " la media e': "+ media +" "+ "la deviazione standard è:" +devStand;
-		
-	}*/
 	
 	@GetMapping("/CondFilter")
 	public ResponseEntity CondFilter (@RequestParam String tipo, String campo, String min, String max) throws JSONException, NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException
@@ -79,33 +65,9 @@ public class Controller {
 	public ResponseEntity Stats (@RequestParam String tipo, String campo) throws NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
 		if((stats.StringStats(tipo, campo, Prima, filtrata).isEmpty())&&(stats.NumStats(tipo, campo, Prima, filtrata).isEmpty())) return new ResponseEntity ("Non esiste",HttpStatus.NOT_FOUND);
 		else if(!(stats.StringStats(tipo, campo, Prima, filtrata).isEmpty())&&((tipo.equals("preNorm"))||(tipo.equals("comune"))||(tipo.equals("provincia"))||(tipo.equals("tipo"))))	return new ResponseEntity (stats.StringStats(tipo, campo, Prima, filtrata),HttpStatus.OK);
-		//else if(!(stats.StringStats(tipo, campo, Prima, filtrata).isEmpty())&&(tipo.equals("comune")))	return new ResponseEntity (stats.StringStats(tipo, campo, Prima, filtrata),HttpStatus.OK);
-		//else if(!(stats.StringStats(tipo, campo, Prima, filtrata).isEmpty())&&(tipo.equals("provincia")))	return new ResponseEntity (stats.StringStats(tipo, campo, Prima, filtrata),HttpStatus.OK);
-		//else if(!(stats.StringStats(tipo, campo, Prima, filtrata).isEmpty())&&(tipo.equals("tipo")))	return new ResponseEntity (stats.StringStats(tipo, campo, Prima, filtrata),HttpStatus.OK);
 		else if(!(stats.NumStats(tipo, campo, Prima, filtrata).isEmpty())&&((tipo.equals("telefono"))||(tipo.equals("fax"))||(tipo.equals("latitudine"))||(tipo.equals("longitudine"))))	return new ResponseEntity (stats.NumStats(tipo, campo, Prima, filtrata),HttpStatus.OK);
-		//else if(!(stats.NumStats(tipo, campo, Prima, filtrata).isEmpty())&&(tipo.equals("fax")))	return new ResponseEntity (stats.NumStats(tipo, campo, Prima, filtrata),HttpStatus.OK);
-		//else if(!(stats.NumStats(tipo, campo, Prima, filtrata).isEmpty())&&(tipo.equals("latitudine")))	return new ResponseEntity (stats.NumStats(tipo, campo, Prima, filtrata),HttpStatus.OK);
-		//else if(!(stats.NumStats(tipo, campo, Prima, filtrata).isEmpty())&&(tipo.equals("longitudine")))	return new ResponseEntity (stats.NumStats(tipo, campo, Prima, filtrata),HttpStatus.OK);
 		else return new ResponseEntity ("Immetti dei valori consoni",HttpStatus.BAD_REQUEST);
 
 	}
-	//////Da passare tutti gli stats sul responseEntity qui sotto
-	/*@GetMapping("/stat")
-	public ArrayList<Statistiche> stats(@RequestParam String tipo, String campo, String nome) throws IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException {
-		//if(campo.equals("provincia"))	return new ResponseEntity (stats.(tipo, campo, Prima, filtrata),HttpStatus.NOT_FOUND);
-		//if(tipo.equals("$count")) return new ResponseEntity (stats.stats(Prima, campo, nome),HttpStatus.NOT_FOUND);
-		//return new ResponseEntity ("Immetti dei valori consoni",HttpStatus.NOT_FOUND);
-		return stats.stats2(Prima, campo, nome);
-	}*/
-	/*	@GetMapping("/stats")
-	public String Count(@RequestParam String campo, String nome) throws IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException {
-		float media = stats.Media(Prima, campo);
-		float devStand= stats.devStand(Prima, campo);
-		float count= stats.Count(Prima, campo, nome);
-		if((campo!=null)&&(nome!=null)) return "Il conteggio del campo ''"+campo+"'' di ''"+nome+"'' è di: "+count;
-		else if((campo!=null)&&(nome==null)) return "  La media del campo ''"+ campo +  "'' e': "+ media + " e la deviazione standard è: " +devStand;
-		else return "Immettere i valori corretti";
-		//return "c";
-	}*/
 }
 

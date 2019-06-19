@@ -28,8 +28,6 @@ public Lista() {
     		if(spazio.length>=10) {//se il vettore è più lungo del numero dei campi non inizializza
     			String[] LatLong;
     			if(spazio[8].contains(",")) {
-    				//LatLong = spazio[8].split(LatLongSplit);//mette in un vettore la parte intera e la mantissa della latidudine
-    				//latitudine = (float) (Float.parseFloat(LatLong[0])+(Float.parseFloat(LatLong[1])/Math.pow(10, LatLong[1].length())));//converte il vettore che contiene la latitudine in un float
     				surplus = spazio[8].indexOf(",");
     				spazio[8] = (spazio[8].substring(0, surplus) +"."+ spazio[8].substring(surplus + 1));
     				latitudine = Float.parseFloat(spazio[8]);
@@ -93,21 +91,4 @@ public Lista() {
 		if(lista.isEmpty()) return true;
 		else return false;
 	}
-	
-	/*public String getProvincia(int i) {
-		return lista.get(i).getProvincia();
-	}
-	public boolean containsProvincia(String e,int i) {
-		if (e.equals(this.getProvincia(i))) return true; 
-		else return false;
-		}*/
-	/*public float getLat(int i) {
-		return lista.get(i).getPunto().getLatitudine();
-	}
-	public float getLon(int i) {
-		return lista.get(i).getPunto().getLongitudine();
-	}
-	public String getTipo(int i) {
-		return lista.get(i).getTipo();
-	}*/
 }

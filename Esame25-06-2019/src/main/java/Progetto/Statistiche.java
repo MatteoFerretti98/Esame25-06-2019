@@ -9,12 +9,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 @SuppressWarnings("all")
 public class Statistiche {
-	/*public List<Statistiche> getStatistiche() {
-		return statistiche;
-	}
-	public void setStatistiche(List<Statistiche> statistiche) {
-		this.statistiche = statistiche;
-	}*/
 private Lista lista = new Lista();
 public List<Statistics> statistics = new ArrayList<>();
 
@@ -44,19 +38,9 @@ public ArrayList<String> NumeroCampi(Container originale, String campo) throws N
  
 	public float Media (Container originale, String campo) throws IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException{
 		float somma=0;
-		/* for(int i=0; i< originale.getSize();i++) {
-			for(int j=0; j< originale.getSize();j++)
-			 if(NumeroCampi.isEmpty()) {
-				 NumeroCampi.add(originale.getTipo(j));
-			 }
-			 else if(!(NumeroCampi.contains(originale.getTipo(j)))) {
-				 NumeroCampi.add(originale.getTipo(j));
-			 }
-		 }*/
 		ArrayList<String> NumeroCampi= this.NumeroCampi(originale, campo);
 		 for(int i=0; i<NumeroCampi.size();i++) {
 			 somma += this.Count(originale, campo, NumeroCampi.get(i));
-			 //somma = this.Somma(originale, campo);
 		 }
 		 float media = (float) (this.Somma(originale, campo)/(float)NumeroCampi.size());
 		 return media;
@@ -84,7 +68,6 @@ public ArrayList<String> NumeroCampi(Container originale, String campo) throws N
 	}
 	
 	public int Count (Container originale,  String tipo, String nome) throws IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException {
-	//public ResponseEntity Count(Container originale,  String campo, String nome) throws NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
 		int count=0;
 		Object t =null;
 		int size=originale.getSize();
@@ -106,8 +89,6 @@ public ArrayList<String> NumeroCampi(Container originale, String campo) throws N
 				if(t.equals(nome)) count++;
 	    	}
 		}
-		
-		//return new ResponseEntity <Integer> (count,HttpStatus.NOT_FOUND);
 		return count;
 	}
 	
@@ -117,8 +98,7 @@ public ArrayList<String> NumeroCampi(Container originale, String campo) throws N
 		double min = 999999999;
 		Object t =null;
 		double T=0;
-		//int count[];
-		double p=0; //provissoria
+		double vuoto=0;
 		
 			for(int a=0; a<size; a++)
 		    {
@@ -136,16 +116,9 @@ public ArrayList<String> NumeroCampi(Container originale, String campo) throws N
 		if((T<min)&&(T!=0)) min=T;
 		    }
 		
-		/*if(zona.equals("NA")) {}
-		if(zona.equals("AV")) {}
-		if(zona.equals("BN")) {}
-		if(zona.equals("CE")) {}
-		if(zona.equals("SA")) {}
-		if(zona.equals("regione")) {}*/
-		
 		if(tipo.equals("max")) return max;
 		else if(tipo.equals("min")) return min;
-		else return p;
+		else return vuoto;
 	}
 	
 	public float DevStand(Container originale,String campo) throws IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException {
@@ -159,18 +132,6 @@ public ArrayList<String> NumeroCampi(Container originale, String campo) throws N
 		var=(float) (somma/(NumeroCampi.size()));
 		return (float) Math.sqrt(var);
 	}
-
-	/*public ResponseEntity stats(Container originale,  String campo, String nome) throws NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
-			/////Creare una classe in base al campo (PreNom, comune, provincia, ecc.) dia in output o solo count o count e media o count media e dev. standard ecc.
-		statistics.clear();
-		float a = this.devStand(originale, campo); 
-		int i = this.Count(originale, campo, nome);
-		statistics.add(new Statistics (i,a,a,a,a));
-
-		//String resp = "Count: " + i + " DevStand: " + a;
-		return new ResponseEntity <List> (statistics,HttpStatus.OK);
-		//return new ResponseEntity <String> (resp,HttpStatus.NOT_FOUND);
-	}*/
 	
 	public List<Statistics> NumStats(String tipo,String campo, Container originale,Lista filtrata) throws NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
 		filtrata.getList().clear();
@@ -194,8 +155,6 @@ public ArrayList<String> NumeroCampi(Container originale, String campo) throws N
 		if((tipo.equals("preNorm"))||(tipo.equals("comune"))||(tipo.equals("provincia"))||(tipo.equals("indirizzo"))||(tipo.equals("tipo"))) {
 			
 			int count = this.Count(originale, tipo, campo);
-			//float media = this.Media(originale, tipo);
-			//float devStand = this.DevStand(originale, tipo); 
 			statistics.clear();
 			statistics.add(new Statistics (tipo+" "+campo, count, 0, 0, 0, 0, 0));
 			if(count==0) statistics.clear();//serve nel caso non ci sia nessun campo all'interno del tipo selezionato
@@ -204,17 +163,3 @@ public ArrayList<String> NumeroCampi(Container originale, String campo) throws N
 	}
 }
 
-
-		/*
-		//Per tutte gli altri get
-		Method s= lista.getDati(a).getClass().getMethod("get"+campo.substring(0, 1).toUpperCase()+campo.substring(1), null);
-		System.out.println(s);
-		Object t = s.invoke(originale.getDati(a), null);
-		System.out.println(t);
-		
-		//Per il getLatitudine e getLongitudine
-		Method u= lista.getDati(a).getPunto().getClass().getMethod("get"+campo.substring(0, 1).toUpperCase()+campo.substring(1), null);
-		System.out.println(u);
-		Object v = u.invoke(originale.getDati(a).getPunto(), null);
-		System.out.println(v);
-		*/
