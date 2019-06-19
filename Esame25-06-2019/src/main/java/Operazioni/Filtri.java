@@ -11,9 +11,28 @@ import dataset.Container;
 import dataset.Lista;
 @SuppressWarnings("all")
 public class Filtri {
-
+	private String tipo;
+	private String campo;
+	private String min;
+	private String max;
 	private Lista lista = new Lista();
 
+	public Lista filterEQ( String campo, String valore,Container originale, Lista filtrata) throws NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
+		{//controlla il tipo di filtro richiesto
+		filtrata.getList().clear();
+    	int size=originale.getSize();
+    	Object t =null;
+    	for(int a=0; a<=size-1; a++)
+    	{
+    		Method u= lista.getDati(a).getPunto().getClass().getMethod("get"+campo.substring(0, 1).toUpperCase()+campo.substring(1), null);
+			t = u.invoke(originale.getDati(a).getPunto(), null);
+    		if(t.equals(valore))	filtrata.getList().add(originale.getDati(a));
+    	}
+		
+	}
+		return filtrata;
+		//else return new ResponseEntity <String>("Fallito",HttpStatus.NOT_FOUND);
+	}
 
 	public Lista filterBT(String tipo,String campo,String min,String max, Container originale,Lista filtrata) throws NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
 		try {
