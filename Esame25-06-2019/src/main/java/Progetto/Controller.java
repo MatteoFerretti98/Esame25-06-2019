@@ -30,7 +30,8 @@ public class Controller {
 	MetaData ListMeta = new MetaData();
 	Filtri filtro1 = new Filtri();
 	Filtri filtro2 = new Filtri();
-	Statistiche stats= new Statistiche();
+	Statistiche stats = new Statistiche();
+	TrovaDaPunto trova = new TrovaDaPunto();
 	
 	@GetMapping("/data") //stampa il JSON del dataset
 	public Lista getDati() throws FileNotFoundException, IOException {
@@ -67,7 +68,13 @@ public class Controller {
 		else if(!(stats.StringStats(tipo, campo, Prima, filtrata).isEmpty())&&((tipo.equals("preNorm"))||(tipo.equals("comune"))||(tipo.equals("provincia"))||(tipo.equals("tipo"))))	return new ResponseEntity (stats.StringStats(tipo, campo, Prima, filtrata),HttpStatus.OK);
 		else if(!(stats.NumStats(tipo, campo, Prima, filtrata).isEmpty())&&((tipo.equals("telefono"))||(tipo.equals("fax"))||(tipo.equals("latitudine"))||(tipo.equals("longitudine"))))	return new ResponseEntity (stats.NumStats(tipo, campo, Prima, filtrata),HttpStatus.OK);
 		else return new ResponseEntity ("Immetti dei valori consoni",HttpStatus.BAD_REQUEST);
-
+	}
+	
+	@GetMapping("/find")
+	public ResponseEntity Find (@RequestParam Float Lat, Float Lon, Float Radius) throws NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
+		if((trova.Find(Lat, Lon, Radius, Prima, filtrata).isEmpty())) return new ResponseEntity ("Non esiste",HttpStatus.NOT_FOUND);
+		else if(!(trova.Find(Lat, Lon, Radius, Prima, filtrata).isEmpty()))	return new ResponseEntity (trova.Find(Lat, Lon, Radius, Prima, filtrata),HttpStatus.OK);
+		return new ResponseEntity ("Immetti dei valori consoni",HttpStatus.BAD_REQUEST);
 	}
 }
 
