@@ -29,12 +29,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 public class Controller {
 	
-	Container Prima = new Container();
-	Lista filtrata = new Lista();
-	MetaData ListMeta = new MetaData();
-	Filtri filtro = new Filtri();
-	Statistiche stats = new Statistiche();
-	TrovaDaPunto trova = new TrovaDaPunto();
+	private Container Prima = new Container();
+	private Lista filtrata = new Lista();
+	private MetaData ListMeta = new MetaData();
+	private Filtri filtro = new Filtri();
+	private Statistiche stats = new Statistiche();
+	private TrovaDaPunto trova = new TrovaDaPunto();
 	
 	@GetMapping("/data") //stampa il JSON del dataset
 	public Lista getDati() throws FileNotFoundException, IOException {

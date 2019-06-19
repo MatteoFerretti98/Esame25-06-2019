@@ -8,6 +8,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
+import dataset.*;
 @SuppressWarnings("all")
 	public class MetaData {
 
@@ -16,8 +17,8 @@ import java.lang.reflect.Field;
 		public MetaData() {
 			try {
 			BufferedReader br = new BufferedReader(new FileReader("APL-AgenziaPerIlLavoro.csv")); //file da leggere
-			Class alias1 = Class.forName("Progetto.Dati"); 		//Prendo la classe dove c'è il costruttore Dati
-			Class alias2 = Class.forName("Progetto.Punto"); 	//Prendo la classe dove c'è il costruttore Punto
+			Class alias1 = Class.forName("dataset.Dati"); 		//Prendo la classe dove c'è il costruttore Dati
+			Class alias2 = Class.forName("dataset.Punto"); 	//Prendo la classe dove c'è il costruttore Punto
 			Constructor listaDati[] = alias1.getConstructors();  	//Ottiene la lista del costruttore Dati
 			Constructor listaPunto[] = alias2.getConstructors(); 	//Ottiene la lista del costruttore Punto
 			Field listaAlias1[] = alias1.getDeclaredFields();		//Prendo la lista degli alias di Dati

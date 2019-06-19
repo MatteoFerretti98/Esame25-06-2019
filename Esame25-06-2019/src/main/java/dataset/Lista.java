@@ -9,7 +9,7 @@ import org.springframework.http.ResponseEntity;
 @SuppressWarnings("all")
 public class Lista {
 
-public List<Dati> lista = new ArrayList<>();
+private List<Dati> lista = new ArrayList<>();
 
 
 public Lista() {
@@ -69,6 +69,7 @@ public Lista() {
     			if (spazio[2].isEmpty())	{ spazio[2]=" ";}	//se il Comune è vuoto ci carica dentro 0
     			if (spazio[1].isEmpty())	{ spazio[1]=" ";}	//se il PreNom è vuoto ci carica dentro 0
     			lista.add(new Dati (Integer.parseInt(spazio[0]),spazio[1],spazio[2],spazio[3],spazio[4],Long.parseLong(spazio[5]),Long.parseLong(spazio[6]),spazio[7],latitudine,longitudine));
+    		
     		}
     	}
     }catch (IOException e) { e.printStackTrace(); }
@@ -91,4 +92,7 @@ public Lista() {
 		if(lista.isEmpty()) return true;
 		else return false;
 	}
+
+	
+	
 }
