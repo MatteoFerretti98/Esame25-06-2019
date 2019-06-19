@@ -9,7 +9,7 @@ import org.springframework.http.ResponseEntity;
 @SuppressWarnings("all")
 public class Lista {
 
-public List<Dati> lista = new ArrayList<>();
+private List<Dati> lista = new ArrayList<>();
 
 
 public Lista() {
