@@ -5,12 +5,9 @@ import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-
 import dataset.Container;
 import dataset.Lista;
-@SuppressWarnings("all")
+
 public class Statistiche {
 private Lista lista = new Lista();
 private List<Statistics> statistics = new ArrayList<>();

@@ -9,15 +9,12 @@ import Operazioni.*;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
-import java.util.ArrayList;
-
 import org.json.JSONException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-@SuppressWarnings("all")
+
 @RestController
 
 /**
@@ -42,7 +39,7 @@ public class Controller {
 	}
 	
 	@GetMapping("/metadata") //Stampa il JSON dei metadati
-	public ResponseEntity GetMetadata() throws FileNotFoundException, IOException, ClassNotFoundException
+	public ResponseEntity<MetaData> GetMetadata() throws FileNotFoundException, IOException, ClassNotFoundException
 	{	
 		return new ResponseEntity <MetaData> (ListMeta,HttpStatus.OK); 
 	}

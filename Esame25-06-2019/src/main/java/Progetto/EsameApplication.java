@@ -4,7 +4,6 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-@SuppressWarnings("all")
 
 /**
  * {@link EsameApplication} Application per far partire il server spring dove vi è anche il Main
