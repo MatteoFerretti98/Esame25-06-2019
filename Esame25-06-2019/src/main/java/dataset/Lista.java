@@ -5,12 +5,24 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.*;
 
+/**
+ * Classe Lista che fa il parsing di tutti i dati
+ * @author Matteo Ferretti (s1083630@studenti.univpm.it), Angelo D'Agostino Bonomi (s1082444@studenti.univpm.it)
+ * @version 1.0
+ */
 public class Lista {
-
+	/**
+	 * Inizializza una lista di dati come ArrayList.
+	 */
 private List<Dati> lista = new ArrayList<>();
 
-
+/**
+ * Questa e' la classe {@link Lista} che prendendo in Input il CSV scaricato
+ * in {@link Progetto.DownloadDataset} fa il Parsing di tutti i dati e 
+ * li mette dentro un ArrayList che ha come costruttore {@link Dati}.
+ */
 public Lista() {
+
 	String line = "";
     String cvsSplitBy = ";";
     int surplus = 0;
@@ -49,7 +61,7 @@ public Lista() {
     				if(spazio[5].contains(" ")) surplus = spazio[5].indexOf(" ");	//se la stringa contiene il " " il valore in eccesso è quello
     				spazio[5] = (spazio[5].substring(0, surplus) + spazio[5].substring(surplus + 1));
     			}
-       
+
     			if (spazio[6].isEmpty())	{ spazio[6]="0";} //se il numero del fax è vuoto ci carica dentro 0 altrimenti da errore
     			if ((spazio[6].contains(" "))||(spazio[6].contains("/"))||(spazio[6].contains("."))) { //serve per non eseguire sempre i 3 if seguenti
     				if(spazio[6].contains(".")) surplus = spazio[6].indexOf(".");	//se la stringa contiene il "." il valore in eccesso è quello
@@ -57,7 +69,7 @@ public Lista() {
     				if(spazio[6].contains(" ")) surplus = spazio[6].indexOf(" ");	//se la stringa contiene il " " il valore in eccesso è quello
     				spazio[6] = (spazio[6].substring(0, surplus) + spazio[6].substring(surplus + 1));
     			}
-    			
+
     			if (spazio[9].isEmpty())	{ spazio[9]="0";}	//se la Latitudine è vuota ci carica dentro 0
     			if (spazio[8].isEmpty())	{ spazio[8]="0";}	//se la Longitudine è vuota ci carica dentro 0
     			if (spazio[7].isEmpty())	{ spazio[7]=" ";}	//se il tipoEnte è vuoto ci carica dentro 0
@@ -71,20 +83,37 @@ public Lista() {
     	}
     }catch (IOException e) { e.printStackTrace(); }
 }
-	
+	/**
+	 * Inizializza la variabile Int size.
+	 */
 	public int size;
+	/**
+	 * Fornisce il numero di righe della lista.
+	 * @return size
+	 */
 		public int getSize() {
-		return size= lista.size();
+		return size=lista.size();
 		}
-	
-	//inizializza la lista
+	/**
+	 * Inizializza la lista
+	 * @return lista
+	 */
 	public List<Dati> getList(){
 		return lista;
 	}
-	//ottiene l'oggetto "dato" all'indice "i" selezionato
+	//
+	/**
+	 * Ottiene l'oggetto "Dato" all'indice "i" selezionato.
+	 * @param i Numero della riga.
+	 * @return this.lista.get(i)
+	 */
 	public Dati getDati(int i) {
 		return this.lista.get(i);
 	}
+	/**
+	 * Controlla se la lista e' vuota.
+	 * @return true se e' vuota, false se non lo e'
+	 */
 	public boolean isEmpty() {
 		if(lista.isEmpty()) return true;
 		else return false;

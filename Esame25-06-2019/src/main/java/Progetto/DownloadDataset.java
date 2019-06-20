@@ -1,5 +1,8 @@
 package Progetto;
-
+/**
+ * @author Matteo Ferretti (s1083630@studenti.univpm.it), Angelo D'Agostino Bonomi (s1082444@studenti.univpm.it)
+ * @version 1.0
+ */
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
@@ -14,11 +17,18 @@ import org.json.simple.JSONObject;
 import org.json.simple.JSONValue;
 import org.json.simple.parser.ParseException;
 
+import dataset.Lista;
+/**
+ * E' la classe che scarica il file tramite URL del JSON.
+ */
 public class DownloadDataset {
 		
 		String url = "https://www.dati.gov.it/api/3/action/package_show?id=bbfed5c9-13f0-44ed-845f-094834963827"; //url del JSON
 		File nomeFile = new File ("APL-AgenziaPerIlLavoro.csv");	//Nome del file da scaricare
-		
+		/**
+		 * E' la classe che scarica il file tramite URL del JSON, trova il CSV, 
+		 * e lo scarica sottoforma di file appunto csv con il nome "APL-AgenziaPerIlLavoro.csv".
+		 */
 		public DownloadDataset() { try {
 			
 			URLConnection openConnection = new URL(url).openConnection();		//Si connette all'url
