@@ -1,40 +1,44 @@
 package Operazioni;
-
+/**
+ * @author Matteo Ferretti (s1083630@studenti.univpm.it), Angelo D'Agostino Bonomi (s1082444@studenti.univpm.it)
+ * @version 1.0
+ */
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import dataset.Container;
 import dataset.Lista;
-
+/**
+ * Filtra la {@link dataset.Lista} in base al tipo di filtro che si sceglie
+ */
 public class Filtri {
 	private String tipo;
 	private String campo;
 	private String min;
 	private String max;
+	/**
+	 * Inizializza lista come {@link dataset.Lista} .
+	 */
 	private Lista lista = new Lista();
-
-	public Lista filterEQ( String campo, String valore,Container originale, Lista filtrata) throws NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
-		{//controlla il tipo di filtro richiesto
-		filtrata.getList().clear();
-    	int size=originale.getSize();
-    	Object t =null;
-    	for(int a=0; a<=size-1; a++)
-    	{
-    		Method u= lista.getDati(a).getPunto().getClass().getMethod("get"+campo.substring(0, 1).toUpperCase()+campo.substring(1), null);
-			t = u.invoke(originale.getDati(a).getPunto(), null);
-    		if(t.equals(valore))	filtrata.getList().add(originale.getDati(a));
-    	}
-		
-	}
-		return filtrata;
-		//else return new ResponseEntity <String>("Fallito",HttpStatus.NOT_FOUND);
-	}
-
-	public Lista filterBT(String tipo,String campo,String min,String max, Container originale,Lista filtrata) throws NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
+/**
+ * Filtro condizionale che filtra tutti gli elementi compresi tra 2 valori impostati dall'utente.
+ * @param campo E' il tipo dell'attributo
+ * @param min E' il valore minimo
+ * @param max E' il valore massimo
+ * @param originale E' la {@link dataset.Lista} non ancora filtrata
+ * @param filtrata E' la {@link dataset.Lista} che dovra' essere filtrata
+ * @return filtrata E' la {@link dataset.Lista} filtrata
+ * @throws NoSuchMethodException Se il metodo che vado a cercare non esiste
+ * @throws SecurityException Se c'e' stata una violazione nella sicurezza
+ * @throws IllegalAccessException Se si tenta di accedere ad un metodo la cui visibilita' non e' consentita
+ * @throws IllegalArgumentException Se il metodo ha passato un argomento non appropriato
+ * @throws InvocationTargetException Controlla le eccezioni che sono chiamate da un invoke method
+ */
+	public Lista filterBT(String campo,String min,String max, Container originale,Lista filtrata) throws NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
 		try {
 		filtrata.getList().clear(); //Pulisce la lista 
 		int size=originale.getSize(); //Prende la taglia della lista
 		Object v=null; //inizializzo v
-		if (tipo.equals("$bt")) {//controlla il tipo di filtro richiesto
+		//if (tipo.equals("$bt")) {//controlla il tipo di filtro richiesto
 			for(int i=0; i<max.length();i++) {
 				if(Character.isLetter(max.charAt(i))) return filtrata;	//Serve per vedere se si immettono dei valori non appropriati
 				}
@@ -61,7 +65,7 @@ public class Filtri {
 		    			float V = ((Number)v).floatValue();	//Converto in float
 		    			if((V >= MIN) && (V <= MAX))	filtrata.getList().add(originale.getDati(a)); //se il valore è tra max e min lo mette dentro filtrata
 		    		}
-		    	} 	
+		    	//} 	
 		}catch(NoSuchMethodError a) {a.printStackTrace();
 		}catch (SecurityException b) {b.printStackTrace();
 		}catch(IllegalAccessException c) {c.printStackTrace();
@@ -70,7 +74,20 @@ public class Filtri {
 		}
 		return filtrata;
 	}
-	
+	/**
+	 * Filtro condizionale che filtra tutti gli elementi maggiori o minori del valore impostato dall'utente.
+	 * @param tipo Dichiara il tipo di filtro scelto 
+	 * @param campo Dichiara il tipo di attributo scelto
+	 * @param val Dichiara il valore di soglia
+	 * @param originale E' la {@link dataset.Lista} non ancora filtrata
+	 * @param filtrata E' la {@link dataset.Lista} che dovra' essere filtrata
+	 * @return filtrata E' la {@link dataset.Lista} filtrata
+	 * @throws NoSuchMethodException Se il metodo che vado a cercare non esiste
+	 * @throws SecurityException Se c'e' stata una violazione nella sicurezza
+	 * @throws IllegalAccessException Se si tenta di accedere ad un metodo la cui visibilita' non e' consentita
+	 * @throws IllegalArgumentException Se il metodo ha passato un argomento non appropriato
+	 * @throws InvocationTargetException Controlla le eccezioni che sono chiamate da un invoke method
+	 */
 	public Lista filterGLTE(String tipo,String campo,String val, Container originale,Lista filtrata) throws NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
 		try {
 		filtrata.getList().clear();
@@ -118,7 +135,21 @@ public class Filtri {
 		}
 	return filtrata;
 }
-	
+	/**
+	 * Filtro Logico "And" che filtra tutti gli elementi che hanno 2 campi specificati dall'utente in comune.
+	 * @param tipo1 Tipo del primo attributo
+	 * @param campo1 Valore del primo campo
+	 * @param tipo2 Tipo del secondo attributo
+	 * @param campo2 Valore del secondo campo
+	 * @param originale E' la {@link dataset.Lista} non ancora filtrata
+	 * @param filtrata E' la {@link dataset.Lista} che dovra' essere filtrata
+	 * @return filtrata E' la {@link dataset.Lista} filtrata
+	 * @throws NoSuchMethodException Se il metodo che vado a cercare non esiste
+	 * @throws SecurityException Se c'e' stata una violazione nella sicurezza
+	 * @throws IllegalAccessException Se si tenta di accedere ad un metodo la cui visibilita' non e' consentita
+	 * @throws IllegalArgumentException Se il metodo ha passato un argomento non appropriato
+	 * @throws InvocationTargetException Controlla le eccezioni che sono chiamate da un invoke method
+	 */
 	public Lista filterAND(String tipo1,String campo1,String tipo2, String campo2, Container originale,Lista filtrata) throws NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
 		try {
 		filtrata.getList().clear();
@@ -153,7 +184,21 @@ public class Filtri {
 		}
 		return filtrata;
 	}
-	
+	/**
+	 * Filtro Logico "Or" che filtra tutti gli elementi che hanno uno dei 2 campi specificati dall'utente.
+	 * @param tipo1 Tipo del primo attributo
+	 * @param campo1 Valore del primo campo
+	 * @param tipo2 Tipo del secondo attributo
+	 * @param campo2 Valore del secondo campo
+	 * @param originale E' la {@link dataset.Lista} non ancora filtrata
+	 * @param filtrata E' la {@link dataset.Lista} che dovra' essere filtrata
+	 * @return filtrata E' la {@link dataset.Lista} filtrata
+	 * @throws NoSuchMethodException Se il metodo che vado a cercare non esiste
+	 * @throws SecurityException Se c'e' stata una violazione nella sicurezza
+	 * @throws IllegalAccessException Se si tenta di accedere ad un metodo la cui visibilita' non e' consentita
+	 * @throws IllegalArgumentException Se il metodo ha passato un argomento non appropriato
+	 * @throws InvocationTargetException Controlla le eccezioni che sono chiamate da un invoke method
+	 */
 	public Lista filterOR(String tipo1,String campo1,String tipo2, String campo2, Container originale,Lista filtrata) throws NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
 		try {
 		filtrata.getList().clear();

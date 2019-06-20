@@ -1,14 +1,35 @@
 package Operazioni;
-
+/**
+ * @author Matteo Ferretti (s1083630@studenti.univpm.it), Angelo D'Agostino Bonomi (s1082444@studenti.univpm.it)
+ * @version 1.0
+ */
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
 import dataset.Container;
 import dataset.Lista;
-
+/**
+ * Dato un punto(lat,long) e un raggio, controlla se nella circonferenza designata vi sono delle agenzie.
+ */
 public class TrovaDaPunto {
+	/**
+	 * Inizializza una lista di dati come {@link dataset.Lista}.
+	 */
 	public Lista lista = new Lista();
-
+/**
+ * Mette dentro filtrata tutte le agenzie entro un certo raggio.
+ * @param Lat Latitudine del centro della circonferenza
+ * @param Lon Longitudine del centro della circonferenza
+ * @param Radius Raggio della circonferenza
+ * @param originale E' la {@link dataset.Lista} non ancora filtrata
+ * @param filtrata E' la {@link dataset.Lista} che dovra' essere filtrata
+ * @return filtrata E' la {@link dataset.Lista} filtrata
+ * @throws NoSuchMethodException Se il metodo che vado a cercare non esiste
+ * @throws SecurityException Se c'e' stata una violazione nella sicurezza
+ * @throws IllegalAccessException Se si tenta di accedere ad un metodo la cui visibilita' non e' consentita
+ * @throws IllegalArgumentException Se il metodo ha passato un argomento non appropriato
+ * @throws InvocationTargetException Controlla le eccezioni che sono chiamate da un invoke method
+ */
 	public Lista Find(Float Lat, Float Lon, Float Radius, Container originale, Lista filtrata) throws NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
 		try {
 		filtrata.getList().clear();

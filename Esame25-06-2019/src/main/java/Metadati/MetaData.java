@@ -1,6 +1,8 @@
 package Metadati;
-
-
+/**
+ * @author Matteo Ferretti (s1083630@studenti.univpm.it), Angelo D'Agostino Bonomi (s1082444@studenti.univpm.it)
+ * @version 1.0
+ */
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import java.io.BufferedReader;
@@ -9,11 +11,17 @@ import java.io.IOException;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import dataset.*;
-
+/**
+ * Classe che resistuisce i metadati di tutti i campi
+ */
 	public class MetaData {
 
 		String cvsSplitBy = ";";
 		JSONArray metadata=new JSONArray();
+		/**
+		 * Facendo il parsing della prima riga prende tutti gli i sourcefield, grazie al costruttore
+		 *  invece prende tutti gli alias e tutti i tipi con cui sono stati inizializzati tali attributi
+		 */
 		public MetaData() {
 			try {
 			BufferedReader br = new BufferedReader(new FileReader("APL-AgenziaPerIlLavoro.csv")); //file da leggere
@@ -57,9 +65,17 @@ import dataset.*;
 			}catch (ClassNotFoundException d) {d.printStackTrace();
 			}
 		}
+		/**
+		 * Fornisce tutti i metadati.
+		 * @return metadata Metadati
+		 */
 		public JSONArray getMetadata() {
 			return metadata;
 		}
+		/**
+		 * Imposta i metadati
+		 * @param metadata Metadati
+		 */
 		public void setMetadata(JSONArray metadata) {
 			this.metadata = metadata;
 		}

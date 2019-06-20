@@ -1,15 +1,15 @@
 package dataset;
 
 /**
- * {@link Dati} : Questa è la classe del costruttore principale e collegata ad essa abbiamo 
- * {@link Punto} che è la classe costruttore di latitudine e longitudine
  * @author Matteo Ferretti (s1083630@studenti.univpm.it), Angelo D'Agostino Bonomi (s1082444@studenti.univpm.it)
  * @version 1.0
  */
 
-
+/**
+ * Questa e' la classe del costruttore principale e collegata ad essa abbiamo 
+ * {@link Punto} che e' la classe costruttore di latitudine e longitudine
+ */
 public class Dati {
-
 private int Fid;
 private String PreNorm;
 private String Comune;
@@ -32,7 +32,6 @@ private Punto Punto;
  * @param tipo Tipologia dell'agenzia
  * @param latitudin Latitudine della locazione dell'agenzia
  * @param longitudin Longitudine della locazione dell'agenzia
- * @param punto Questo è il costruttore per la latitudine e la longitudine in {@link Punto} 
  */
 //costruttore della classe
 public Dati(int fid, String preNorm, String comune, String provincia, String indirizzo, long telefono, long fax,
@@ -49,57 +48,129 @@ public Dati(int fid, String preNorm, String comune, String provincia, String ind
 	Punto=new Punto(latitudin,longitudin);
 }
 //getters e setters
+/**
+ * Fornisce il codice della riga dell'agenzia.
+ * @return Fid o <strong>0</strong> se il Fid inserito non e' corretto.
+ */
 public int getFid() {
 	return Fid;
 }
+/**
+ * Imposta il codice della riga.
+ * @param fid Numero Fid.
+ */
 public void setFid(int fid) {
 	Fid = fid;
 }
+/**
+ * Fornisce il nome dell'agenzia.
+ * @return PreNorm o <strong>null</strong> se il PreNorm inserito non e' corretto.
+ */
 public String getPreNorm() {
 	return PreNorm;
 }
+/**
+ * Imposta il nome dell'agenzia.
+ * @param preNorm Processo di PreNormalizzazione.
+ */
 public void setPreNorm(String preNorm) {
 	PreNorm = preNorm;
 }
+/**
+ * Fornisce il comune della sede dell'agenzia.
+ * @return Comune o <strong>null</strong> se il Comune inserito non e' corretto.
+ */
 public String getComune() {
 	return Comune;
 }
+/**
+ * Imposta il comune della sede dell'agenzia.
+ * @param comune Nome del Comune.
+ */
 public void setComune(String comune) {
 	Comune = comune;
 }
+/**
+ * Fornisce la provincia della sede dell'agenzia.
+ * @return Provincia o <strong>null</strong> se il Provincia inserito non e' corretto.
+ */
 public String getProvincia() {
 	return Provincia;
 }
+/**
+ * Imposta la provincia della sede dell'agenzia.
+ * @param provincia Nome provincia.
+ */
 public void setProvincia(String provincia) {
 	Provincia = provincia;
 }
+/**
+ * Fornisce l'indirizzo della sede dell'agenzia.
+ * @return Indirizzo o <strong>null</strong> se l'Indirizzo inserito non e' corretto.
+ */
 public String getIndirizzo() {
 	return Indirizzo;
 }
+/**
+ * Imposta l'indirizzo della sede dell'agenzia.
+ * @param indirizzo Stringa dell'indirizzo.
+ */
 public void setIndirizzo(String indirizzo) {
 	Indirizzo = indirizzo;
 }
+/**
+ * Fornisce il telefono dell'agenzia.
+ * @return Telefono o <strong>0</strong> se il Telefono inserito non e' corretto.
+ */
 public long getTelefono() {
 	return Telefono;
 }
+/**
+ * Imposta il telefono dell'agenzia.
+ * @param telefono Numero di telefono.
+ */
 public void setTelefono(long telefono) {
 	Telefono = telefono;
 }
+/**
+ * Fornisce il fax dell'agenzia.
+ * @return Fax o <strong>0</strong> se il Fax inserito non e' corretto.
+ */
 public long getFax() {
 	return Fax;
 }
+/**
+ * Imposta il fax dell'agenzia.
+ * @param fax Numero di fax.
+ */
 public void setFax(long fax) {
 	Fax = fax;
 }
+/**
+ * Fornisce il tipo di ente di cui fa parte l'agenzia.
+ * @return Tipo o <strong>null</strong> se il Tipo inserito non e' corretto.
+ */
 public String getTipo() {
 	return Tipo;
 }
+/**
+ * Imposta il tipo di ente dell'agenzia.
+ * @param tipo Tipo di ente.
+ */
 public void setTipo(String tipo) {
 	Tipo = tipo;
 }
+/**
+ * Fornisce il {@link Punto} che al suo interno ha Latitudine e Longitudine.
+ * @return Punto o <strong>0</strong> se il Punto inserito non e' corretto.
+ */
 public Punto getPunto() {
 	return Punto;
 }
+/**
+ * Imposta il {@link Punto} che al suo interno ha Latitudine e Longitudine
+ * @param punto Punto delle coordinate
+ */
 public void setPunto(Punto punto) {
 	Punto = punto;
 }
