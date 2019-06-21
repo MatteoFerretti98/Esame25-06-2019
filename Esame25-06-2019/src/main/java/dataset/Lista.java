@@ -18,7 +18,7 @@ private List<Dati> lista = new ArrayList<>();
 
 /**
  * Questa è la classe {@link Lista} che prendendo in Input il CSV scaricato
- * in {@link Progetto.DownloadDataset} fa il Parsing di tutti i dati e 
+ * in {@link progetto.DownloadDataset} fa il Parsing di tutti i dati e 
  * li mette dentro un ArrayList che ha come costruttore {@link Dati}.
  */
 public Lista() {

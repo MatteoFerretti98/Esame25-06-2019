@@ -1,4 +1,4 @@
-package Progetto;
+package progetto;
 /**
  * @author Matteo Ferretti (s1083630@studenti.univpm.it), Angelo D'Agostino Bonomi (s1082444@studenti.univpm.it)
  * @version 1.0

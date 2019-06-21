@@ -1,4 +1,4 @@
-package Operazioni;
+package operazioni;
 /**
  * @author Matteo Ferretti (s1083630@studenti.univpm.it), Angelo D'Agostino Bonomi (s1082444@studenti.univpm.it)
  * @version 1.0
@@ -37,7 +37,7 @@ public class Filtri {
  */
 	public Lista filterBT(String tipo, String campo,String min,String max, Container originale,Lista filtrata) throws NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
 		try {
-		filtrata.getList().clear(); //Pulisce la lista 
+		
 		int size=originale.getSize(); //Prende la taglia della lista
 		Object v=null; //inizializzo v
 		if (tipo.equals("$bt")) {//controlla il tipo di filtro richiesto
@@ -47,6 +47,7 @@ public class Filtri {
 			for(int i=0; i<min.length();i++) {
 				if(Character.isLetter(min.charAt(i))) return filtrata;	//Serve per vedere se si immettono dei valori non appropriati
 				}
+				filtrata.getList().clear(); //Pulisce la lista 
 				float MIN = Float.parseFloat(min); //Trasformo min in float
 				float MAX = Float.parseFloat(max); //Trasformo max in float
 		    	for(int a=0; a<size; a++)
@@ -92,13 +93,14 @@ public class Filtri {
 	 */
 	public Lista filterGLTE(String tipo,String campo,String val, Container originale,Lista filtrata) throws NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
 		try {
-		filtrata.getList().clear();
+		
 		int size=originale.getSize();
 		Object v=null;
 		for(int i=0; i<val.length();i++) {
 			if((Character.isLetter(val.charAt(i)))) return filtrata; //Serve per vedere se si immettono dei valori non appropriati
 			}		
 		if (tipo.equals("$gte")) {//controlla il tipo di filtro richiesto	
+			filtrata.getList().clear();
 			float VAL = Float.parseFloat(val);
 		    	for(int a=0; a<size; a++)
 		    	{
@@ -115,6 +117,7 @@ public class Filtri {
 		    	} 	
 		}
 		else if (tipo.equals("$lte")) {//controlla il tipo di filtro richiesto
+			filtrata.getList().clear();
 			float VAL = Float.parseFloat(val);
 	    	for(int a=0; a<size; a++)
 	    	{

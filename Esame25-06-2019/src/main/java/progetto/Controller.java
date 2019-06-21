@@ -1,10 +1,10 @@
-package Progetto;
+package progetto;
 
 import org.springframework.web.bind.annotation.RestController;
 
-import Metadati.MetaData;
 import dataset.*;
-import Operazioni.*;
+import metadati.MetaData;
+import operazioni.*;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -29,6 +29,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 @RestController
 public class Controller {
 	/**
+	 * Questo è il costruttore
+	 */
+	public Controller(){
+		
+	}
+	/**
 	 * Inizializza Prima come {@link dataset.Container} perchè a noi serve che sia lista ma anche che contenga i metodi di Container.
 	 */
 	private Container Prima = new Container();
@@ -37,19 +43,19 @@ public class Controller {
 	 */
 	private Lista filtrata = new Lista();
 	/**
-	 * Inizializza ListMeta come {@link dataset.Lista} di {@link Metadati.MetaData}.
+	 * Inizializza ListMeta come {@link dataset.Lista} di {@link metadati.MetaData}.
 	 */
 	private MetaData ListMeta = new MetaData();
 	/**
-	 * Inizializza filtro come {@link Operazioni.Filtri} (servirà per richiamare i vari filtri).
+	 * Inizializza filtro come {@link operazioni.Filtri} (servirà per richiamare i vari filtri).
 	 */
 	private Filtri filtro = new Filtri();
 	/**
-	 * Inizializza stats come {@link Operazioni.Statistiche} (servirà per richiamare la lista delle {@link Operazioni.Statistics}).
+	 * Inizializza stats come {@link operazioni.Statistiche} (servirà per richiamare la lista delle {@link operazioni.Statistics}).
 	 */
 	private Statistiche stats = new Statistiche();
 	/**
-	 * Inizializza trova come {@link Operazioni.TrovaDaPunto} (servirà per richiamare la classe per trovare le agenzie in una certa zona).
+	 * Inizializza trova come {@link operazioni.TrovaDaPunto} (servirà per richiamare la classe per trovare le agenzie in una certa zona).
 	 */
 	private TrovaDaPunto trova = new TrovaDaPunto();
 	
@@ -64,8 +70,8 @@ public class Controller {
 		return Prima;
 	}
 	/**
-	 * Questa GET restituisce tutti i {@link Metadati.MetaData} del file csv. 
-	 * @return ListaMeta E' la {@link dataset.Lista} di tutti i {@link Metadati.MetaData}
+	 * Questa GET restituisce tutti i {@link metadati.MetaData} del file csv. 
+	 * @return ListaMeta E' la {@link dataset.Lista} di tutti i {@link metadati.MetaData}
 	 * @throws FileNotFoundException Se non trova il file
 	 * @throws IOException Classe base per le eccezioni di flussi di dati
 	 * @throws ClassNotFoundException Se non trova la classe
@@ -76,8 +82,8 @@ public class Controller {
 		return new ResponseEntity <MetaData> (ListMeta,HttpStatus.OK); 
 	}
 	/**
-	 * Questa GET richiama i metodi filterBT e filterGLTE per i {@link Operazioni.Filtri} Condizionali.
-	 * @param tipo Si chiede di inserire il tipo di {@link Operazioni.Filtri} che si ha scelto tra $bt, $lte, $gte.
+	 * Questa GET richiama i metodi filterBT e filterGLTE per i {@link operazioni.Filtri} Condizionali.
+	 * @param tipo Si chiede di inserire il tipo di {@link operazioni.Filtri} che si ha scelto tra $bt, $lte, $gte.
 	 * @param campo Si chiede di inserire il campo, ovvero, l'attributo dove si vuole fare il filtro scelto precendentemente.
 	 * @param min Si chiede di inserire o il valore minimo (nel caso si abbia scelto $bt) o il valore unico (nel caso si abbia scelto $lte o $gte).
 	 * @param max Si chiede di inserire il valore massimo solo pero' nel caso si abbia scelto il filtro $bt.
@@ -102,8 +108,8 @@ public class Controller {
 
 	}
 	/**
-	 * Questa GET richiama i metodi filterAND e filterOR per i {@link Operazioni.Filtri} Logici.
-	 * @param tipo Si chiede di inserire il tipo di {@link Operazioni.Filtri} che si ha scelto tra $and o $or.
+	 * Questa GET richiama i metodi filterAND e filterOR per i {@link operazioni.Filtri} Logici.
+	 * @param tipo Si chiede di inserire il tipo di {@link operazioni.Filtri} che si ha scelto tra $and o $or.
 	 * @param tipo1 Si chiede di inserire il tipo della prima variabile, ovvero, l'attributo.
 	 * @param campo1 Si chiede di inserire il valore del primo tipo scelto.
 	 * @param tipo2 Si chiede di inserire il tipo della seconda variabile, ovvero, l'attributo.
@@ -120,18 +126,24 @@ public class Controller {
 
 	public ResponseEntity LogFilter (@RequestParam String tipo, String tipo1, String campo1, String tipo2, String campo2) throws JSONException, NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException
 	{
-		Lista filtroAND = filtro.filterAND(tipo1, campo1, tipo2, campo2, Prima, filtrata);
+		if((filtro.filterAND(tipo1, campo1, tipo2, campo2, Prima, filtrata).isEmpty())&&(filtro.filterOR(tipo1, campo1, tipo2, campo2, Prima, filtrata).isEmpty())) return new ResponseEntity ("Non esiste",HttpStatus.NOT_FOUND); //Se le liste sono vuote Non esiste
+		else if((!filtro.filterAND(tipo1, campo1, tipo2, campo2, Prima, filtrata).isEmpty())&&(tipo.equals("$and"))) return new ResponseEntity <Lista> (filtro.filterAND(tipo1, campo1, tipo2, campo2, Prima, filtrata),HttpStatus.OK); //Cerca tutte le aziende che hanno 2 specifici valori
+		else if((!filtro.filterOR(tipo1, campo1, tipo2, campo2, Prima, filtrata).isEmpty())&&(tipo.equals("$or"))) return new ResponseEntity <Lista> (filtro.filterOR(tipo1, campo1, tipo2, campo2, Prima, filtrata),HttpStatus.OK); //Cerca tutte le aziende che hanno o uno o l'altro tipo di valore
+		else return new ResponseEntity ("Immetti dei valori consoni",HttpStatus.BAD_REQUEST); //Se non è nessuna delle precedenti è una Bad Request
+	
+		/*Lista filtroAND = filtro.filterAND(tipo1, campo1, tipo2, campo2, Prima, filtrata);
 		Lista filtroOR = filtro.filterOR(tipo1, campo1, tipo2, campo2, Prima, filtrata);
 		if((filtroAND.isEmpty())&&(filtroOR.isEmpty())) return new ResponseEntity ("Non esiste",HttpStatus.NOT_FOUND); //Se le liste sono vuote Non esiste
 		else if((!filtroAND.isEmpty())&&(tipo.equals("$and"))) return new ResponseEntity <Lista> (filtroAND,HttpStatus.OK); //Cerca tutte le aziende che hanno 2 specifici valori
 		else if((!filtroOR.isEmpty())&&(tipo.equals("$or"))) return new ResponseEntity <Lista> (filtroOR,HttpStatus.OK); //Cerca tutte le aziende che hanno o uno o l'altro tipo di valore
 		else return new ResponseEntity ("Immetti dei valori consoni",HttpStatus.BAD_REQUEST); //Se non è nessuna delle precedenti è una Bad Request
+	*/
 	}
 	/**
-	 * Questa GET richiama i metodi NumStats e StringStats per le {@link Operazioni.Statistiche}.
+	 * Questa GET richiama i metodi NumStats e StringStats per le {@link operazioni.Statistiche}.
 	 * @param tipo Si chiede di inserire il tipo della variabile, ovvero, l'attributo.
 	 * @param campo Si chiede di inserire il campo della variabile (solo se si ha scelto un tipo String).
-	 * @return statistics E' la lista (con costruttore {@link Operazioni.Statistics} delle: Statistiche se sono Numeri, di elementi unici se sono Stringhe
+	 * @return statistics E' la lista (con costruttore {@link operazioni.Statistics} delle: Statistiche se sono Numeri, di elementi unici se sono Stringhe
 	 * @throws NoSuchMethodException Se il metodo che vado a cercare non esiste
 	 * @throws SecurityException Se c'è stata una violazione nella sicurezza
 	 * @throws IllegalAccessException Se si tenta di accedere ad un metodo la cui visibilità non è consentita
@@ -149,11 +161,11 @@ public class Controller {
 
 	}
 	/**
-	 * Questa GET richiama il metodo Find per il {@link Operazioni.TrovaDaPunto} che grazie ad un punto fissato e un raggio trova tutte le agenzie all'interno di quella circonferenza.
+	 * Questa GET richiama il metodo Find per il {@link operazioni.TrovaDaPunto} che grazie ad un punto fissato e un raggio trova tutte le agenzie all'interno di quella circonferenza.
 	 * @param Lat Si chiede di inserire la latitudine del centro della circonferenza
 	 * @param Lon Si chiede di inserire la longitudine del centro della circonferenza
 	 * @param Radius Si chiede di inserire il raggio della circonferenza
-	 * @return filtrata E' la {@link dataset.Lista} filtrata da {@link Operazioni.TrovaDaPunto}
+	 * @return filtrata E' la {@link dataset.Lista} filtrata da {@link operazioni.TrovaDaPunto}
 	 * @throws NoSuchMethodException Se il metodo che vado a cercare non esiste
 	 * @throws SecurityException Se c'è stata una violazione nella sicurezza
 	 * @throws IllegalAccessException Se si tenta di accedere ad un metodo la cui visibilità non è consentita
