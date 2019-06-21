@@ -17,7 +17,7 @@ public class Lista {
 private List<Dati> lista = new ArrayList<>();
 
 /**
- * Questa e' la classe {@link Lista} che prendendo in Input il CSV scaricato
+ * Questa è la classe {@link Lista} che prendendo in Input il CSV scaricato
  * in {@link Progetto.DownloadDataset} fa il Parsing di tutti i dati e 
  * li mette dentro un ArrayList che ha come costruttore {@link Dati}.
  */
@@ -111,8 +111,8 @@ public Lista() {
 		return this.lista.get(i);
 	}
 	/**
-	 * Controlla se la lista e' vuota.
-	 * @return true se e' vuota, false se non lo e'
+	 * Controlla se la lista è vuota.
+	 * @return true se è vuota, false se non lo è
 	 */
 	public boolean isEmpty() {
 		if(lista.isEmpty()) return true;

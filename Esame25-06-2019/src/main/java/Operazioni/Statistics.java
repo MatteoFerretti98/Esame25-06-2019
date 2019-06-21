@@ -6,7 +6,7 @@ package Operazioni;
  */
 
 /**
- * Questa e' la classe del costruttore delle {@link Statistiche}.
+ * Questa è la classe del costruttore delle {@link Statistiche}.
  */
 public class Statistics {
 	

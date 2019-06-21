@@ -25,8 +25,8 @@ public class TrovaDaPunto {
  * @param filtrata E' la {@link dataset.Lista} che dovra' essere filtrata
  * @return filtrata E' la {@link dataset.Lista} filtrata
  * @throws NoSuchMethodException Se il metodo che vado a cercare non esiste
- * @throws SecurityException Se c'e' stata una violazione nella sicurezza
- * @throws IllegalAccessException Se si tenta di accedere ad un metodo la cui visibilita' non e' consentita
+ * @throws SecurityException Se c'è stata una violazione nella sicurezza
+ * @throws IllegalAccessException Se si tenta di accedere ad un metodo la cui visibilità non è consentita
  * @throws IllegalArgumentException Se il metodo ha passato un argomento non appropriato
  * @throws InvocationTargetException Controlla le eccezioni che sono chiamate da un invoke method
  */

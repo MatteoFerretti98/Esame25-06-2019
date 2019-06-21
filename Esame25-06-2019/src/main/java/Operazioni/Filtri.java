@@ -21,24 +21,25 @@ public class Filtri {
 	private Lista lista = new Lista();
 /**
  * Filtro condizionale che filtra tutti gli elementi compresi tra 2 valori impostati dall'utente.
+ * @param tipo Dichiara il tipo di filtro scelto 
  * @param campo E' il tipo dell'attributo
  * @param min E' il valore minimo
  * @param max E' il valore massimo
  * @param originale E' la {@link dataset.Lista} non ancora filtrata
- * @param filtrata E' la {@link dataset.Lista} che dovra' essere filtrata
+ * @param filtrata E' la {@link dataset.Lista} che dovrà essere filtrata
  * @return filtrata E' la {@link dataset.Lista} filtrata
  * @throws NoSuchMethodException Se il metodo che vado a cercare non esiste
- * @throws SecurityException Se c'e' stata una violazione nella sicurezza
- * @throws IllegalAccessException Se si tenta di accedere ad un metodo la cui visibilita' non e' consentita
+ * @throws SecurityException Se c'è stata una violazione nella sicurezza
+ * @throws IllegalAccessException Se si tenta di accedere ad un metodo la cui visibilità non è consentita
  * @throws IllegalArgumentException Se il metodo ha passato un argomento non appropriato
  * @throws InvocationTargetException Controlla le eccezioni che sono chiamate da un invoke method
  */
-	public Lista filterBT(String campo,String min,String max, Container originale,Lista filtrata) throws NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
+	public Lista filterBT(String tipo, String campo,String min,String max, Container originale,Lista filtrata) throws NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
 		try {
 		filtrata.getList().clear(); //Pulisce la lista 
 		int size=originale.getSize(); //Prende la taglia della lista
 		Object v=null; //inizializzo v
-		//if (tipo.equals("$bt")) {//controlla il tipo di filtro richiesto
+		if (tipo.equals("$bt")) {//controlla il tipo di filtro richiesto
 			for(int i=0; i<max.length();i++) {
 				if(Character.isLetter(max.charAt(i))) return filtrata;	//Serve per vedere se si immettono dei valori non appropriati
 				}
@@ -65,7 +66,7 @@ public class Filtri {
 		    			float V = ((Number)v).floatValue();	//Converto in float
 		    			if((V >= MIN) && (V <= MAX))	filtrata.getList().add(originale.getDati(a)); //se il valore è tra max e min lo mette dentro filtrata
 		    		}
-		    	//} 	
+		    	} 	
 		}catch(NoSuchMethodError a) {a.printStackTrace();
 		}catch (SecurityException b) {b.printStackTrace();
 		}catch(IllegalAccessException c) {c.printStackTrace();
@@ -80,11 +81,11 @@ public class Filtri {
 	 * @param campo Dichiara il tipo di attributo scelto
 	 * @param val Dichiara il valore di soglia
 	 * @param originale E' la {@link dataset.Lista} non ancora filtrata
-	 * @param filtrata E' la {@link dataset.Lista} che dovra' essere filtrata
+	 * @param filtrata E' la {@link dataset.Lista} che dovrà essere filtrata
 	 * @return filtrata E' la {@link dataset.Lista} filtrata
 	 * @throws NoSuchMethodException Se il metodo che vado a cercare non esiste
-	 * @throws SecurityException Se c'e' stata una violazione nella sicurezza
-	 * @throws IllegalAccessException Se si tenta di accedere ad un metodo la cui visibilita' non e' consentita
+	 * @throws SecurityException Se c'è stata una violazione nella sicurezza
+	 * @throws IllegalAccessException Se si tenta di accedere ad un metodo la cui visibilità non è consentita
 	 * @throws IllegalArgumentException Se il metodo ha passato un argomento non appropriato
 	 * @throws InvocationTargetException Controlla le eccezioni che sono chiamate da un invoke method
 	 */
@@ -95,7 +96,8 @@ public class Filtri {
 		Object v=null;
 		for(int i=0; i<val.length();i++) {
 			if((Character.isLetter(val.charAt(i)))) return filtrata; //Serve per vedere se si immettono dei valori non appropriati
-			}		if (tipo.equals("$gte")) {//controlla il tipo di filtro richiesto	
+			}		
+		if (tipo.equals("$gte")) {//controlla il tipo di filtro richiesto	
 			float VAL = Float.parseFloat(val);
 		    	for(int a=0; a<size; a++)
 		    	{
@@ -142,11 +144,11 @@ public class Filtri {
 	 * @param tipo2 Tipo del secondo attributo
 	 * @param campo2 Valore del secondo campo
 	 * @param originale E' la {@link dataset.Lista} non ancora filtrata
-	 * @param filtrata E' la {@link dataset.Lista} che dovra' essere filtrata
+	 * @param filtrata E' la {@link dataset.Lista} che dovrà essere filtrata
 	 * @return filtrata E' la {@link dataset.Lista} filtrata
 	 * @throws NoSuchMethodException Se il metodo che vado a cercare non esiste
-	 * @throws SecurityException Se c'e' stata una violazione nella sicurezza
-	 * @throws IllegalAccessException Se si tenta di accedere ad un metodo la cui visibilita' non e' consentita
+	 * @throws SecurityException Se c'è stata una violazione nella sicurezza
+	 * @throws IllegalAccessException Se si tenta di accedere ad un metodo la cui visibilità non è consentita
 	 * @throws IllegalArgumentException Se il metodo ha passato un argomento non appropriato
 	 * @throws InvocationTargetException Controlla le eccezioni che sono chiamate da un invoke method
 	 */
@@ -191,11 +193,11 @@ public class Filtri {
 	 * @param tipo2 Tipo del secondo attributo
 	 * @param campo2 Valore del secondo campo
 	 * @param originale E' la {@link dataset.Lista} non ancora filtrata
-	 * @param filtrata E' la {@link dataset.Lista} che dovra' essere filtrata
+	 * @param filtrata E' la {@link dataset.Lista} che dovrà essere filtrata
 	 * @return filtrata E' la {@link dataset.Lista} filtrata
 	 * @throws NoSuchMethodException Se il metodo che vado a cercare non esiste
-	 * @throws SecurityException Se c'e' stata una violazione nella sicurezza
-	 * @throws IllegalAccessException Se si tenta di accedere ad un metodo la cui visibilita' non e' consentita
+	 * @throws SecurityException Se c'è stata una violazione nella sicurezza
+	 * @throws IllegalAccessException Se si tenta di accedere ad un metodo la cui visibilità non è consentita
 	 * @throws IllegalArgumentException Se il metodo ha passato un argomento non appropriato
 	 * @throws InvocationTargetException Controlla le eccezioni che sono chiamate da un invoke method
 	 */

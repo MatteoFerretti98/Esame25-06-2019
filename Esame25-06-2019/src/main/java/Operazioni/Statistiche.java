@@ -28,8 +28,8 @@ private List<Statistics> statistics = new ArrayList<>();
  * @param campo E' il campo su cui si va filtrare 
  * @return NumeroCampi E' la {@link dataset.Lista} filtrata
  * @throws NoSuchMethodException Se il metodo che vado a cercare non esiste
- * @throws SecurityException Se c'e' stata una violazione nella sicurezza
- * @throws IllegalAccessException Se si tenta di accedere ad un metodo la cui visibilita' non e' consentita
+ * @throws SecurityException Se c'è stata una violazione nella sicurezza
+ * @throws IllegalAccessException Se si tenta di accedere ad un metodo la cui visibilità non è consentita
  * @throws IllegalArgumentException Se il metodo ha passato un argomento non appropriato
  * @throws InvocationTargetException Controlla le eccezioni che sono chiamate da un invoke method
  */
@@ -70,8 +70,8 @@ public ArrayList<String> NumeroCampi(Container originale, String campo) throws N
   * @param campo E' il campo su cui si va a fare la media
   * @return media E' la media
   * @throws NoSuchMethodException Se il metodo che vado a cercare non esiste
-  * @throws SecurityException Se c'e' stata una violazione nella sicurezza
-  * @throws IllegalAccessException Se si tenta di accedere ad un metodo la cui visibilita' non e' consentita
+  * @throws SecurityException Se c'è stata una violazione nella sicurezza
+  * @throws IllegalAccessException Se si tenta di accedere ad un metodo la cui visibilità non è consentita
   * @throws IllegalArgumentException Se il metodo ha passato un argomento non appropriato
   * @throws InvocationTargetException Controlla le eccezioni che sono chiamate da un invoke method
   */
@@ -98,8 +98,8 @@ public ArrayList<String> NumeroCampi(Container originale, String campo) throws N
 	 * @param campo E' il campo su cui si va a fare la somma
 	 * @return somma E' la somma
 	 * @throws NoSuchMethodException Se il metodo che vado a cercare non esiste
-	 * @throws SecurityException Se c'e' stata una violazione nella sicurezza
-	 * @throws IllegalAccessException Se si tenta di accedere ad un metodo la cui visibilita' non e' consentita
+	 * @throws SecurityException Se c'è stata una violazione nella sicurezza
+	 * @throws IllegalAccessException Se si tenta di accedere ad un metodo la cui visibilità non è consentita
 	 * @throws IllegalArgumentException Se il metodo ha passato un argomento non appropriato
 	 * @throws InvocationTargetException Controlla le eccezioni che sono chiamate da un invoke method
 	 */
@@ -131,14 +131,14 @@ public ArrayList<String> NumeroCampi(Container originale, String campo) throws N
 		return somma;
 	}
 	/**
-	 * Fa il conteggio di tutti gli elementi unici (ovviamnete con i numeri ha poco senso perche' sono spesso tutti unici).
+	 * Fa il conteggio di tutti gli elementi unici (ovviamnete con i numeri ha poco senso perchè sono spesso tutti unici).
 	 * @param originale E' la {@link dataset.Lista} di tutti i dati
 	 * @param tipo E' il tipo di attributo 
 	 * @param nome E' il nome del tipo nel caso si voglia andare a contare un specifico gruppo di elementi di quell'attributo
 	 * @return count Il numero di elementi unici.
 	 * @throws NoSuchMethodException Se il metodo che vado a cercare non esiste
-	 * @throws SecurityException Se c'e' stata una violazione nella sicurezza
-	 * @throws IllegalAccessException Se si tenta di accedere ad un metodo la cui visibilita' non e' consentita
+	 * @throws SecurityException Se c'è stata una violazione nella sicurezza
+	 * @throws IllegalAccessException Se si tenta di accedere ad un metodo la cui visibilità non è consentita
 	 * @throws IllegalArgumentException Se il metodo ha passato un argomento non appropriato
 	 * @throws InvocationTargetException Controlla le eccezioni che sono chiamate da un invoke method
 	 */
@@ -177,11 +177,11 @@ public ArrayList<String> NumeroCampi(Container originale, String campo) throws N
 	 * Trova il massimo o il minimo tra tutti gli elementi numerici dell'attributo scelto
 	 * @param originale E' la {@link dataset.Lista} di tutti i dati
 	 * @param tipo E' il tipo di attributo  
-	 * @param campo E' la scelta del return in base a cio' che si indica se max o min
-	 * @return max se campo e' uguale a max e min se tipo e' uguale a min
+	 * @param campo E' la scelta del return in base a ciò che si indica se max o min
+	 * @return max se campo è uguale a max e min se tipo è uguale a min
 	 * @throws NoSuchMethodException Se il metodo che vado a cercare non esiste
-	 * @throws SecurityException Se c'e' stata una violazione nella sicurezza
-	 * @throws IllegalAccessException Se si tenta di accedere ad un metodo la cui visibilita' non e' consentita
+	 * @throws SecurityException Se c'è stata una violazione nella sicurezza
+	 * @throws IllegalAccessException Se si tenta di accedere ad un metodo la cui visibilità non è consentita
 	 * @throws IllegalArgumentException Se il metodo ha passato un argomento non appropriato
 	 * @throws InvocationTargetException Controlla le eccezioni che sono chiamate da un invoke method
 	 */
@@ -225,8 +225,8 @@ public ArrayList<String> NumeroCampi(Container originale, String campo) throws N
 	  * @param campo E' il campo su cui si va a fare la devStand
 	  * @return devStand E' la Deviazione standard
 	  * @throws NoSuchMethodException Se il metodo che vado a cercare non esiste
-	  * @throws SecurityException Se c'e' stata una violazione nella sicurezza
-	  * @throws IllegalAccessException Se si tenta di accedere ad un metodo la cui visibilita' non e' consentita
+	  * @throws SecurityException Se c'è stata una violazione nella sicurezza
+	  * @throws IllegalAccessException Se si tenta di accedere ad un metodo la cui visibilità non è consentita
 	  * @throws IllegalArgumentException Se il metodo ha passato un argomento non appropriato
 	  * @throws InvocationTargetException Controlla le eccezioni che sono chiamate da un invoke method
 	 */
@@ -251,14 +251,14 @@ public ArrayList<String> NumeroCampi(Container originale, String campo) throws N
 		return devStand;
 	}
 	/**
-	 * Questa e' la lista delle statistiche solo per i campi con numeri 
+	 * Questa è la lista delle statistiche solo per i campi con numeri 
 	 * @param tipo E' un controllo per vedere se l'attributo e' numerico e serve anche poi per le varie funzioni sopra elencate
 	 * @param campo Serve per le funzioni sopra elencate come campo
 	 * @param originale E' la {@link dataset.Lista} di tutti i dati
 	 * @return statistics E' la lista di statistiche che ha come costruttore {@link Statistics}
 	 * @throws NoSuchMethodException Se il metodo che vado a cercare non esiste
-	 * @throws SecurityException Se c'e' stata una violazione nella sicurezza
-	 * @throws IllegalAccessException Se si tenta di accedere ad un metodo la cui visibilita' non e' consentita
+	 * @throws SecurityException Se c'è stata una violazione nella sicurezza
+	 * @throws IllegalAccessException Se si tenta di accedere ad un metodo la cui visibilità non è consentita
 	 * @throws IllegalArgumentException Se il metodo ha passato un argomento non appropriato
 	 * @throws InvocationTargetException Controlla le eccezioni che sono chiamate da un invoke method
 	 */
@@ -284,14 +284,14 @@ public ArrayList<String> NumeroCampi(Container originale, String campo) throws N
 		return statistics;
 	}
 	/**
-	 * Questa e' la lista delle statistiche solo per i campi con Stringhe per calcolare gli elementi unici 
+	 * Questa è la lista delle statistiche solo per i campi con Stringhe per calcolare gli elementi unici 
 	 * @param tipo E' il tipo di attributo su cui fare il conteggio degli elementi unici
 	 * @param campo Serve se si vuole fare il conteggio solo su un gruppo ristretto di elementi (es. solo provincia di napoli)
 	 * @param originale E' la {@link dataset.Lista} di tutti i dati
 	 * @return statistics E' la lista di statistiche che ha come costruttore {@link Statistics}
 	 * @throws NoSuchMethodException Se il metodo che vado a cercare non esiste
-	 * @throws SecurityException Se c'e' stata una violazione nella sicurezza
-	 * @throws IllegalAccessException Se si tenta di accedere ad un metodo la cui visibilita' non e' consentita
+	 * @throws SecurityException Se c'è stata una violazione nella sicurezza
+	 * @throws IllegalAccessException Se si tenta di accedere ad un metodo la cui visibilità non è consentita
 	 * @throws IllegalArgumentException Se il metodo ha passato un argomento non appropriato
 	 * @throws InvocationTargetException Controlla le eccezioni che sono chiamate da un invoke method
 	 */

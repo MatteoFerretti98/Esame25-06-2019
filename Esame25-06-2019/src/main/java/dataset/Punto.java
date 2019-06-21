@@ -6,7 +6,7 @@ package dataset;
  */
 
 /**
- * Questa e' la classe del costruttore delle coordinate latitudine e longitudine.
+ * Questa è la classe del costruttore delle coordinate latitudine e longitudine.
  */
 public class Punto {
 	/**
@@ -36,7 +36,7 @@ private float Longitudine;
 	//getters e setters
 	/**
 	 * Fornisce la coordinata della latitudine.
-	 * @return {@link Latitudine} o <strong>0</strong> se la Latitudine inserito non e' corretta.
+	 * @return {@link Latitudine} o <strong>0</strong> se la Latitudine inserito non è corretta.
 	 */
 	public float getLatitudine() {
 		return Latitudine;
@@ -50,7 +50,7 @@ private float Longitudine;
 	}
 	/**
 	 * Fornisce la coordinata della longitudine
-	 * @return {@link Longitudine} o <strong>0</strong> se la Longitudine inserito non e' corretta.
+	 * @return {@link Longitudine} o <strong>0</strong> se la Longitudine inserito non è corretta.
 	 */
 	public float getLongitudine() {
 		return Longitudine;

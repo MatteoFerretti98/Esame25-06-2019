@@ -9,6 +9,8 @@ import Operazioni.*;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
+import java.util.List;
+
 import org.json.JSONException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,17 +23,17 @@ import org.springframework.web.bind.annotation.RequestParam;
  */
 
 /**
- * E' la classe che inizializza le varie GET che servono per sperimentare le varie funzionalita' 
+ * E' la classe che inizializza le varie GET che servono per sperimentare le varie funzionalità 
  * implementate per il server Spring eseguito da {@link EsameApplication}.
  */
 @RestController
 public class Controller {
 	/**
-	 * Inizializza Prima come {@link dataset.Container} perche' a noi serve che sia lista ma anche che contenga i metodi di Container.
+	 * Inizializza Prima come {@link dataset.Container} perchè a noi serve che sia lista ma anche che contenga i metodi di Container.
 	 */
 	private Container Prima = new Container();
 	/**
-	 * Inizializza Filtrata come {@link dataset.Lista} (ci servira' come lista da riempire nei filtri).
+	 * Inizializza Filtrata come {@link dataset.Lista} (ci servirà come lista da riempire nei filtri).
 	 */
 	private Lista filtrata = new Lista();
 	/**
@@ -39,15 +41,15 @@ public class Controller {
 	 */
 	private MetaData ListMeta = new MetaData();
 	/**
-	 * Inizializza filtro come {@link Operazioni.Filtri} (servira' per richiamare i vari filtri).
+	 * Inizializza filtro come {@link Operazioni.Filtri} (servirà per richiamare i vari filtri).
 	 */
 	private Filtri filtro = new Filtri();
 	/**
-	 * Inizializza stats come {@link Operazioni.Statistiche} (servira' per richiamare la lista delle {@link Operazioni.Statistics}).
+	 * Inizializza stats come {@link Operazioni.Statistiche} (servirà per richiamare la lista delle {@link Operazioni.Statistics}).
 	 */
 	private Statistiche stats = new Statistiche();
 	/**
-	 * Inizializza trova come {@link Operazioni.TrovaDaPunto} (servira' per richiamare la classe per trovare le agenzie in una certa zona).
+	 * Inizializza trova come {@link Operazioni.TrovaDaPunto} (servirà per richiamare la classe per trovare le agenzie in una certa zona).
 	 */
 	private TrovaDaPunto trova = new TrovaDaPunto();
 	
@@ -91,9 +93,11 @@ public class Controller {
 	public ResponseEntity CondFilter (@RequestParam String tipo, String campo, String min, String max) throws JSONException, NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException
 
 	{	
-		if((filtro.filterBT(campo, min, max, Prima, filtrata).isEmpty())&&(filtro.filterGLTE(tipo, campo, min, Prima, filtrata).isEmpty())&&(filtro.filterGLTE(tipo, campo, min, Prima, filtrata).isEmpty())) return new ResponseEntity ("Non esiste",HttpStatus.NOT_FOUND); //Se le liste sono vuote Non esiste 
-		else if((!filtro.filterBT(campo, min, max, Prima, filtrata).isEmpty())&&(tipo.equals("$bt"))) return new ResponseEntity <Lista> (filtro.filterBT(campo, min, max, Prima, filtrata),HttpStatus.OK); //Se mette BT fa between
-		else if((!filtro.filterGLTE(tipo, campo, min, Prima, filtrata).isEmpty())&&((tipo.equals("$lte"))||(tipo.equals("$gte")))) return new ResponseEntity <Lista> (filtro.filterGLTE(tipo, campo, min, Prima, filtrata),HttpStatus.OK); //Se mette gte controlla se è maggiore, se mette lte controlla se è minore
+		Lista filtroBT =filtro.filterBT(tipo, campo, min, max, Prima, filtrata);
+		Lista filtroGLTE =filtro.filterGLTE(tipo, campo, min, Prima, filtrata);
+		if((filtroBT.isEmpty())&&(filtroGLTE.isEmpty())) return new ResponseEntity ("Non esiste",HttpStatus.NOT_FOUND); //Se le liste sono vuote Non esiste 
+		else if((!filtroBT.isEmpty())&&(tipo.equals("$bt"))) return new ResponseEntity <Lista> (filtroBT,HttpStatus.OK); //Se mette BT fa between
+		else if((!filtroGLTE.isEmpty())&&((tipo.equals("$lte"))||(tipo.equals("$gte")))) return new ResponseEntity <Lista> (filtro.filterGLTE(tipo, campo, min, Prima, filtrata),HttpStatus.OK); //Se mette gte controlla se è maggiore, se mette lte controlla se è minore
 		else return new ResponseEntity ("Immetti dei valori consoni",HttpStatus.BAD_REQUEST); //Se non è nessuna delle precedenti è una Bad Request
 
 	}
@@ -107,8 +111,8 @@ public class Controller {
 	 * @return filtrata  E' la {@link dataset.Lista} filtrata dai filtri Logici
 	 * @throws JSONException Se c'e' un problema con il JSON
 	 * @throws NoSuchMethodException Se il metodo che vado a cercare non esiste
-	 * @throws SecurityException Se c'e' stata una violazione nella sicurezza
-	 * @throws IllegalAccessException Se si tenta di accedere ad un metodo la cui visibilita' non e' consentita
+	 * @throws SecurityException Se c'è stata una violazione nella sicurezza
+	 * @throws IllegalAccessException Se si tenta di accedere ad un metodo la cui visibilità non è consentita
 	 * @throws IllegalArgumentException Se il metodo ha passato un argomento non appropriato
 	 * @throws InvocationTargetException Controlla le eccezioni che sono chiamate da un invoke method
 	 */
@@ -116,9 +120,11 @@ public class Controller {
 
 	public ResponseEntity LogFilter (@RequestParam String tipo, String tipo1, String campo1, String tipo2, String campo2) throws JSONException, NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException
 	{
-		if((filtro.filterAND(tipo1, campo1, tipo2, campo2, Prima, filtrata).isEmpty())&&(filtro.filterOR(tipo1, campo1, tipo2, campo2, Prima, filtrata).isEmpty())) return new ResponseEntity ("Non esiste",HttpStatus.NOT_FOUND); //Se le liste sono vuote Non esiste
-		else if((!filtro.filterAND(tipo1, campo1, tipo2, campo2, Prima, filtrata).isEmpty())&&(tipo.equals("$and"))) return new ResponseEntity <Lista> (filtro.filterAND(tipo1, campo1, tipo2, campo2, Prima, filtrata),HttpStatus.OK); //Cerca tutte le aziende che hanno 2 specifici valori
-		else if((!filtro.filterOR(tipo1, campo1, tipo2, campo2, Prima, filtrata).isEmpty())&&(tipo.equals("$or"))) return new ResponseEntity <Lista> (filtro.filterOR(tipo1, campo1, tipo2, campo2, Prima, filtrata),HttpStatus.OK); //Cerca tutte le aziende che hanno o uno o l'altro tipo di valore
+		Lista filtroAND = filtro.filterAND(tipo1, campo1, tipo2, campo2, Prima, filtrata);
+		Lista filtroOR = filtro.filterOR(tipo1, campo1, tipo2, campo2, Prima, filtrata);
+		if((filtroAND.isEmpty())&&(filtroOR.isEmpty())) return new ResponseEntity ("Non esiste",HttpStatus.NOT_FOUND); //Se le liste sono vuote Non esiste
+		else if((!filtroAND.isEmpty())&&(tipo.equals("$and"))) return new ResponseEntity <Lista> (filtroAND,HttpStatus.OK); //Cerca tutte le aziende che hanno 2 specifici valori
+		else if((!filtroOR.isEmpty())&&(tipo.equals("$or"))) return new ResponseEntity <Lista> (filtroOR,HttpStatus.OK); //Cerca tutte le aziende che hanno o uno o l'altro tipo di valore
 		else return new ResponseEntity ("Immetti dei valori consoni",HttpStatus.BAD_REQUEST); //Se non è nessuna delle precedenti è una Bad Request
 	}
 	/**
@@ -127,16 +133,18 @@ public class Controller {
 	 * @param campo Si chiede di inserire il campo della variabile (solo se si ha scelto un tipo String).
 	 * @return statistics E' la lista (con costruttore {@link Operazioni.Statistics} delle: Statistiche se sono Numeri, di elementi unici se sono Stringhe
 	 * @throws NoSuchMethodException Se il metodo che vado a cercare non esiste
-	 * @throws SecurityException Se c'e' stata una violazione nella sicurezza
-	 * @throws IllegalAccessException Se si tenta di accedere ad un metodo la cui visibilita' non e' consentita
+	 * @throws SecurityException Se c'è stata una violazione nella sicurezza
+	 * @throws IllegalAccessException Se si tenta di accedere ad un metodo la cui visibilità non è consentita
 	 * @throws IllegalArgumentException Se il metodo ha passato un argomento non appropriato
 	 * @throws InvocationTargetException Controlla le eccezioni che sono chiamate da un invoke method
 	 */
 	@GetMapping("/stat") //Statistiche
 	public ResponseEntity Stats (@RequestParam String tipo, String campo) throws NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
-		if((stats.StringStats(tipo, campo, Prima).isEmpty())&&(stats.NumStats(tipo, campo, Prima).isEmpty())) return new ResponseEntity ("Non esiste",HttpStatus.NOT_FOUND); //Se le liste sono vuote Non esiste
-		else if(!(stats.StringStats(tipo, campo, Prima).isEmpty())&&((tipo.equals("preNorm"))||(tipo.equals("comune"))||(tipo.equals("provincia"))||(tipo.equals("tipo"))))	return new ResponseEntity (stats.StringStats(tipo, campo, Prima),HttpStatus.OK); //Se deve fare le statistiche per gli elementi unici
-		else if(!(stats.NumStats(tipo, campo, Prima).isEmpty())&&((tipo.equals("telefono"))||(tipo.equals("fax"))||(tipo.equals("latitudine"))||(tipo.equals("longitudine"))))	return new ResponseEntity (stats.NumStats(tipo, campo, Prima),HttpStatus.OK); //Se deve fare le statistiche per numeri
+		List<Statistics> StringStat =stats.StringStats(tipo, campo, Prima);
+		List<Statistics> NumStat =stats.NumStats(tipo, campo, Prima);
+		if((StringStat.isEmpty())&&(NumStat.isEmpty())) return new ResponseEntity ("Non esiste",HttpStatus.NOT_FOUND); //Se le liste sono vuote Non esiste
+		else if(!(StringStat.isEmpty())&&((tipo.equals("preNorm"))||(tipo.equals("comune"))||(tipo.equals("provincia"))||(tipo.equals("tipo"))))	return new ResponseEntity (StringStat,HttpStatus.OK); //Se deve fare le statistiche per gli elementi unici
+		else if(!(NumStat.isEmpty())&&((tipo.equals("telefono"))||(tipo.equals("fax"))||(tipo.equals("latitudine"))||(tipo.equals("longitudine"))))	return new ResponseEntity (NumStat,HttpStatus.OK); //Se deve fare le statistiche per numeri
 		else return new ResponseEntity ("Immetti dei valori consoni",HttpStatus.BAD_REQUEST); //Se non è nessuna delle precedenti è una Bad Request
 
 	}
@@ -147,15 +155,16 @@ public class Controller {
 	 * @param Radius Si chiede di inserire il raggio della circonferenza
 	 * @return filtrata E' la {@link dataset.Lista} filtrata da {@link Operazioni.TrovaDaPunto}
 	 * @throws NoSuchMethodException Se il metodo che vado a cercare non esiste
-	 * @throws SecurityException Se c'e' stata una violazione nella sicurezza
-	 * @throws IllegalAccessException Se si tenta di accedere ad un metodo la cui visibilita' non e' consentita
+	 * @throws SecurityException Se c'è stata una violazione nella sicurezza
+	 * @throws IllegalAccessException Se si tenta di accedere ad un metodo la cui visibilità non è consentita
 	 * @throws IllegalArgumentException Se il metodo ha passato un argomento non appropriato
 	 * @throws InvocationTargetException Controlla le eccezioni che sono chiamate da un invoke method
 	 */
 	@GetMapping("/find") //Cerca tutte le aziende, fissato un punto, in un certo raggio d'azione
 	public ResponseEntity Find (@RequestParam Float Lat, Float Lon, Float Radius) throws NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
-		if((trova.Find(Lat, Lon, Radius, Prima, filtrata).isEmpty())) return new ResponseEntity ("Non esiste",HttpStatus.NOT_FOUND); //Se le liste sono vuote Non esiste
-		else if(!(trova.Find(Lat, Lon, Radius, Prima, filtrata).isEmpty()))	return new ResponseEntity (trova.Find(Lat, Lon, Radius, Prima, filtrata),HttpStatus.OK);
+		Lista trovaAziende = trova.Find(Lat, Lon, Radius, Prima, filtrata);
+		if((trovaAziende.isEmpty())) return new ResponseEntity ("Non esiste",HttpStatus.NOT_FOUND); //Se le liste sono vuote Non esiste
+		else if(!(trovaAziende.isEmpty()))	return new ResponseEntity (trovaAziende,HttpStatus.OK);
 		return new ResponseEntity ("Immetti dei valori consoni",HttpStatus.BAD_REQUEST); //Se non è nessuna delle precedenti è una Bad Request
 	}
 }

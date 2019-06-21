@@ -6,8 +6,8 @@ package dataset;
  */
 
 /**
- * Questa e' la classe del costruttore principale e collegata ad essa abbiamo 
- * {@link Punto} che e' la classe costruttore di latitudine e longitudine
+ * Questa è la classe del costruttore principale e collegata ad essa abbiamo 
+ * {@link Punto} che è la classe costruttore di latitudine e longitudine
  */
 public class Dati {
 private int Fid;
@@ -50,7 +50,7 @@ public Dati(int fid, String preNorm, String comune, String provincia, String ind
 //getters e setters
 /**
  * Fornisce il codice della riga dell'agenzia.
- * @return Fid o <strong>0</strong> se il Fid inserito non e' corretto.
+ * @return Fid o <strong>0</strong> se il Fid inserito non è corretto.
  */
 public int getFid() {
 	return Fid;
@@ -64,7 +64,7 @@ public void setFid(int fid) {
 }
 /**
  * Fornisce il nome dell'agenzia.
- * @return PreNorm o <strong>null</strong> se il PreNorm inserito non e' corretto.
+ * @return PreNorm o <strong>null</strong> se il PreNorm inserito non è corretto.
  */
 public String getPreNorm() {
 	return PreNorm;
@@ -78,7 +78,7 @@ public void setPreNorm(String preNorm) {
 }
 /**
  * Fornisce il comune della sede dell'agenzia.
- * @return Comune o <strong>null</strong> se il Comune inserito non e' corretto.
+ * @return Comune o <strong>null</strong> se il Comune inserito non è corretto.
  */
 public String getComune() {
 	return Comune;
@@ -92,7 +92,7 @@ public void setComune(String comune) {
 }
 /**
  * Fornisce la provincia della sede dell'agenzia.
- * @return Provincia o <strong>null</strong> se il Provincia inserito non e' corretto.
+ * @return Provincia o <strong>null</strong> se il Provincia inserito non è corretto.
  */
 public String getProvincia() {
 	return Provincia;
@@ -106,7 +106,7 @@ public void setProvincia(String provincia) {
 }
 /**
  * Fornisce l'indirizzo della sede dell'agenzia.
- * @return Indirizzo o <strong>null</strong> se l'Indirizzo inserito non e' corretto.
+ * @return Indirizzo o <strong>null</strong> se l'Indirizzo inserito non è corretto.
  */
 public String getIndirizzo() {
 	return Indirizzo;
@@ -120,7 +120,7 @@ public void setIndirizzo(String indirizzo) {
 }
 /**
  * Fornisce il telefono dell'agenzia.
- * @return Telefono o <strong>0</strong> se il Telefono inserito non e' corretto.
+ * @return Telefono o <strong>0</strong> se il Telefono inserito non è corretto.
  */
 public long getTelefono() {
 	return Telefono;
@@ -134,7 +134,7 @@ public void setTelefono(long telefono) {
 }
 /**
  * Fornisce il fax dell'agenzia.
- * @return Fax o <strong>0</strong> se il Fax inserito non e' corretto.
+ * @return Fax o <strong>0</strong> se il Fax inserito non è corretto.
  */
 public long getFax() {
 	return Fax;
@@ -148,7 +148,7 @@ public void setFax(long fax) {
 }
 /**
  * Fornisce il tipo di ente di cui fa parte l'agenzia.
- * @return Tipo o <strong>null</strong> se il Tipo inserito non e' corretto.
+ * @return Tipo o <strong>null</strong> se il Tipo inserito non è corretto.
  */
 public String getTipo() {
 	return Tipo;
@@ -162,7 +162,7 @@ public void setTipo(String tipo) {
 }
 /**
  * Fornisce il {@link Punto} che al suo interno ha Latitudine e Longitudine.
- * @return Punto o <strong>0</strong> se il Punto inserito non e' corretto.
+ * @return Punto o <strong>0</strong> se il Punto inserito non è corretto.
  */
 public Punto getPunto() {
 	return Punto;
