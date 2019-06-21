@@ -19,6 +19,7 @@ public class Filtri {
 	 * Inizializza lista come {@link dataset.Lista} .
 	 */
 	private Lista lista = new Lista();
+
 /**
  * Filtro condizionale che filtra tutti gli elementi compresi tra 2 valori impostati dall'utente.
  * @param tipo Dichiara il tipo di filtro scelto 
