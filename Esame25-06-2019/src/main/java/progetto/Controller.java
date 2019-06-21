@@ -70,6 +70,17 @@ public class Controller {
 		return Prima;
 	}
 	/**
+	 * Questo GET serve per restituire una singola riga nel caso si voglia cercare con il numero di Fid
+	 * @param Fid Numero della riga
+	 * @return Prima.getDati(Fid-1) Resituisce la singola riga
+	 */
+	@GetMapping("/linea")
+	public ResponseEntity  Linea(@RequestParam int Fid) {
+		if(Fid==0) return new ResponseEntity ("Non esiste",HttpStatus.NOT_FOUND); //Se le liste sono vuote Non esiste
+		else if(Fid!=0)	return new ResponseEntity (Prima.getDati(Fid-1),HttpStatus.OK);
+		return new ResponseEntity ("Immetti dei valori consoni",HttpStatus.BAD_REQUEST); //Se non è nessuna delle precedenti è una Bad Request
+	}
+	/**
 	 * Questa GET restituisce tutti i {@link metadati.MetaData} del file csv. 
 	 * @return ListaMeta E' la {@link dataset.Lista} di tutti i {@link metadati.MetaData}
 	 * @throws FileNotFoundException Se non trova il file
