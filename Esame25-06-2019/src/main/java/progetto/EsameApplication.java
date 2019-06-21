@@ -15,6 +15,12 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  */
 @SpringBootApplication
 public class EsameApplication {
+	/**
+	 * Questo è il costruttore di EsameApplication
+	 */
+	public EsameApplication() {
+		
+	}
 /**
  * Questo è il main che fa partire il server Spring e che al suo interno 
  * abbiamo insierito anche il {@link DownloadDataset} che parsa e scarica la lista csv all'avvio

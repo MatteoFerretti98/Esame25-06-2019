@@ -13,6 +13,12 @@ import dataset.Lista;
  */
 public class TrovaDaPunto {
 	/**
+	 * Questo è il costruttore di TrovaDaPunto
+	 */
+	public TrovaDaPunto() {
+		
+	}
+	/**
 	 * Inizializza una lista di dati come {@link dataset.Lista}.
 	 */
 	public Lista lista = new Lista();

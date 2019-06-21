@@ -11,10 +11,12 @@ import dataset.Lista;
  * Filtra la {@link dataset.Lista} in base al tipo di filtro che si sceglie
  */
 public class Filtri {
-	private String tipo;
-	private String campo;
-	private String min;
-	private String max;
+	/**
+	 * Questo è il costruttore di Filtri
+	 */
+	public Filtri() {
+		
+	}
 	/**
 	 * Inizializza lista come {@link dataset.Lista} .
 	 */

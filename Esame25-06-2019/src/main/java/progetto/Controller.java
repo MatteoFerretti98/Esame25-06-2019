@@ -29,7 +29,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 @RestController
 public class Controller {
 	/**
-	 * Questo è il costruttore
+	 * Questo è il costruttore di Controller
 	 */
 	public Controller(){
 		

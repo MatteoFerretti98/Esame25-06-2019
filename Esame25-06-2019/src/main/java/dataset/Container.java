@@ -13,6 +13,12 @@ import java.util.List;
  */
 public class Container extends Lista {
 	/**
+	 * Questo è il costruttore di Container
+	 */
+	public Container() {
+		
+	}
+	/**
 	 * Inizializza una lista di dati come ArrayList.
 	 */
 	private List<Dati> lista = new ArrayList<>();
