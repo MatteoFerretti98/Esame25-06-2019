@@ -25,7 +25,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
  * @author Matteo Ferretti (s1083630@studenti.univpm.it), Angelo D'Agostino Bonomi (s1082444@studenti.univpm.it)
  * @version 1.0
  */
-
+@SuppressWarnings("all")
 /**
  * E' la classe che inizializza le varie GET che servono per sperimentare le varie funzionalità 
  * implementate per il server Spring eseguito da {@link EsameApplication}.
@@ -111,12 +111,12 @@ public class Controller {
 	 * @throws InvocationTargetException Controlla le eccezioni che sono chiamate da un invoke method
 	 * @throws IOException Classe base per le eccezioni di flussi di dati
 	 */
-	//  {"$gte" : {"latitudine" : 41}}
-	//	{"$lte" : {"latitudine" : 40.5}}
-	//  {"$bt":{"latitudine":[41,42]}}
-	//  {"$and" : {"tipo":[provincia,comune],"campo":[AV,Avellino]}}
-	//  {"$or" : {"tipo":[provincia,comune],"campo":[AV,Avellino]}}
-	@PostMapping("/data")
+	//  {"$gte" : {"latitudine" : 41}}		//Filtro condizionale
+	//	{"$lte" : {"latitudine" : 40.5}}	//Filtro condizionale
+	//  {"$bt":{"latitudine":[41,42]}}		//Filtro condizionale
+	//  {"$and" : {"tipo":[provincia,comune],"campo":[AV,Avellino]}}	//Filtro logico
+	//  {"$or" : {"tipo":[provincia,comune],"campo":[AV,Avellino]}}		//Filtro logico
+	@PostMapping("/data") //Filtri
     public ResponseEntity Filtro(@RequestBody String body) throws NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, IOException {
         Map<String, Object> filtraBody = filtro.parseFilter(body);
         if(!(filtraBody.isEmpty())) {
@@ -164,13 +164,13 @@ public class Controller {
 	 * @throws InvocationTargetException Controlla le eccezioni che sono chiamate da un invoke method
 	 * @throws IOException Classe base per le eccezioni di flussi di dati
 	 */
-	@PostMapping("/stat")
+	@PostMapping("/stat") //Statistiche con filtri
 	public ResponseEntity Stat (@RequestParam String campo,String nome, @RequestBody String body) throws NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, NullPointerException, IOException {
 		if(!(body.isEmpty())) {
 			FilStat = (Lista) this.Filtro(body).getBody(); 
 		if((stats.StringStats(campo, nome, FilStat).isEmpty())&&(stats.NumStats(campo, nome, FilStat).isEmpty())) return new ResponseEntity ("Non esiste",HttpStatus.NOT_FOUND); //Se le liste sono vuote Non esiste
-		else if(!(stats.StringStats(campo, nome, FilStat).isEmpty())&&((campo.equals("preNorm"))||(campo.equals("comune"))||(campo.equals("provincia"))||(campo.equals("tipo"))))	return new ResponseEntity (stats.StringStats(campo, nome, FilStat),HttpStatus.OK); //Se deve fare le statistiche per gli elementi unici
-		else if(!(stats.NumStats(campo,nome, FilStat).isEmpty())&&((campo.equals("telefono"))||(campo.equals("fax"))||(campo.equals("latitudine"))||(campo.equals("longitudine"))))	return new ResponseEntity (stats.NumStats(campo, nome, FilStat),HttpStatus.OK); //Se deve fare le statistiche per numeri
+		else if((!(stats.StringStats(campo, nome, FilStat).isEmpty())&&((campo.equals("preNorm"))||(campo.equals("comune"))||(campo.equals("provincia"))||(campo.equals("tipo"))&&!(nome==null))))	return new ResponseEntity (stats.StringStats(campo, nome, FilStat),HttpStatus.OK); //Se deve fare le statistiche per gli elementi unici
+		else if((!(stats.NumStats(campo,nome, FilStat).isEmpty())&&((campo.equals("telefono"))||(campo.equals("fax"))||(campo.equals("latitudine"))||(campo.equals("longitudine")))&&(nome==null)))	return new ResponseEntity (stats.NumStats(campo, nome, FilStat),HttpStatus.OK); //Se deve fare le statistiche per numeri
 		else return new ResponseEntity ("Immetti dei valori consoni",HttpStatus.BAD_REQUEST); //Se non è nessuna delle precedenti è una Bad Request
 		}
 		else return new ResponseEntity ("Inserisci il body o usa la GET",HttpStatus.BAD_REQUEST);
@@ -188,8 +188,6 @@ public class Controller {
 	 */
 	@GetMapping("/stat") //Statistiche
 	public ResponseEntity Stats (@RequestParam String tipo, String campo) throws NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
-		List<Statistics> StringStat =stats.StringStats(tipo, campo, Prima);
-		List<Statistics> NumStat =stats.NumStats(tipo, campo, Prima);
 		if((stats.StringStats(tipo, campo, Prima).isEmpty())&&(stats.NumStats(tipo, campo, Prima).isEmpty())) return new ResponseEntity ("Non esiste",HttpStatus.NOT_FOUND); //Se le liste sono vuote Non esiste
 		else if(!(stats.StringStats(tipo, campo, Prima).isEmpty())&&((tipo.equals("preNorm"))||(tipo.equals("comune"))||(tipo.equals("provincia"))||(tipo.equals("tipo"))))	return new ResponseEntity (stats.StringStats(tipo, campo, Prima),HttpStatus.OK); //Se deve fare le statistiche per gli elementi unici
 		else if(!(stats.NumStats(tipo, campo, Prima).isEmpty())&&((tipo.equals("telefono"))||(tipo.equals("fax"))||(tipo.equals("latitudine"))||(tipo.equals("longitudine"))))	return new ResponseEntity (stats.NumStats(tipo, campo, Prima),HttpStatus.OK); //Se deve fare le statistiche per numeri

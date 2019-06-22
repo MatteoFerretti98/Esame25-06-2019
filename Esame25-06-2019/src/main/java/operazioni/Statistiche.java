@@ -168,9 +168,9 @@ public ArrayList<String> NumeroCampi(Lista filStat, String campo) throws NoSuchM
 			else{
 				Method s= lista.getDati(a).getClass().getMethod("get"+tipo.substring(0, 1).toUpperCase()+tipo.substring(1), null);
 				t = s.invoke(filStat.getDati(a), null);
-				if(t.equals(nome)) count++;
+				if((!(nome==null))&&(t.equals(nome))) count++;
 	    	}
-		}
+    	}
 		}catch(NoSuchMethodError a) {a.printStackTrace();
 		}catch (SecurityException b) {b.printStackTrace();
 		}catch(IllegalAccessException c) {c.printStackTrace();
