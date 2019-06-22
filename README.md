@@ -4,7 +4,7 @@ Progetto realizzato per la prova pratica del corso di "Programmazione ad Oggetti
 ## Inclusi
 Tutti il file sorgente (.java)
 
-il JavaDoc
+Il JavaDoc realtivo al software
 
 Questo README
 
