@@ -49,14 +49,13 @@ dove **Operatore** indica il tipo di filtro che si applica, **campo** il campo s
  - `{"$and":{"tipo":[provincia,comune],"campo":[AV,Avellino]}}` restituisce una lista con le strutture che hanno la provincia "AV" e i comune "Avellino"
 
 È stata implementata una funzione corrispondente alla rotta `/find` con parametri `Lat` `Lon` e `Radius` che partendo dal punto fissato con `Lat` e `Lon` crea una circonferenza di raggio `Radius` e restituisce una lista delle strutture che sono collocate all'interno di quest'area.
- 
-I vari metodi delle classi sono spiegati dettagliatamente nel JavaDoc. Di seguito allegata i diagrammi UML dei casi d'uso, delle classi e delle sequenze.
 
 la rotta `stat` con richiesta GET ed i parametri `tipo`,`campo` restituisce le statistiche eseguite sul campo `tipo` di valore `campo`
 
 la rotta `stat` con richiesta POST con parametri `campo`,`nome` e body `body` effettua un filtraggio della lista specificato nel body e
-seuccessivamente effettua le statistiche sul campo `campo` di valore `nome`
+seuccessivamente effettua le statistiche sul campo `campo` di valore `nome`; il parametro `nome` deve essere inserito solamente nel caso il tipo del campo su cui si vuole  effettuare le statistiche sia di tipo String
 
+I vari metodi delle classi sono spiegati dettagliatamente nel JavaDoc. Di seguito allegata i diagrammi UML dei casi d'uso, delle classi e delle sequenze.
 **Casi D'uso**
 
 ![
