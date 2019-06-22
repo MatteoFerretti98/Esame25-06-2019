@@ -1,10 +1,17 @@
 package operazioni;
+import java.io.IOException;
 /**
  * @author Matteo Ferretti (s1083630@studenti.univpm.it), Angelo D'Agostino Bonomi (s1082444@studenti.univpm.it)
  * @version 1.0
  */
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+
+import org.springframework.boot.json.BasicJsonParser;
+
 import dataset.Container;
 import dataset.Lista;
 /**
@@ -21,7 +28,68 @@ public class Filtri {
 	 * Inizializza lista come {@link dataset.Lista} .
 	 */
 	private Lista lista = new Lista();
-
+	/**
+	 * Questo metodo ci aiuta a parsare la body della POST in modo da avere tutti i dati in una lista.
+	 * @param body Body della richiesta Post in base al filtro scelto
+	 * @return CAMPI Fa ritornare la lista dei dati contenuti nel Body
+	 * @throws IOException Classe base per le eccezioni di flussi di dati
+	 */
+	//da rpivate è passato pubblico vediamo se va bene
+	public static Map<String, Object> parseFilter(String body) throws IOException{
+        Map<String, Object> parsedBody = new BasicJsonParser().parseMap(body);
+        Map<String, Object> CAMPI = new HashMap<>(); //Crea l'Hashmap per il return
+        String tipo = parsedBody.keySet().toArray(new String[0])[0];
+        Object PrimoValore = parsedBody.get(tipo);
+        Object Valore1 = null;
+        Object Valore2 = null;
+        String campo = null;
+        Object val1 = null;
+        Object val2 = null;
+        Object val3 = null;
+        Object val4 = null;
+        Map filtro = null;
+        if (PrimoValore instanceof Map) { //Qui controlla se quello che ha preso è anche'essa una mappa a sua volta
+            filtro = (Map) PrimoValore; //Qui fa diventare ciò che c'è dentro a rawValue una mappa
+            if(filtro.size()<=1) { ////Questo serve per i filtri logici
+            campo = ((String) filtro.keySet().toArray()[0]).toLowerCase(); //Qui prende il tipo di filtro
+            Valore1 = filtro.get(campo); //Qui mette dentro a val ciò che c'è dentro a val che sia uno o più numeri
+            }
+            else{ 
+            	campo = ((String) filtro.keySet().toArray()[0]).toLowerCase(); //Qui prende il tipo di filtro
+            	String campo2=((String) filtro.keySet().toArray()[1]).toLowerCase();
+            	Valore1 = filtro.get(campo); //Qui mette dentro a val ciò che c'è dentro a val che sia uno o più numeri
+            	Valore2 =filtro.get(campo2);
+            }
+        } 
+        else return CAMPI; //Se c'è qualcosa che non va ritorna l'hash map vuota
+        if ((Valore1 instanceof ArrayList)&&filtro.size()>1){
+        	val1 = ((ArrayList) Valore1).get(0);
+        	val2 = ((ArrayList) Valore1).get(1);
+        	val3 = ((ArrayList) Valore2).get(0);
+        	val4 = ((ArrayList) Valore2).get(1);
+        	CAMPI.put("tipo", tipo);
+        	CAMPI.put("campo", campo);
+        	CAMPI.put("val1", String.valueOf(val1));
+        	CAMPI.put("val2", String.valueOf(val2));
+        	CAMPI.put("val3", String.valueOf(val3));
+        	CAMPI.put("val4", String.valueOf(val4));
+        	return CAMPI;
+        }
+        else if (Valore1 instanceof ArrayList){
+        	val1 = ((ArrayList) Valore1).get(0);
+        	val2 = ((ArrayList) Valore1).get(1);
+        }
+        
+        CAMPI.put("tipo", tipo); //E mette dentro la map tutti i valori 
+        CAMPI.put("campo", campo); //Assegnandogli a ciascuno un nome
+        if(Valore1 instanceof ArrayList) {
+        	CAMPI.put("val1", String.valueOf(val1));
+        	CAMPI.put("val2", String.valueOf(val2));
+        }
+        else  CAMPI.put("val", String.valueOf(Valore1));
+        return CAMPI;
+    }
+	
 /**
  * Filtro condizionale che filtra tutti gli elementi compresi tra 2 valori impostati dall'utente.
  * @param tipo Dichiara il tipo di filtro scelto 
