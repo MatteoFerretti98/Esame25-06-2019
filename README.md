@@ -60,6 +60,7 @@ seuccessivamente effettua le statistiche sul campo `campo` di valore `nome`; il 
 - `/stat?tipo=latitudine` effettua somma, media, conteggio, deviazione standard, massimo e minimo del campo latitudine
 
 I vari metodi delle classi sono spiegati dettagliatamente nel JavaDoc. Di seguito allegata i diagrammi UML dei casi d'uso, delle classi e delle sequenze.
+
 **Casi D'uso**
 
 ![
