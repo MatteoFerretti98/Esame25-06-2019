@@ -53,6 +53,7 @@ dove **Operatore** indica il tipo di filtro che si applica, **campo** il campo s
 I vari metodi delle classi sono spiegati dettagliatamente nel JavaDoc. Di seguito allegata i diagrammi UML dei casi d'uso, delle classi e delle sequenze.
 
 **Casi D'uso**
+
 ![
 ](https://lh3.googleusercontent.com/pSDfcqCuc2Z2H0iiQM1yRsYGMoLYF3LlDlo3pl1wErKGlkb9K8SC-kQiSq3i2eNsQ1SlHqggTAkN "d")
 
