@@ -25,7 +25,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
  * @author Matteo Ferretti (s1083630@studenti.univpm.it), Angelo D'Agostino Bonomi (s1082444@studenti.univpm.it)
  * @version 1.0
  */
-@SuppressWarnings("all")
 /**
  * E' la classe che inizializza le varie GET che servono per sperimentare le varie funzionalità 
  * implementate per il server Spring eseguito da {@link EsameApplication}.
