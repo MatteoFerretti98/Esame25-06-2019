@@ -23,6 +23,7 @@ il software può gestire fondamentalmente 3 tipo di richieste:
  
  La rotta `/metadata`  restituisce la lista dei **metadati**  in formato JSON 
  la rotta `/data` restituisce la lista dei **dati** in formato JSON
+ 
  **Filtri**
 I filtri devono essere inseriti nella richiesta POST come stringa.
 il formato della stringa è:
