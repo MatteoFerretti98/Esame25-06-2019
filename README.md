@@ -2,9 +2,9 @@
 Progetto realizzato per la prova pratica del corso di "Programmazione ad Oggetti". Consiste in un programma che scarica un dataset in formato CSV, ne fa il parsing dei dati e mediante opportune richieste effettua flitraggi e/o statistiche sui dati. 
 
 ## Inclusi
-Tutti il file sorgente (.java)
+Tutti i file sorgente (.java)
 
-Il JavaDoc realtivo al software
+Il JavaDoc relativo al software
 
 Questo README
 
@@ -17,8 +17,9 @@ Il Software è suddiviso in quattro package che contengono le diverse classi:
  - **`Progetto`** contiene le classi `Controller` `Download Dataset` e `EsameApplication` che rappresentano il software vero e proprio.
 
 # Utilizzare il Software
-Il software sfrutta un web-server in locale sulla porta 8080 che prende le richieste dal client. all'avvio del programma viene scaricato il dataset in formato CSV e viene effettuato il suo parsing.
-il software può gestire fondamentalmente 3 tipo di richieste:
+Il software sfrutta un web-server in locale sulla porta 8080 che prende le richieste dal client. All'avvio del programma viene scaricato il dataset in formato CSV e viene effettuato il suo parsing.
+
+Il software può gestire fondamentalmente tre tipi di richieste:
 
  - Restituisce i metdati del dataset
  - Restituisce i dati del dataset (che possono essere filtrati)
@@ -29,11 +30,12 @@ il software può gestire fondamentalmente 3 tipo di richieste:
  la rotta `/linea` con il parametro `Fid` restituisce la struttura `Dati` con il Fid desiderato
  
  **Filtri**
+ 
 I filtri devono essere inseriti nella richiesta POST come stringa.
 il formato della stringa è:
 `{"operatore":{"campo": "valore"}}`
 dove **Operatore** indica il tipo di filtro che si applica, **campo** il campo su cui si vuole effettuare il filtraggio e  **valore** il valore desiderato.
- i filtri sono di due tipi: condizionali o logici e si indicano con i seguenti simboli:
+ I filtri sono di due tipi: condizionali o logici e si indicano con i seguenti simboli:
  
  - **condizionali**:
    - "$bt" che corrisponde al compreso (>= value <=)
@@ -48,9 +50,9 @@ dove **Operatore** indica il tipo di filtro che si applica, **campo** il campo s
  - `{"$bt":{"latitudine":[41,42]}}` restituisce una lista con tutte le strutture che hanno la latitudine compresa tra 41 e 42
  - `{"$and":{"tipo":[provincia,comune],"campo":[AV,Avellino]}}` restituisce una lista con le strutture che hanno la provincia "AV" e i comune "Avellino"
 
-È stata implementata una funzione corrispondente alla rotta `/find` con parametri `Lat` `Lon` e `Radius` che partendo dal punto fissato con `Lat` e `Lon` crea una circonferenza di raggio `Radius` e restituisce una lista delle strutture che sono collocate all'interno di quest'area.
+È stata implementata una funzione corrispondente alla rotta `/find` con parametri `Lat`,`Lon` e `Radius` che partendo dal punto fissato con `Lat` e `Lon` crea una circonferenza di raggio `Radius` e restituisce una lista delle strutture che sono collocate all'interno di quest'area.
 
-la rotta `stat` con richiesta GET ed i parametri `tipo`,`campo` restituisce le statistiche eseguite sul campo `tipo` di valore `campo`
+La rotta `stat` con richiesta GET ed i parametri `tipo`,`campo` restituisce le statistiche eseguite sul campo `tipo` di valore `campo`
 
 la rotta `stat` con richiesta POST con parametri `campo`,`nome` e body `body` effettua un filtraggio della lista specificato nel body e
 seuccessivamente effettua le statistiche sul campo `campo` di valore `nome`; il parametro `nome` deve essere inserito solamente nel caso il tipo del campo su cui si vuole  effettuare le statistiche sia di tipo String
