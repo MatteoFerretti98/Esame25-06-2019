@@ -52,6 +52,10 @@ dove **Operatore** indica il tipo di filtro che si applica, **campo** il campo s
  
 I vari metodi delle classi sono spiegati dettagliatamente nel JavaDoc. Di seguito allegata i diagrammi UML dei casi d'uso, delle classi e delle sequenze.
 
+la rotta `stat` con richiesta GET ed i parametri `tipo`,`campo` restituisce le statistiche eseguite sul campo `tipo` di valore `campo`
+la rotta `stat` con richiesta POST con parametri `campo`,`nome` e body `body` effettua un filtraggio della lista specificato nel body e
+seuccessivamente effettua le statistiche sul campo `campo` di valore `nome`
+
 **Casi D'uso**
 
 ![
@@ -60,6 +64,7 @@ I vari metodi delle classi sono spiegati dettagliatamente nel JavaDoc. Di seguit
  
 **Diagramma delle classi**
 ![enter image description here](https://lh3.googleusercontent.com/ShF5LJl2tAx_wl7vHN_uhMmfYnK4gJC0pYmWoxqnSO5kD-sX_MtOn-6hdBST3v_xlIaUaDhas3Xh=s15520)
+
 **Diagramma delle sequenze**
 ![
 ](https://lh3.googleusercontent.com/Dkffv5bBHkDT0zZUe6I6TOfu6UpiwJnMnV94nX0DXzuW6cyzvV2BMHcPjumUd0kKGvEesZbo8tCp=s10000) 
