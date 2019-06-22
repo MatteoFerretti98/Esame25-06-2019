@@ -53,6 +53,7 @@ dove **Operatore** indica il tipo di filtro che si applica, **campo** il campo s
 I vari metodi delle classi sono spiegati dettagliatamente nel JavaDoc. Di seguito allegata i diagrammi UML dei casi d'uso, delle classi e delle sequenze.
 
 la rotta `stat` con richiesta GET ed i parametri `tipo`,`campo` restituisce le statistiche eseguite sul campo `tipo` di valore `campo`
+
 la rotta `stat` con richiesta POST con parametri `campo`,`nome` e body `body` effettua un filtraggio della lista specificato nel body e
 seuccessivamente effettua le statistiche sul campo `campo` di valore `nome`
 
