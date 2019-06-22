@@ -3,6 +3,7 @@ Progetto realizzato per la prova pratica del corso di "Programmazione ad Oggetti
 
 ## Inclusi
 Tutti il file sorgente (.java)
+il JavaDoc
 Questo README
 
 # Struttura del Progetto
@@ -45,7 +46,7 @@ dove **Operatore** indica il tipo di filtro che si applica, **campo** il campo s
  - `{"$bt":{"latitudine":[41,42]}}` restituisce una lista con tutte le strutture che hanno la latitudine compresa tra 41 e 42
  - `{"$and":{"tipo":[provincia,comune],"campo":[AV,Avellino]}}` restituisce una lista con le strutture che hanno la provincia "AV" e i comune "Avellino"
 
-è stato implementata una funzione corrispondente alla rotta `/find` con parametri `Lat` `Lon` e `Radius` che partendo dal punto fissato con `Lat` e `Lon` crea una circonferenza di raggio `Radius` e restituisce una lista delle strutture che sono collocate all'interno di quest'area.
+È stata implementata una funzione corrispondente alla rotta `/find` con parametri `Lat` `Lon` e `Radius` che partendo dal punto fissato con `Lat` e `Lon` crea una circonferenza di raggio `Radius` e restituisce una lista delle strutture che sono collocate all'interno di quest'area.
  
 I vari metodi delle classi sono spiegati dettagliatamente nel JavaDoc. Di seguito allegata i diagrammi UML dei casi d'uso, delle classi e delle sequenze.
 
