@@ -270,6 +270,7 @@ public ArrayList<String> NumeroCampi(Lista filStat, String campo) throws NoSuchM
 	 */
 	public List<Statistics> NumStats(String tipo,String campo, Lista filStat) throws NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
 		try {
+		if(campo==null) {
 		if((tipo.equals("telefono"))||(tipo.equals("fax"))||(tipo.equals("latitudine"))||(tipo.equals("longitudine"))) {
 			int count = this.Count(filStat, tipo, campo);
 			float media = this.Media(filStat, tipo);
@@ -280,6 +281,7 @@ public ArrayList<String> NumeroCampi(Lista filStat, String campo) throws NoSuchM
 			statistics.clear();
 			statistics.add(new Statistics (tipo, count, somma, media, devStand, max, min));
 			if(count==0) statistics.clear();//serve nel caso non ci sia nessun campo all'interno del tipo selezionato
+		}
 		}
 		}catch(NoSuchMethodError a) {a.printStackTrace();
 		}catch (SecurityException b) {b.printStackTrace();
@@ -303,12 +305,13 @@ public ArrayList<String> NumeroCampi(Lista filStat, String campo) throws NoSuchM
 	 */
 	public List<Statistics> StringStats(String tipo,String campo, Lista filStat) throws NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
 		try{
+		if(campo!=null)	{
 		if((tipo.equals("preNorm"))||(tipo.equals("comune"))||(tipo.equals("provincia"))||(tipo.equals("indirizzo"))||(tipo.equals("tipo"))) {
-			
 			int count = this.Count(filStat, tipo, campo);
 			statistics.clear();
 			statistics.add(new Statistics (tipo+" "+campo, count, 0, 0, 0, 0, 0));
 			if(count==0) statistics.clear();//serve nel caso non ci sia nessun campo all'interno del tipo selezionato
+		}
 		}
 		}catch(NoSuchMethodError a) {a.printStackTrace();
 		}catch (SecurityException b) {b.printStackTrace();
