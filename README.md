@@ -55,6 +55,10 @@ la rotta `stat` con richiesta GET ed i parametri `tipo`,`campo` restituisce le s
 la rotta `stat` con richiesta POST con parametri `campo`,`nome` e body `body` effettua un filtraggio della lista specificato nel body e
 seuccessivamente effettua le statistiche sul campo `campo` di valore `nome`; il parametro `nome` deve essere inserito solamente nel caso il tipo del campo su cui si vuole  effettuare le statistiche sia di tipo String
 
+**Esempi**
+- `/stat?tipo=provincia&campo=AV` effettua il conteggio delle ripetizioni di AV nel dataset
+- `/stat?tipo=latitudine` effettua somma, media, conteggio, deviazione standard, massimo e minimo del campo latitudine
+
 I vari metodi delle classi sono spiegati dettagliatamente nel JavaDoc. Di seguito allegata i diagrammi UML dei casi d'uso, delle classi e delle sequenze.
 **Casi D'uso**
 
