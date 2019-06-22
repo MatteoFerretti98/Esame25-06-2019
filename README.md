@@ -23,6 +23,7 @@ il software può gestire fondamentalmente 3 tipo di richieste:
  
  La rotta `/metadata`  restituisce la lista dei **metadati**  in formato JSON 
  la rotta `/data` restituisce la lista dei **dati** in formato JSON
+ la rotta `/linea` con il parametro `Fid` restituisce la struttura `Dati` con il Fid desiderato
  
  **Filtri**
 I filtri devono essere inseriti nella richiesta POST come stringa.
@@ -43,6 +44,8 @@ dove **Operatore** indica il tipo di filtro che si applica, **campo** il campo s
  - `{"$gte":{"latitudine":41}}` restituisce una lista con tutte le strutture che hanno la latitudine di almeno 41
  - `{"$bt":{"latitudine":[41,42]}}` restituisce una lista con tutte le strutture che hanno la latitudine compresa tra 41 e 42
  - `{"$and":{"tipo":[provincia,comune],"campo":[AV,Avellino]}}` restituisce una lista con le strutture che hanno la provincia "AV" e i comune "Avellino"
+
+è stato implementata una funzione corrispondente alla rotta `/find` con parametri `Lat` `Lon` e `Radius` che partendo dal punto fissato con `Lat` e `Lon` crea una circonferenza di raggio `Radius` e restituisce una lista delle strutture che sono collocate all'interno di quest'area.
  
 I vari metodi delle classi sono spiegati dettagliatamente nel JavaDoc. Di seguito allegata i diagrammi UML dei casi d'uso, delle classi e delle sequenze.
 
