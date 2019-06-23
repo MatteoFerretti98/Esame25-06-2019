@@ -164,8 +164,8 @@ public class Controller {
 		if(!(body.isEmpty())) {
 			FilStat = (Lista) this.Filtro(body).getBody(); 
 		if((stats.StringStats(campo, nome, FilStat).isEmpty())&&(stats.NumStats(campo, nome, FilStat).isEmpty())) return new ResponseEntity ("Non esiste",HttpStatus.NOT_FOUND); //Se le liste sono vuote Non esiste
-		else if((!(stats.StringStats(campo, nome, FilStat).isEmpty())&&((campo.equals("preNorm"))||(campo.equals("comune"))||(campo.equals("provincia"))||(campo.equals("tipo"))&&!(nome==null))))	return new ResponseEntity (stats.StringStats(campo, nome, FilStat),HttpStatus.OK); //Se deve fare le statistiche per gli elementi unici
-		else if((!(stats.NumStats(campo,nome, FilStat).isEmpty())&&((campo.equals("telefono"))||(campo.equals("fax"))||(campo.equals("latitudine"))||(campo.equals("longitudine")))&&(nome==null)))	return new ResponseEntity (stats.NumStats(campo, nome, FilStat),HttpStatus.OK); //Se deve fare le statistiche per numeri
+		else if(!(stats.StringStats(campo, nome, FilStat).isEmpty())&&((campo.equals("preNorm"))||(campo.equals("comune"))||(campo.equals("provincia"))||(campo.equals("tipo"))))	return new ResponseEntity (stats.StringStats(campo, nome, FilStat),HttpStatus.OK); //Se deve fare le statistiche per gli elementi unici
+		else if(!(stats.NumStats(campo,nome, FilStat).isEmpty())&&((campo.equals("telefono"))||(campo.equals("fax"))||(campo.equals("latitudine"))||(campo.equals("longitudine"))))	return new ResponseEntity (stats.NumStats(campo, nome, FilStat),HttpStatus.OK); //Se deve fare le statistiche per numeri
 		else return new ResponseEntity ("Immetti dei valori consoni",HttpStatus.BAD_REQUEST); //Se non è nessuna delle precedenti è una Bad Request
 		}
 		else return new ResponseEntity ("Inserisci il body o usa la GET",HttpStatus.BAD_REQUEST);
