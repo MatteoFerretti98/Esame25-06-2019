@@ -22,7 +22,6 @@ public class Filtri {
 	 * Questo è il costruttore di Filtri
 	 */
 	public Filtri() {
-		
 	}
 	/**
 	 * Inizializza lista come {@link dataset.Lista} .

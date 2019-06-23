@@ -16,8 +16,7 @@ public class Statistiche {
 	/**
 	 * Questo è il costruttore di Statistiche
 	 */
-	public Statistiche() {
-		
+	public Statistiche() {	
 	}
 	/**
 	 * Inizializza una lista di dati come {@link dataset.Lista}.
